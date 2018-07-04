@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-ffsdfdsfdsfds
+This page is called using a view resolver
 </body>
 </html>
