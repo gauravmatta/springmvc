@@ -9,6 +9,7 @@
 <link rel="stylesheet" href="<spring:url value="/resources/css/home.css"/>" type="text/css"/>
 </head>
 <body>
+<span>${msg}</span>
 <h1>This page is called using a view resolver</h1>
 </body>
 </html>
