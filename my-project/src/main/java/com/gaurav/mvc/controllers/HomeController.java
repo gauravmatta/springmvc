@@ -9,14 +9,21 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.springimplant.mvc.data.entities.Project;
+
 @Controller
 public class HomeController {
 	
 //	private ExampleService service;
 
-	@RequestMapping("/home")
-	public String goHome()
+	@RequestMapping("/")
+	public String goHome(Model model)
 	{
+		Project project=new Project();
+		project.setName("Java Tutorial");
+		project.setSponser("Spring Implant");
+		project.setDescription("A simple project initiated to Learn Java with Fun");
+		model.addAttribute("currentProject",project);
 		return "home";
 	}
 	
