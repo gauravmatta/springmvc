@@ -61,7 +61,7 @@ public class HomeController {
 	public String test2(HttpServletRequest request,HttpSession session)
 	{
 		System.out.println("Request Object :");
-		Enumeration headerNames = request.getHeaderNames();
+		Enumeration<String> headerNames = request.getHeaderNames();
 		while(headerNames.hasMoreElements()) 
 		{
 			String headerName = (String)headerNames.nextElement(); 
