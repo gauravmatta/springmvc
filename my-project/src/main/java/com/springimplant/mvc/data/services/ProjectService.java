@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import com.springimplant.mvc.data.entities.Project;
 
@@ -22,11 +23,11 @@ public class ProjectService {
 		return this.projects;
 	}
 	
-//	public Project find(Long projectId){
-//		return this.projects.stream().filter(p -> {
-//			return p.getProjectId().equals(projectId);
-//		}).collect(Collectors.toList()).get(0);
-//	}
+	public Project find(Long projectId){
+		return this.projects.stream().filter(p -> {
+			return p.getProjectId().equals(projectId);
+		}).collect(Collectors.toList()).get(0);
+	}
 
 	private Project createProject(String title, String description) {
 		Project project = new Project();

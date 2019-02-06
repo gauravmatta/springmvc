@@ -30,7 +30,9 @@
 				</tr>
 				<c:forEach items="${projects}" var="project">
 					<tr>
-						<td>${project.name}</td><td>${project.sponser}</td><td>${project.description}</td>
+						<td><a href='<spring:url value="/project/${project.projectId}"/>'>${project.name}</a></td>
+						<td>${project.sponser}</td>
+						<td>${project.description}</td>
 					</tr>
 				</c:forEach>
 			</tbody>
