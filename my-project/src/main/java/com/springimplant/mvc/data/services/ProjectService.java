@@ -33,7 +33,7 @@ public class ProjectService {
 		project.setName(title);
 		project.setAuthorizedFunds(new BigDecimal("100000"));
 		project.setAuthorizedHours(new BigDecimal("1000"));
-		project.setSponser("Spring MVC Implant");
+		project.setSponsor("Spring MVC Implant");
 		project.setProjectId(1L);
 		project.setSpecial(false);
 		project.setType("multi");

@@ -6,7 +6,7 @@ public class Project {
 	private Long projectId;
 	private String name;  
 	private String description;  
-	private String sponser;  
+	private String sponsor;  
 	private BigDecimal authorizedHours;  
 	private BigDecimal authorizedFunds;  
 	private String year;  
@@ -21,7 +21,8 @@ public class Project {
 	 public String getName() {  
 	      return name;  
 	 }  
-	 public void setName(String name) {  
+	 public void setName(String name) {
+	 	System.out.println("Field Name Binded to object");
 	      this.name = name;  
 	 }  
 	 public String getDescription() {  
@@ -30,11 +31,11 @@ public class Project {
 	 public void setDescription(String description) {  
 	      this.description = description;  
 	 }  
-	 public String getSponser() {  
-	      return sponser;  
+	 public String getSponsor() {  
+	      return sponsor;  
 	 }  
-	 public void setSponser(String sponser) {  
-	      this.sponser = sponser;  
+	 public void setSponsor(String sponsor) {  
+	      this.sponsor = sponsor;  
 	 }  
 	 public BigDecimal getAuthorizedHours() {
 	      return authorizedHours;  
@@ -65,5 +66,11 @@ public class Project {
 	 }  
 	 public void setType(String type) {  
 	      this.type = type;
-	 }  
+	 }
+	@Override
+	public String toString() {
+		return "Project [projectId=" + projectId + ", name=" + name + ", description=" + description + ", sponser="
+				+ sponsor + ", authorizedHours=" + authorizedHours + ", authorizedFunds=" + authorizedFunds + ", year="
+				+ year + ", special=" + special + ", type=" + type + "]";
+	}  
 }
