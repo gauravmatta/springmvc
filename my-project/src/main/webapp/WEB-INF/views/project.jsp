@@ -34,7 +34,7 @@
 							
 				<div class="form-group">
 					<label for="sponsor">Sponsor</label>
-					<span>${project.sponser}</span>
+					<span>${project.sponsor}</span>
 				</div>
 			
 				<div class="form-group">
