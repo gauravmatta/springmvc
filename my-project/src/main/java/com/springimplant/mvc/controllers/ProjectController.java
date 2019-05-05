@@ -36,20 +36,22 @@ public class ProjectController {
 	}
 	
 	@RequestMapping(value="/add",method=RequestMethod.GET)
-	public String addProject(HttpSession session)
+	public String addProject(HttpSession session,Model model)
 	{
 		session.setAttribute("token","12345");
 		System.out.println("Invoking addProject");
+		model.addAttribute("project",new Project());
 		return "project_add";
 	}
 	
 	@RequestMapping(value="/add",method=RequestMethod.POST)
-	public String saveProject(@ModelAttribute Project project,HttpServletRequest request,@RequestParam("name") String name,HttpSession session)
+	public String saveProject(@ModelAttribute Project project,HttpServletRequest request,@RequestParam("name") String name,HttpSession session,Model model)
 	{
 		System.out.println(session.getAttribute("token"));
 		System.out.println(request.getParameter("name"));
 		System.out.println(name);
 		System.out.println(project);
+		model.addAttribute("project",project);
 		System.out.println("Invoking saveProject");
 		return "project_add";
 	}

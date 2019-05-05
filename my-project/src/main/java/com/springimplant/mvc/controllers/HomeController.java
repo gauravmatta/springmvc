@@ -37,7 +37,7 @@ public class HomeController {
 	{
 		Project project=new Project();
 		project.setName("Java Tutorial");
-		project.setSponser("Spring Implant");
+		project.setSponsor("Spring Implant");
 		project.setDescription("A simple project initiated to Learn Java with Fun");
 		model.addAttribute("currentProject",project);
 		return "home";

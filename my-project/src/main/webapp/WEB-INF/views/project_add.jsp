@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,7 +20,8 @@
 	
 	<div class="container">
 		<div class="row">
-			<form action="<spring:url value="/project/add"/>" method="post" class="col-md-8 col-md-offset-2">
+			<spring:url value="/project/add" var="formUrl" htmlEscape="true"/>
+			<form:form method="POST" action="${formUrl}" modelAttribute="project">
 			
 				<div class="form-group">
 					<label for="project-name">Name</label>
@@ -65,7 +67,7 @@
 	
 				<button type="submit" class="btn btn-default">Submit</button>
 	
-			</form>
+			</form:form>
 			
 		</div>
 	</div>
