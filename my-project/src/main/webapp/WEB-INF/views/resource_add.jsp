@@ -37,13 +37,7 @@
 
 				<div class="form-group">
 					<label for="resource-type">Type</label> 
-					<select id="resource-type" name="type" class="selectpicker">
-						<option></option>
-						<option value="material">Material</option>
-						<option value="other">Other</option>
-						<option value="staff">Staff</option>
-						<option value="tech">Technical Equipment</option>
-					</select>
+					<form:select path="type" items="${itemOptions}" cssClass="form-control"></form:select>
 				</div>
 
 				<div class="form-group">
@@ -52,8 +46,13 @@
 				</div>
 
 				<div class="form-group">
-					<label for="unit">Unit of Measure</label> <input id="unit"
-						type="text" class="form-control" name="unitOfMeasure" />
+					<label for="unit">Unit of Measure</label> 
+					<form:radiobuttons path="unitOfMeasure" items="${radioOptions}"/>
+				</div>
+				
+				<div class="form-group">
+					<label for="indicators">Indicators</label> 
+					<form:checkboxes id="indicators" path="indicators" items="${checkOptions}"/>
 				</div>
 				
 				<button type="submit" class="btn btn-default">Submit</button>

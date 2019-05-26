@@ -1,6 +1,7 @@
 package com.springimplant.mvc.data.entities;
 
 import java.math.BigDecimal;
+import java.util.Arrays;
 
 public class Resource {
 
@@ -13,6 +14,8 @@ public class Resource {
 	private BigDecimal cost;
 
 	private String unitOfMeasure;
+	
+	private String indicators[];
 
 	public Long getResourceId() {
 		return resourceId;
@@ -56,9 +59,16 @@ public class Resource {
 
 	@Override
 	public String toString() {
-		return "Resource [resourceId=" + resourceId + ", name=" + name
-				+ ", type=" + type + ", cost=" + cost + ", unitOfMeasure="
-				+ unitOfMeasure + "]";
+		return "Resource [resourceId=" + resourceId + ", name=" + name + ", type=" + type + ", cost=" + cost
+				+ ", unitOfMeasure=" + unitOfMeasure + ", indicators=" + Arrays.toString(indicators) + "]";
+	}
+
+	public String[] getIndicators() {
+		return indicators;
+	}
+
+	public void setIndicators(String indicators[]) {
+		this.indicators = indicators;
 	}
 
 }
