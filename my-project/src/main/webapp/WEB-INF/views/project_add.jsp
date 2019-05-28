@@ -25,44 +25,47 @@
 			
 				<div class="form-group">
 					<label for="project-name">Name</label>
-					<input type="text" id="project-name"  class="form-control" name="name"/>
+					<form:input path="name" id="project-name" cssClass="form-control"/>
 				</div>
 				
 				<div class="form-group">
 					<label for="project_type">Type</label>
-					<select name="type" class="selectpicker">
-						<option></option>
-						<option value="single">Single Year</option>
-						<option value="multi">Multi-Year</option>
-					</select>
+					<form:select path="type" cssClass="selectpicker" items="${types}"></form:select>
 				</div>
 			
 				<div class="form-group">
-					<label for="sponsor">Sponsor</label>
-					<input id="sponsor" type="text" 
-							class="form-control" name="sponsor"/>
+					<label for="sponsor-name">Sponsor Name</label>
+					<form:input id="sponsor-name" path="sponsor.name" cssClass="form-control"/>
+				</div>
+				
+				<div class="form-group">
+					<label for="sponsor-phone">Sponsor Phone</label>
+					<form:input id="sponsor-phone" path="sponsor.phone" cssClass="form-control"/>
+				</div>
+				
+				<div class="form-group">
+					<label for="sponsor-email">Sponsor Email</label>
+					<form:input id="sponsor-email" path="sponsor.email" cssClass="form-control"/>
 				</div>
 			
 				<div class="form-group">
 					<label for="funds">Authorized Funds</label>
-					<input id="funds" type="text"
-						class="form-control" name="authorizedFunds"/>
+					<form:input path="authorizedFunds" id="funds" cssClass="form-control"/>
 				</div>
 			
 				<div class="form-group">
 					<label for="hours">Authorized Hours</label>
-					<input id="hours" type="text"
-						class="form-control" name="authorizedHours"/>
+					<form:input path="authorizedHours" id="hours" cssClass="form-control"/>
 				</div>
 			
 				<div class="form-group">
 					<label for="project-name">Description</label>
-					<textarea name="description" class="form-control" rows="3"></textarea>
+					<form:textarea path="description" id="description" cssClass="form-control" rows="3"/>
 				</div>
 				
 				<div class="form-group">
 					<label for="special">Special</label>
-					<input id="special" name="special" type="checkbox"/>
+					<form:checkbox path="special" id="special" />
 				</div>
 	
 				<button type="submit" class="btn btn-default">Submit</button>

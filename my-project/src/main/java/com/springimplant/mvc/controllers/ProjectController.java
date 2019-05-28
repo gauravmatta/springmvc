@@ -1,5 +1,7 @@
 package com.springimplant.mvc.controllers;
 
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -40,6 +42,11 @@ public class ProjectController {
 	{
 		session.setAttribute("token","12345");
 		System.out.println("Invoking addProject");
+		model.addAttribute("types",new ArrayList<String>(){{
+			add("");
+			add("Single Year");
+			add("Multi Year");
+		}});
 		model.addAttribute("project",new Project());
 		return "project_add";
 	}
