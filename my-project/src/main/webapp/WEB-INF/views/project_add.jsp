@@ -64,6 +64,21 @@
 				</div>
 				
 				<div class="form-group">
+					<label for="poc">POC</label>
+					<form:input id="poc" path="pointsOfContact[0]" cssClass="form-control"/>
+				</div>
+				
+				<div class="form-group">
+					<label for="poc2">POC 2</label>
+					<form:input id="poc2" path="pointsOfContact[1]" cssClass="form-control"/>
+				</div>
+				
+				<div class="form-group">
+					<label for="poc3">POC 3</label>
+					<form:input id="poc3" path="pointsOfContact[2]" cssClass="form-control"/>
+				</div>
+				
+				<div class="form-group">
 					<label for="special">Special</label>
 					<form:checkbox path="special" id="special" />
 				</div>
