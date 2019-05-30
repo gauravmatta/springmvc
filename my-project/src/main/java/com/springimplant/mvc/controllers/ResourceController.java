@@ -20,14 +20,38 @@ public class ResourceController {
 	@RequestMapping("/add")
 	public String add(Model model)
 	{
-		List<String> options=new LinkedList<>(Arrays.asList(new String[]{"Material","Other","Staff","Technical Equipment"}));
-		List<String> radios=new LinkedList<>(Arrays.asList(new String[]{"Hours","Piece","Tons"}));
-		List<String> checks=new LinkedList<>(Arrays.asList(new String[]{"Lead Time","Special Rate","Requires Approval"}));
-		model.addAttribute("itemOptions",options);
-		model.addAttribute("radioOptions",radios);
-		model.addAttribute("checkOptions",checks);
-		model.addAttribute("resource",new Resource());
+//		List<String> options=new LinkedList<>(Arrays.asList(new String[]{"Material","Other","Staff","Technical Equipment"}));
+//		List<String> radios=new LinkedList<>(Arrays.asList(new String[]{"Hours","Piece","Tons"}));
+//		List<String> checks=new LinkedList<>(Arrays.asList(new String[]{"Lead Time","Special Rate","Requires Approval"}));
+//		model.addAttribute("itemOptions",options);
+//		model.addAttribute("radioOptions",radios);
+//		model.addAttribute("checkOptions",checks);
+//		model.addAttribute("resource",new Resource());
 		return "resource_add";
+	}
+	
+	@ModelAttribute("resource")
+	public Resource getResource()
+	{
+		return new Resource();
+	}
+	
+	@ModelAttribute("checkOptions")
+	public List<String> getChecks()
+	{
+		return new LinkedList<>(Arrays.asList(new String[]{"Lead Time","Special Rate","Requires Approval"}));
+	}
+	
+	@ModelAttribute("radioOptions")
+	public List<String> getRadios()
+	{
+		return new LinkedList<>(Arrays.asList(new String[]{"Hours","Piece","Tons"}));
+	}
+	
+	@ModelAttribute("itemOptions")
+	public List<String> getItems()
+	{
+		return new LinkedList<>(Arrays.asList(new String[]{"Lead Time","Special Rate","Requires Approval"}));
 	}
 	
 	@RequestMapping("/save")
