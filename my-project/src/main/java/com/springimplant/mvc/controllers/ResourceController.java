@@ -8,7 +8,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 
 import com.springimplant.mvc.data.entities.Resource;
 
@@ -32,11 +34,21 @@ public class ResourceController {
 	}
 	
 	@RequestMapping("/save")
-	public String save(@ModelAttribute Resource resource,Model model) throws ClassNotFoundException
+	public String save(@ModelAttribute Resource resource,SessionStatus status) throws ClassNotFoundException
 	{
 		System.out.println("Invoking save() method");
 		System.out.println(resource);
+		status.setComplete();
 		return "redirect:/resource/add";
+	}
+	
+	@RequestMapping("/request")
+	@ResponseBody
+	public String request(@ModelAttribute Resource resource)
+	{
+		//Send an Email for Request
+		//Format this into an json array to be handled in js
+		return "The request has been sent for Approval";
 	}
 	
 	@ModelAttribute("resource")
