@@ -10,6 +10,7 @@
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
 <link rel="stylesheet" href="<spring:url value="/resources/css/bootstrap-select.min.css"/>" type="text/css" />
+<link rel="stylesheet" href="<spring:url value="/resources/css/global.css"/>" type="text/css" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 <script src="<spring:url value="/resources/js/bootstrap-select.min.js"/>"></script>
@@ -25,7 +26,7 @@
 			<h1>Resource</h1>
 		</div>
 		
-		<spring:url value="/resource/save" var="formUrl" htmlEscape="true"/>
+		<spring:url value="/resource/review" var="formUrl" htmlEscape="true"/>
 		<form:form action="${formUrl}" method="POST" modelAttribute="resource">
 			
 			<div class="row">
@@ -41,8 +42,8 @@
 				</div>
 
 				<div class="form-group">
-					<label for="cost">Cost</label> <input id="cost" type="text"
-						class="form-control" name="cost" />
+					<label for="cost">Cost</label> 
+					<form:input path="cost" cssClass="form-control" id="cost" />
 				</div>
 
 				<div class="form-group">
