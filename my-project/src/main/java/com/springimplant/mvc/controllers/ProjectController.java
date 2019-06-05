@@ -1,13 +1,19 @@
 package com.springimplant.mvc.controllers;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.springimplant.mvc.data.entities.Project;
 import com.springimplant.mvc.data.services.ProjectService;
+import com.springimplant.mvc.data.validators.ProjectValidator;
 
 @Controller
 @RequestMapping("/project")
@@ -52,8 +59,21 @@ public class ProjectController {
 	}
 	
 	@RequestMapping(value="/add",method=RequestMethod.POST)
-	public String saveProject(@ModelAttribute Project project,HttpServletRequest request,@RequestParam("name") String name,HttpSession session,Model model)
+	public String saveProject(@Valid @ModelAttribute Project project,Errors errors,HttpServletRequest request,@RequestParam("name") String name,HttpSession session,Model model)
 	{
+		List<String> errs=new LinkedList<String>();
+		if(errors.hasErrors())
+		{
+			System.out.println("The Project is not Validated");
+			errs.add("Name is too Short");
+			model.addAttribute("errorList",errs);
+			return "project_add";
+		}
+		else
+		{
+			System.out.println("The Project is Validated");
+		}
+		
 		System.out.println(session.getAttribute("token"));
 		System.out.println(request.getParameter("name"));
 		System.out.println(name);
@@ -75,6 +95,12 @@ public class ProjectController {
 	{
 		System.out.println("Invoking saveSpecial");
 		return "project_add";
+	}
+	
+	@InitBinder
+	public void initBinder(WebDataBinder binder)
+	{
+		binder.addValidators(new ProjectValidator());
 	}
 	
 }
