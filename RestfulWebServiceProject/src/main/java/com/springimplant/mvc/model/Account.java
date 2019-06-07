@@ -4,8 +4,8 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 
 public class Account implements Serializable {
-
-	public static final long serialVersionUID = 1L;
+	
+public static final long serialVersionUID = 1L;
 	
 	private String id;
 	private String name;
@@ -17,6 +17,16 @@ public class Account implements Serializable {
 		this.name = name;
 		this.balance = balance;
 	}
+	
+	public Account() {
+		super();
+	}
+	
+	@Override
+	public String toString() {
+		return "Account [id=" + id + ", name=" + name + ", balance=" + balance + "]";
+	}
+
 	public String getId() {
 		return id;
 	}
@@ -35,5 +45,5 @@ public class Account implements Serializable {
 	public void setBalance(BigDecimal balance) {
 		this.balance = balance;
 	}
-	
+
 }
