@@ -1,6 +1,5 @@
 package com.springimplant.mvc.controllers;
 
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -15,4 +14,11 @@ public class HomeController {
 	{
 		return new ModelAndView("welcome");
 	}
+	
+	@RequestMapping(value="hello",method=RequestMethod.GET)
+	public ModelAndView hello()
+	{
+		return new ModelAndView("welcome");
+	}
+
 }

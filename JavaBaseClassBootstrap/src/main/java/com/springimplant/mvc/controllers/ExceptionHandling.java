@@ -26,7 +26,6 @@ public class ExceptionHandling {
 	
 	@RequestMapping("*")
 	public ModelAndView fallbackHandler(final HttpServletRequest request, final HttpServletResponse response) throws Exception {
-			
 		return buildModelAndViewErrorPage(request, response, null, HttpStatus.NOT_FOUND);
 	}
 	
