@@ -3,9 +3,12 @@ package com.springimplant.mvc.data.entities;
 import java.math.BigDecimal;
 import java.util.List;
 
+import javax.validation.constraints.NotBlank;
+
 public class Project {
 	private Long projectId;
-	private String name;  
+	private String name;
+	@NotBlank
 	private String description;  
 	private Sponsor sponsor;  
 	private BigDecimal authorizedHours;  
