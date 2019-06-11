@@ -4,8 +4,11 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,7 +35,17 @@ public class ResourceController {
 	public String add(Model model)
 	{
 		System.out.println("Invoking add() method");
+		if(1==1)
+		{
+			throw new RuntimeException("There was an error");
+		}
 		return "resource_add";
+	}
+	
+	@ExceptionHandler(Exception.class)
+	public String handleError(HttpServletRequest request)
+	{
+		return "controller_error";
 	}
 	
 	@RequestMapping("/save")
