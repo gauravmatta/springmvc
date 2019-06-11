@@ -61,12 +61,12 @@ public class ProjectController {
 	@RequestMapping(value="/add",method=RequestMethod.POST)
 	public String saveProject(@Valid @ModelAttribute Project project,Errors errors,HttpServletRequest request,@RequestParam("name") String name,HttpSession session,Model model)
 	{
-		List<String> errs=new LinkedList<String>();
+//		List<String> errs=new LinkedList<String>();
 		if(errors.hasErrors())
 		{
 			System.out.println("The Project is not Validated");
-			errs.add("Name is too Short");
-			model.addAttribute("errorList",errs);
+//			errs.add("Name is too Short");
+//			model.addAttribute("errorList",errs);
 			return "project_add";
 		}
 		else

@@ -8,8 +8,8 @@ import javax.validation.constraints.NotBlank;
 public class Project {
 	private Long projectId;
 	private String name;
-	@NotBlank
-	private String description;  
+	@NotBlank(message="Desription Can't be Blank")
+	private String description;
 	private Sponsor sponsor;  
 	private BigDecimal authorizedHours;  
 	private BigDecimal authorizedFunds;  
