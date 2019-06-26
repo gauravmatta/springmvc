@@ -44,6 +44,16 @@ public class ProjectController {
 		return "projects";
 	}
 	
+	@RequestMapping(value="/exception")
+	public String exception()
+	{
+		if(1==1)
+		{
+			throw new RuntimeException("There was an Error");
+		}
+		return "project_add";
+	}
+	
 	@RequestMapping(value="/add",method=RequestMethod.GET)
 	public String addProject(HttpSession session,Model model)
 	{

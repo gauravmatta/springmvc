@@ -35,6 +35,12 @@ public class ResourceController {
 	public String add(Model model)
 	{
 		System.out.println("Invoking add() method");
+		return "resource_add";
+	}
+	
+	@RequestMapping("/exception")
+	public String exception(Model model)
+	{
 		if(1==1)
 		{
 			throw new RuntimeException("There was an error");
