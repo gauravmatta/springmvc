@@ -2,8 +2,7 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
-
-<bean id="airtel" class="com.springmvcimplant.ioc.entities.Airtel"></bean>
-<bean id="voda" class="com.springmvcimplant.ioc.entities.Vodafone"></bean>
-<bean id="sim" class="com.springmvcimplant.ioc.entities.Jio"></bean>
+<bean id="wb" class="com.springmvc.WelcomeBean">
+	<property name="message" value="Welcome to Spring"></property>
+</bean>
 </beans>
