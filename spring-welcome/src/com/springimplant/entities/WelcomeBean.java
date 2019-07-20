@@ -1,4 +1,4 @@
-package com.springmvc;
+package com.springimplant.entities;
 
 public class WelcomeBean {
 	private String message;
