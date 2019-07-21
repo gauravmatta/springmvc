@@ -7,15 +7,14 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
 
-<aop:aspectj-autoproxy/>
-<bean id="cheatObjectValue" class="com.springimplant.entities.Cheating"/>
-<bean id="mathCheat" class="com.springimplant.entities.MathsCheat"/>
-<bean id="scienceCheat" class="com.springimplant.entities.ScienceCheat"/>
-<bean id="stu" class="com.springimplant.entities.Student">
-	<property name="cheat" ref="cheatObjectValue"/>
-	<property name="studentName" value="Gaurav Matta"/>
-	<property name="id" value="1"></property>
-	<property name="cheatingInterface" ref="mathCheat"></property>
+<bean name="triangle" class="com.springimplant.entities.Triangle">
+	<property name="name" value="Triangle Name" ></property>
 </bean>
-<bean name="helper" class="com.springimplant.aspects.Helper"/>
+
+<bean name="circle" class="com.springimplant.entities.Circle">
+	<property name="name" value="Circle Name" ></property>
+</bean>
+
+<bean name="shapeService" class="com.springimplant.service.ShapeService" autowire="byName"/>
+
 </beans>
