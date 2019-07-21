@@ -4,6 +4,15 @@ public class Student {
 
 	private int id;
 	private String studentName;
+	private Cheating cheat;
+
+	public Cheating getCheat() {
+		return cheat;
+	}
+
+	public void setCheat(Cheating cheat) {
+		this.cheat = cheat;
+	}
 
 	public int getId() {
 		return id;
@@ -19,6 +28,11 @@ public class Student {
 
 	public void setStudentName(String studentName) {
 		this.studentName = studentName;
+	}
+	
+	public void cheating()
+	{
+		cheat.mathCheat();
 	}
 
 	@Override
