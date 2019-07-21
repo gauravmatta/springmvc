@@ -23,5 +23,8 @@
 	<classpathentry kind="lib" path="lib/spring-jdbc-5.1.8.RELEASE.jar"/>
 	<classpathentry kind="lib" path="lib/spring-jms-5.1.8.RELEASE.jar"/>
 	<classpathentry kind="lib" path="lib/spring-messaging-5.1.8.RELEASE.jar"/>
+	<classpathentry kind="lib" path="lib/aopalliance-1.0.jar"/>
+	<classpathentry kind="lib" path="lib/aspectjrt-1.9.4.jar"/>
+	<classpathentry kind="lib" path="lib/aspectjweaver-1.9.4.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
