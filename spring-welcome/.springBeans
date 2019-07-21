@@ -9,6 +9,7 @@
 	<configs>
 		<config>src/resources/beans.xml</config>
 		<config>src/resources/object_injection.xml</config>
+		<config>src/resources/LooseCoupling.xml</config>
 	</configs>
 	<autoconfigs>
 	</autoconfigs>
