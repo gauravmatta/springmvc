@@ -2,22 +2,24 @@ package com.springimplant.config;
 
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
-public class MyWebAppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer{
+public class MyWebAppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 
 	@Override
 	protected Class<?>[] getRootConfigClasses() {
+		// TODO Auto-generated method stub
 		return new Class[] {AppConfig.class};
 	}
 
 	@Override
 	protected Class<?>[] getServletConfigClasses() {
-		return new Class[] {WebConfig.class};
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
 	protected String[] getServletMappings() {
-		return new String[]{"/"};
+		// TODO Auto-generated method stub
+		return null;
 	}
-	
 
 }
