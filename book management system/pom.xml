@@ -33,13 +33,11 @@
   		<groupId>org.hibernate</groupId>
   		<artifactId>hibernate-core</artifactId>
   		<version>5.0.0.Final</version>
-  		<type>pom</type>
   	</dependency>
   	<dependency>
   		<groupId>org.hibernate</groupId>
   		<artifactId>hibernate-c3p0</artifactId>
   		<version>5.0.0.Final</version>
-  		<type>pom</type>
   	</dependency>
   	<dependency>
   		<groupId>com.mchange</groupId>
@@ -71,6 +69,16 @@
   		<artifactId>hsqldb</artifactId>
   		<version>1.8.0.10</version>
   	</dependency>
+  	<dependency>
+  		<groupId>taglibs</groupId>
+  		<artifactId>standard</artifactId>
+  		<version>1.1.2</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>mysql</groupId>
+  		<artifactId>mysql-connector-java</artifactId>
+  		<version>8.0.17</version>
+  	</dependency>
   </dependencies>
   <build>
     <finalName>book-management-system</finalName>
@@ -84,6 +92,10 @@
   			<groupId>org.apache.maven.plugins</groupId>
   			<artifactId>maven-compiler-plugin</artifactId>
   			<version>3.8.1</version>
+  			<configuration>
+  				<source>1.8</source>
+  				<target>1.8</target>
+  			</configuration>
   		</plugin>
   	</plugins>
   </build>
