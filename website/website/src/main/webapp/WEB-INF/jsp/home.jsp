@@ -1,12 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html>
+<jsp:useBean id="message" scope="request" class="java.lang.String" />
 <html>
 <head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>website</title>
 </head>
 <body>
-
+<h1>Home</h1>
+<p>
+<%=message%>
+</p>
 </body>
 </html>
