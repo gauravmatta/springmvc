@@ -25,8 +25,7 @@ public class Init implements ServletContextListener {
 		logger.error("Initialization failed.", e);
 		throw new RuntimeException(e);
 		}
-		logger.debug("Initialization succeeded.");
-		
+		logger.debug("Initialization succeeded.");	
 	}
 	
 	private void contextInitialized2(ServletContext servletContext)

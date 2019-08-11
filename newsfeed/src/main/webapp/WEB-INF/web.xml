@@ -4,6 +4,9 @@
 
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
+  	<listener>
+		<listener-class>org.javaimplant.newsfeed.Init.Init</listener-class>
+	</listener>
 	<servlet>
 		<servlet-name>home</servlet-name>
 		<servlet-class>org.javaimplant.newsfeed.Servlets.HomeServlet</servlet-class>
@@ -12,4 +15,10 @@
 		<servlet-name>home</servlet-name>
 		<url-pattern>/home</url-pattern>
 	</servlet-mapping>
+	<resource-ref>
+		<description>dataSource</description>
+		<res-ref-name>datasource</res-ref-name>
+		<res-type>javax.sql.DataSource</res-type>
+		<res-auth>Container</res-auth>
+	</resource-ref>
 </web-app>
