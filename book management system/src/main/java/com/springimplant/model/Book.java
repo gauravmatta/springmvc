@@ -13,6 +13,7 @@ public class Book {
 	private long id;
 	private String title;
 	private String author;
+	private double price;
 
 	public long getId() {
 		return id;
@@ -35,5 +36,11 @@ public class Book {
 	@Override
 	public String toString() {
 		return "Book [id=" + id + ", title=" + title + ", author=" + author + "]";
+	}
+	public double getPrice() {
+		return price;
+	}
+	public void setPrice(double price) {
+		this.price = price;
 	}
 }
