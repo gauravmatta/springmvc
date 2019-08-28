@@ -12,7 +12,8 @@ public class DataAccessObject {
 	private static Object idLock=new Object();
 	
 
-	public static void setDatasource(DataSource datasource) {
+	public static void setDatasource(DataSource datasource) 
+	{
 		DataAccessObject.dataSource = datasource;
 	}
 	

@@ -1,4 +1,4 @@
-<Context path="/newsfeed" docBase="D:\My Projects\Java\publisher\src\main\webapp">
+<Context path="/newsfeed" docBase="D:\Users\703199444\My Data\Training\javacodes\newsfeed\src\main\webapp">
 <Resource name="datasource"
 type="javax.sql.DataSource"
 auth="Container"
