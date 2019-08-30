@@ -12,16 +12,24 @@
 		<servlet-class>org.javaimplant.newsfeed.Servlets.HomeServlet</servlet-class>
 	</servlet>
 	<servlet>
-		<servlet-name>data</servlet-name>
-		<servlet-class>org.javaimplant.newsfeed.Servlets.DataSourceServlet</servlet-class>
+		<servlet-name>newsfeed</servlet-name>
+		<servlet-class>org.javaimplant.newsfeed.Servlets.NewsFeedServlet</servlet-class>
 	</servlet>
-	<servlet-mapping>
-		<servlet-name>data</servlet-name>
-		<url-pattern>/data</url-pattern>
-	</servlet-mapping>
+	<servlet>
+		<servlet-name>news</servlet-name>
+		<servlet-class>org.javaimplant.newsfeed.Servlets.NewsServlet</servlet-class>
+	</servlet>
 	<servlet-mapping>
 		<servlet-name>home</servlet-name>
 		<url-pattern>/home</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>newsfeed</servlet-name>
+		<url-pattern>/news.rss</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>news</servlet-name>
+		<url-pattern>/news</url-pattern>
 	</servlet-mapping>
 	<resource-ref>
 		<description>dataSource</description>

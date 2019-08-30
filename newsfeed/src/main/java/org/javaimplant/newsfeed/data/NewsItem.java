@@ -1,11 +1,20 @@
 package org.javaimplant.newsfeed.data;
 
+import java.util.Date;
+
 public class NewsItem 
 {	
 	private Long id;
 	private String title;
 	private String url;
+	private Date pubDate;
 	
+	public Date getPubDate() {
+		return pubDate;
+	}
+	public void setPubDate(Date pubDate) {
+		this.pubDate = pubDate;
+	}
 	public Long getId() {
 		return id;
 	}
