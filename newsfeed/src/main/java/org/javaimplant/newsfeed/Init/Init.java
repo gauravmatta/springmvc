@@ -36,7 +36,7 @@ public class Init implements ServletContextListener {
 	throws Exception 
 	{
 		InitialContext enc = new InitialContext();
-//		NamingEnumeration<NameClassPair> list = enc.list("java:comp/env/datasource");
+//		NamingEnumeration<NameClassPair> list = enc.list("java:comp/env");
 //		while (list.hasMore())
 //		{
 //		  System.out.println(list.next().getName());
