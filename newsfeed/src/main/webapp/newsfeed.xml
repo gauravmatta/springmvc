@@ -1,5 +1,5 @@
 <Context path="/newsfeed" docBase="D:\My Projects\springmvc\newsfeed\src\main\webapp">
-	<Resource 	name="datasource"
+<Resource 	name="datasource"
 				type="javax.sql.DataSource"
 				auth="Container"
 				maxActive="10"
