@@ -70,7 +70,7 @@ public class HomeServlet extends HttpServlet {
 	@Override
 	public void init(ServletConfig config) throws ServletException {
 		ServletContext context = config.getServletContext();
-		homeJsp = context.getRequestDispatcher("/WEB-INF/jsp/home.jsp");
+		homeJsp = context.getRequestDispatcher("/WEB-INF/views/home.jsp");
 		BasicConfigurator.configure();
 	}
 

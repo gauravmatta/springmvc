@@ -19,6 +19,14 @@
 		<servlet-name>news</servlet-name>
 		<servlet-class>org.javaimplant.newsfeed.Servlets.NewsServlet</servlet-class>
 	</servlet>
+	<servlet>
+		<servlet-name>root</servlet-name>
+		<servlet-class>org.javaimplant.newsfeed.Servlets.RootServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>root</servlet-name>
+		<url-pattern>/root</url-pattern>
+	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>home</servlet-name>
 		<url-pattern>/home</url-pattern>
