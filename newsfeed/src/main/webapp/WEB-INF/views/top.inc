@@ -7,7 +7,7 @@
 		style="padding: 0; margin: 0; border-collapse: collapse">
 		<tr style="padding: 0; margin: 0">
 			<td width="728" colspan="2" style="padding: 0; margin: 0"><img
-				src="logo.gif" style="padding: 0;"></td>
+				src="images/logo.jpg" style="padding: 0;"></td>
 		</tr>
 		<tr style="padding: 0; margin: 0">
 			<td width="728" colspan="2" style="padding: 0; margin: 0">
