@@ -6,14 +6,15 @@
 	<table width="728" cellspacing="0" cellpadding="0"
 		style="padding: 0; margin: 0; border-collapse: collapse">
 		<tr style="padding: 0; margin: 0">
-			<td width="728" colspan="2" style="padding: 0; margin: 0"><img
-				src="images/logo.jpg" style="padding: 0;"></td>
+			<td width="728" colspan="2" style="padding: 0; margin: 0">
+				<img src="images/logo.jpg" style="padding: 0;">
+			</td>
 		</tr>
 		<tr style="padding: 0; margin: 0">
 			<td width="728" colspan="2" style="padding: 0; margin: 0">
-				<div
-					style="padding: 0; margin: 0; text-align: center; font-size: small; background-color: #99CCCC">
-					Publisher Application</div>
+				<div style="padding: 0; margin: 0; text-align: center; font-size: small; background-color: #99CCCC">
+					Publisher Application
+				</div>
 			</td>
 		</tr>
 		<tr>

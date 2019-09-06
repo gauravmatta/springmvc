@@ -23,6 +23,14 @@
 		<servlet-name>root</servlet-name>
 		<servlet-class>org.javaimplant.newsfeed.Servlets.RootServlet</servlet-class>
 	</servlet>
+	<servlet>
+		<servlet-name>list-news-item</servlet-name>
+		<servlet-class>org.javaimplant.newsfeed.Servlets.ListNewsItemsServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>list-news-item</servlet-name>
+		<url-pattern>/list-news-items</url-pattern>
+	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>root</servlet-name>
 		<url-pattern>/root</url-pattern>
