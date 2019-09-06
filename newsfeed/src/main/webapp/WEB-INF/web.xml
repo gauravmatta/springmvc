@@ -27,6 +27,14 @@
 		<servlet-name>list-news-item</servlet-name>
 		<servlet-class>org.javaimplant.newsfeed.Servlets.ListNewsItemsServlet</servlet-class>
 	</servlet>
+	<servlet>
+		<servlet-name>view-news-item</servlet-name>
+		<servlet-class>org.javaimplant.newsfeed.Servlets.ViewNewsItemServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>view-news-item</servlet-name>
+		<url-pattern>/view-news-item</url-pattern>
+	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>list-news-item</servlet-name>
 		<url-pattern>/list-news-items</url-pattern>
