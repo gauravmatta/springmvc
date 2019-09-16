@@ -85,4 +85,28 @@ public class NewsItemDAO extends DataAccessObject {
 			close(rs, statement, connection);
 		}
 	}
+	
+	public void update(NewsItem newsItem)
+	{
+		PreparedStatement statement = null;
+		Connection connection = null;
+		try
+		{
+			connection = getConnection();
+			String sql = "update news_item set " + "title=?, url=? where id=?";
+			statement = connection.prepareStatement(sql);
+			statement.setString(1, newsItem.getTitle());
+			statement.setString(2, newsItem.getUrl());
+			statement.setLong(3, newsItem.getId().longValue());
+			statement.execute();
+		} 
+		catch (SQLException e)
+		{
+			throw new RuntimeException(e);
+		} 
+		finally
+		{
+			close(statement, connection);
+		}
+	}
 }
