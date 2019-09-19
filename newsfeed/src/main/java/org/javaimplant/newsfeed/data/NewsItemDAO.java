@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -106,6 +108,30 @@ public class NewsItemDAO extends DataAccessObject {
 		} 
 		finally
 		{
+			close(statement, connection);
+		}
+	}
+	
+	public void create(NewsItem newsItem) {
+		Long id = getUniqueId();
+		newsItem.setId(id);
+		PreparedStatement statement = null;
+		Connection connection = null;
+		try {
+			connection = getConnection();
+			String sql = "insert into news_item " + "(id, title, url, pubDate) " + "values (?, ?, ?, ?)";
+			statement = connection.prepareStatement(sql);
+			statement.setLong(1, id.longValue());
+			statement.setString(2, newsItem.getTitle());
+			statement.setString(3, newsItem.getUrl());
+			LocalDateTime myDateObj = LocalDateTime.now();
+			DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+			String formattedDate = myDateObj.format(myFormatObj);
+			statement.setString(4,formattedDate);
+			statement.executeUpdate();
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		} finally {
 			close(statement, connection);
 		}
 	}

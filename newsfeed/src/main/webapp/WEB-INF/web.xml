@@ -35,6 +35,14 @@
 		<servlet-name>edit-news-item</servlet-name>
 		<servlet-class>org.javaimplant.newsfeed.Servlets.EditNewsItemServlet</servlet-class>
 	</servlet>
+	<servlet>
+		<servlet-name>create-news-item</servlet-name>
+		<servlet-class>org.javaimplant.newsfeed.Servlets.CreateNewsItemServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>create-news-item</servlet-name>
+		<url-pattern>/create-news-item</url-pattern>
+	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>edit-news-item</servlet-name>
 		<url-pattern>/edit-news-item</url-pattern>
