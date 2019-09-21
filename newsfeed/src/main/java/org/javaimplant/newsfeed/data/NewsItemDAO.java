@@ -135,4 +135,21 @@ public class NewsItemDAO extends DataAccessObject {
 			close(statement, connection);
 		}
 	}
+	
+	public void delete(NewsItem newsItem) {
+		PreparedStatement statement = null;
+		Connection connection = null;
+		try {
+			connection = getConnection();
+			String sql = "delete from news_item where id=?";
+			statement = connection.prepareStatement(sql);
+			Long id = newsItem.getId();
+			statement.setLong(1, id.longValue());
+			statement.executeUpdate();
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		} finally {
+			close(statement, connection);
+		}
+	}
 }
