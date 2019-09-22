@@ -15,9 +15,7 @@ import org.apache.log4j.Logger;
 import org.javaimplant.newsfeed.data.NewsItem;
 import org.javaimplant.newsfeed.data.NewsItemDAO;
 
-public class ListNewsItemsServlet extends HttpServlet {
-	private Logger logger = Logger.getLogger(this.getClass());
-	private RequestDispatcher jsp;
+public class ListNewsItemsServlet extends ParentServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		logger.debug("doGet()");	
@@ -25,12 +23,4 @@ public class ListNewsItemsServlet extends HttpServlet {
 		req.setAttribute("newsItems",newsItems);
 		jsp.forward(req, resp);
 	}
-	
-	@Override
-	public void init(ServletConfig config) throws ServletException {
-		ServletContext context= config.getServletContext();
-		jsp=context.getRequestDispatcher("/WEB-INF/views/list-news-item.jsp");
-	}
-	
-	
 }

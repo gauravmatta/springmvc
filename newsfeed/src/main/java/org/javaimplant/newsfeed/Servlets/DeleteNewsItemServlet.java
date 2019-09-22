@@ -14,11 +14,7 @@ import org.apache.log4j.Logger;
 import org.javaimplant.newsfeed.data.NewsItem;
 import org.javaimplant.newsfeed.data.NewsItemDAO;
 
-public class DeleteNewsItemServlet extends HttpServlet {
-
-	private Logger logger = Logger.getLogger(this.getClass());
-	private RequestDispatcher jsp;
-	
+public class DeleteNewsItemServlet extends ParentServlet {	
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

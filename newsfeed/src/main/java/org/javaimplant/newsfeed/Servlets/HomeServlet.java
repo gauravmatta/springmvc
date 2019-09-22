@@ -24,10 +24,7 @@ import com.sun.syndication.feed.synd.SyndFeed;
 import com.sun.syndication.io.FeedException;
 import com.sun.syndication.io.SyndFeedInput;
 
-public class HomeServlet extends HttpServlet {
-	
-	private Logger logger=Logger.getLogger(this.getClass());
-	private RequestDispatcher homeJsp;
+public class HomeServlet extends ParentServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -50,7 +47,7 @@ public class HomeServlet extends HttpServlet {
 		}
 		logger.debug("Forwarding to home.jsp");
 		req.setAttribute("syndFeed", syndFeed);
-		homeJsp.forward(req, resp);
+		jsp.forward(req, resp);
 	}
 	
 	private static BufferedReader getResponseRSS(CloseableHttpClient httpClient, String dataSource) throws IOException {
@@ -70,7 +67,7 @@ public class HomeServlet extends HttpServlet {
 	@Override
 	public void init(ServletConfig config) throws ServletException {
 		ServletContext context = config.getServletContext();
-		homeJsp = context.getRequestDispatcher("/WEB-INF/views/home.jsp");
+		jsp = context.getRequestDispatcher("/WEB-INF/views/home.jsp");
 		BasicConfigurator.configure();
 	}
 

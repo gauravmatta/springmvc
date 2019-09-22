@@ -19,16 +19,9 @@ import org.javaimplant.newsfeed.data.NewsItemDAO;
 /**
  * Servlet implementation class CreateNewsItemServlet
  */
-public class CreateNewsItemServlet extends HttpServlet {
+public class CreateNewsItemServlet extends ParentServlet {
 	
 	private static final long serialVersionUID = 1L;
-	private Logger logger = Logger.getLogger(this.getClass());
-	private RequestDispatcher jsp;
-	
-	public void init(ServletConfig config) throws ServletException {
-		ServletContext context = config.getServletContext();
-		jsp = context.getRequestDispatcher("/WEB-INF/views/edit-news-item.jsp");
-	}
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)

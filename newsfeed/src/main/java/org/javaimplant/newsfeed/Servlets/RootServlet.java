@@ -12,21 +12,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 
-public class RootServlet extends HttpServlet {
-	private Logger logger=Logger.getLogger(this.getClass());
-	private RequestDispatcher jsp;
+public class RootServlet extends ParentServlet {
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		logger.debug("Home Page Requested");
 		jsp.forward(req, resp);
 	}
-	
-	@Override
-	public void init(ServletConfig config) throws ServletException {
-		ServletContext context=config.getServletContext();
-		jsp=context.getRequestDispatcher("/WEB-INF/views/home.jsp");
-	}
-	
-
 }

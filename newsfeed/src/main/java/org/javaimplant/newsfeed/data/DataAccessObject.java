@@ -53,6 +53,7 @@ public class DataAccessObject {
 		}
 	}
 	
+	@SuppressWarnings("deprecation")
 	protected static Long getUniqueId() 
 	{
 		ResultSet rs = null;

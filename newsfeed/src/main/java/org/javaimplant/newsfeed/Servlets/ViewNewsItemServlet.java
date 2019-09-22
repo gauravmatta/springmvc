@@ -14,25 +14,22 @@ import org.apache.log4j.Logger;
 import org.javaimplant.newsfeed.data.NewsItem;
 import org.javaimplant.newsfeed.data.NewsItemDAO;
 
-public class ViewNewsItemServlet extends HttpServlet {
+public class ViewNewsItemServlet extends ParentServlet {
 	
-	private Logger logger = Logger.getLogger(this.getClass());
-	private RequestDispatcher jsp;
-
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		logger.debug("doGet()");
 		String idString = req.getParameter("id");
-		Long id = new Long(idString);
+		Long id = Long.parseLong(idString);
 		NewsItem newsItem = new NewsItemDAO().find(id);
-		req.setAttribute("newsItem",newsItem);
-		jsp.forward(req, resp);
+		if(newsItem!=null)
+		{
+			req.setAttribute("newsItem",newsItem);
+			jsp.forward(req, resp);
+		}
+		else
+		{
+			resp.sendRedirect("list-news-items");
+		}
 	}
-
-	@Override
-	public void init(ServletConfig config) throws ServletException {
-		ServletContext context= config.getServletContext();
-		jsp=context.getRequestDispatcher("/WEB-INF/views/view-news-item.jsp");
-	}
-
 }

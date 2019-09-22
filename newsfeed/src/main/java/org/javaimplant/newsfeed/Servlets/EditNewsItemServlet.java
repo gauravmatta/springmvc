@@ -19,11 +19,9 @@ import org.javaimplant.newsfeed.data.NewsItemDAO;
 /**
  * Servlet implementation class EditNewsItemServlet
  */
-public class EditNewsItemServlet extends HttpServlet {
+public class EditNewsItemServlet extends ParentServlet {
 	
 	private static final long serialVersionUID = 1L;
-	private Logger logger = Logger.getLogger(this.getClass());
-	private RequestDispatcher jsp;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -33,12 +31,6 @@ public class EditNewsItemServlet extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
 
-	@Override
-	public void init(ServletConfig config) throws ServletException {
-		ServletContext context = config.getServletContext();
-		jsp = context.getRequestDispatcher("/WEB-INF/views/edit-news-item.jsp");
-	}
-
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -46,7 +38,7 @@ public class EditNewsItemServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		logger.debug("doGet()");
 		String idString = request.getParameter("id");
-		Long id = new Long(idString);
+		Long id = Long.parseLong(idString);
 		NewsItem newsItem = new NewsItemDAO().find(id);
 		request.setAttribute("newsItem", newsItem);
 		jsp.forward(request, response);
