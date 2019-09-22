@@ -11,12 +11,12 @@ import org.apache.log4j.Logger;
 public class ParentServlet extends HttpServlet {
 	protected Logger logger = Logger.getLogger(this.getClass());
 	protected RequestDispatcher jsp;
-	
+	protected ServletContext context;
 	
 	@Override
 	public void init(ServletConfig config) throws ServletException {
 	    String url=config.getInitParameter("jsp");
-	    ServletContext context= config.getServletContext();
+	    context= config.getServletContext();
 	    jsp=context.getRequestDispatcher("/WEB-INF/views/"+url+".jsp");
 	}
 	

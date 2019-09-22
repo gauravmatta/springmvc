@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.log4j.Logger;
 import org.javaimplant.newsfeed.data.NewsItem;
 import org.javaimplant.newsfeed.data.NewsItemDAO;
+import org.javaimplant.newsfeed.data.NotFoundException;
 
 /**
  * Servlet implementation class EditNewsItemServlet
@@ -65,7 +66,17 @@ public class EditNewsItemServlet extends ParentServlet {
 			return;
 		}
 		NewsItem newsItem = (NewsItem) request.getAttribute("newsItem");
-		new NewsItemDAO().update(newsItem);
+		try {
+			new NewsItemDAO().update(newsItem);
+		} catch (NotFoundException e) {
+//			jsp=context.getRequestDispatcher("/WEB-INF/views/home.jsp");
+//			request.setAttribute("ItemNotFound","The newsItem was not found please check again.");
+//			request.getRequestDispatcher("/WEB-INF/views/home.jsp").forward(request, response);
+//			jsp.forward(request,response);
+			request.getSession().setAttribute("ItemNotFound","The newsItem was not found please check again.");
+			response.sendRedirect("home");
+			return;
+		}
 		response.sendRedirect("view-news-item?id=" + id);
 	}
 	
@@ -78,7 +89,7 @@ public class EditNewsItemServlet extends ParentServlet {
 		String idString = request.getParameter("id");
 		if (idString != null && idString.length() > 0)
 		{
-			Long id = new Long(idString);
+			Long id = Long.parseLong(idString);
 			newsItem.setId(id);
 		}
 		

@@ -88,10 +88,17 @@ public class NewsItemDAO extends DataAccessObject {
 		}
 	}
 	
-	public void update(NewsItem newsItem)
+	public void update(NewsItem newsItem) throws NotFoundException
 	{
 		PreparedStatement statement = null;
 		Connection connection = null;
+		
+		NewsItem nChk = find(newsItem.getId().longValue());
+		if(nChk==null)
+		{
+			throw new NotFoundException();
+		}
+		
 		try
 		{
 			connection = getConnection();
