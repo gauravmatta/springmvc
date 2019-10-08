@@ -40,7 +40,7 @@ public class NewsItemDAO extends DataAccessObject {
 	}
 	
 	private NewsItem read(ResultSet rs) throws SQLException {
-		Long id = new Long(rs.getLong("id"));
+		Long id = Long.parseLong(rs.getString("id"));
 		String title = rs.getString("title");
 		String url = rs.getString("url");
 		String spubdate = rs.getString("pubDate");
