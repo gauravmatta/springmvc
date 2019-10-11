@@ -84,7 +84,7 @@
 		<servlet-class>org.javaimplant.newsfeed.Servlets.LoginServlet</servlet-class>
 		<init-param>
 			<param-name>jsp</param-name>
-			<param-value>logout</param-value>
+			<param-value>login</param-value>
 		</init-param>
 	</servlet>
 	<servlet-mapping>
