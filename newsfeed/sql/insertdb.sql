@@ -1,1 +1,1 @@
-insert into user (id, username, password) values (4, 'admin', 'admin');
+insert into user (id, username, password) values (4, 'admin', 'D033E22AE348AEB5660FC2140AEC35850C4DA997');

@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.javaimplant.newsfeed.data.SecureDigester;
 import org.javaimplant.newsfeed.data.User;
 import org.javaimplant.newsfeed.data.UserDAO;
 
@@ -33,7 +34,15 @@ public class LoginServlet extends ParentServlet {
 			return;
 		}
 		String password = req.getParameter("password");
-		if (password == null || !user.getPassword().equals(password))
+		if (password == null)
+		{
+			logger.debug("authentication failed: no password");
+			req.setAttribute("message", "Authentication failed.");
+			jsp.forward(req, resp);
+			return;
+		}
+		String passwordDigest = SecureDigester.digest(password);
+		if (!user.getPassword().equals(passwordDigest))
 		{
 			logger.debug("authentication failed: bad password");
 			req.setAttribute("message", "Authentication failed.");
@@ -47,5 +56,4 @@ public class LoginServlet extends ParentServlet {
 		String url = "home";
 		resp.sendRedirect(url);
 	}
-
 }
