@@ -21,9 +21,10 @@
 			<td rowspan="2" width="240" valign="top">
 				<div
 					style="height: 500px; padding: 20px; border-right: 3px dashed; margin-right: 20px">
-					<a href="list-news-items">List News Items</a><br /> <a
-						href="create-news-item">Create News Item</a><br /> <a
-						href="logout">Logout</a> <br />
+					<a href="list-news-items">List News Items</a><br />
+					<a href="create-news-item">Create News Item</a><br />
+					<a href="create-user">Create User</a><br />
+					<a href="logout">Logout</a> <br />
 				</div>
 			</td>
 			<td width="488">

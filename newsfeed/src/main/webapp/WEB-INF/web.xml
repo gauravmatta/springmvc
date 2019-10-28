@@ -95,6 +95,18 @@
 			<param-value>login</param-value>
 		</init-param>
 	</servlet>
+	<servlet>
+		<servlet-name>create-user</servlet-name>
+		<servlet-class>org.javaimplant.newsfeed.Servlets.CreateUserServlet</servlet-class>
+		<init-param>
+			<param-name>jsp</param-name>
+			<param-value>create-user</param-value>
+		</init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>create-user</servlet-name>
+		<url-pattern>/create-user</url-pattern>
+	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>logout</servlet-name>
 		<url-pattern>/logout</url-pattern>
