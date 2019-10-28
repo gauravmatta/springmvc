@@ -103,6 +103,18 @@
 			<param-value>create-user</param-value>
 		</init-param>
 	</servlet>
+	<servlet>
+		<servlet-name>view-user</servlet-name>
+		<servlet-class>org.javaimplant.newsfeed.Servlets.ViewUserServlet</servlet-class>
+		<init-param>
+			<param-name>jsp</param-name>
+			<param-value>view-user</param-value>
+		</init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>view-user</servlet-name>
+		<url-pattern>/view-user</url-pattern>
+	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>create-user</servlet-name>
 		<url-pattern>/create-user</url-pattern>
