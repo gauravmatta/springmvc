@@ -24,6 +24,7 @@
 					<a href="list-news-items">List News Items</a><br />
 					<a href="create-news-item">Create News Item</a><br />
 					<a href="create-user">Create User</a><br />
+					<a href="list-users">List Users</a><br />
 					<a href="logout">Logout</a> <br />
 				</div>
 			</td>

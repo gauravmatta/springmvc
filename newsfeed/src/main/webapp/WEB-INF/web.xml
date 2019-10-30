@@ -111,6 +111,18 @@
 			<param-value>view-user</param-value>
 		</init-param>
 	</servlet>
+	<servlet>
+		<servlet-name>list-users</servlet-name>
+		<servlet-class>org.javaimplant.newsfeed.Servlets.ListUsersServlet</servlet-class>
+		<init-param>
+			<param-name>jsp</param-name>
+			<param-value>list-users</param-value>
+		</init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>list-users</servlet-name>
+		<url-pattern>/list-users</url-pattern>
+	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>view-user</servlet-name>
 		<url-pattern>/view-user</url-pattern>
