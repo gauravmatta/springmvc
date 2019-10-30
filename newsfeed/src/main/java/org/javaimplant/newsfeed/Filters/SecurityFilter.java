@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
+import org.javaimplant.newsfeed.data.User;
+import org.javaimplant.newsfeed.data.UserDAO;
 
 public class SecurityFilter implements Filter {
 	
@@ -27,7 +29,6 @@ public class SecurityFilter implements Filter {
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
-		
 		logger.debug("doFilter()");
 		HttpServletResponse resp = (HttpServletResponse) response;
 		HttpServletRequest req = (HttpServletRequest) request;
@@ -44,13 +45,21 @@ public class SecurityFilter implements Filter {
 			chain.doFilter(req, resp);
 			return;
 		}
+		
 		HttpSession session = req.getSession();
 		Long userId = (Long) session.getAttribute("userId");
 		if (userId != null)
 		{
+			User userinfo=new UserDAO().find(userId);
+			if ((servletPath.equals("/list-users") || servletPath.equals("/view-user") || servletPath.equals("/create-user")) && userinfo.getUsername().equals("admin"))
+			{
+				chain.doFilter(req, resp);
+				return;
+			}
 			chain.doFilter(req, resp);
 			return;
 		}
+		session.invalidate();
 		resp.sendRedirect("login");
 	}
 
