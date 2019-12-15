@@ -40,6 +40,10 @@
 		</init-param>
 	</servlet>
 	<servlet>
+		<servlet-name>publish-service</servlet-name>
+		<servlet-class>newsfeed.ws.PublishNewsItemService</servlet-class>
+	</servlet>
+	<servlet>
 		<servlet-name>list-news-item</servlet-name>
 		<servlet-class>org.javaimplant.newsfeed.Servlets.ListNewsItemsServlet</servlet-class>
 		<init-param>
@@ -119,6 +123,10 @@
 			<param-value>list-users</param-value>
 		</init-param>
 	</servlet>
+	<servlet-mapping>
+		<servlet-name>publish-service</servlet-name>
+		<url-pattern>/publish</url-pattern>
+	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>list-users</servlet-name>
 		<url-pattern>/list-users</url-pattern>

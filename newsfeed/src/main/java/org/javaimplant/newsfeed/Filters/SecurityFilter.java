@@ -46,6 +46,12 @@ public class SecurityFilter implements Filter {
 			return;
 		}
 		
+		if (servletPath.equals("/publish"))
+		{
+			chain.doFilter(req, resp);
+			return;
+		}
+		
 		HttpSession session = req.getSession();
 		Long userId = (Long) session.getAttribute("userId");
 		if (userId != null)
