@@ -44,6 +44,10 @@
 		<servlet-class>newsfeed.ws.PublishNewsItemService</servlet-class>
 	</servlet>
 	<servlet>
+		<servlet-name>unpublish-service</servlet-name>
+		<servlet-class>newsfeed.ws.UnpublishNewsItemService</servlet-class>
+	</servlet>
+	<servlet>
 		<servlet-name>list-news-item</servlet-name>
 		<servlet-class>org.javaimplant.newsfeed.Servlets.ListNewsItemsServlet</servlet-class>
 		<init-param>
@@ -126,6 +130,10 @@
 	<servlet-mapping>
 		<servlet-name>publish-service</servlet-name>
 		<url-pattern>/publish</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>unpublish-service</servlet-name>
+		<url-pattern>/unpublish</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>list-users</servlet-name>
