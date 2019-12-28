@@ -29,7 +29,7 @@ public class HomeServlet extends ParentServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		logger.debug("Retrieving yahoo news feed");
-		String url = "http://rss.news.yahoo.com/rss/tech";
+		String url = "https://news.yahoo.com/rss/tech";
 		SyndFeedInput syndFeedInput = new SyndFeedInput();
 		SyndFeed syndFeed = null;
 		try {

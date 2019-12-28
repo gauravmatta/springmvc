@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.log4j.Logger;
 import org.javaimplant.newsfeed.data.NewsItem;
 import org.javaimplant.newsfeed.data.NewsItemDAO;
+import org.javaimplant.newsfeed.data.User;
+import org.javaimplant.newsfeed.data.UserDAO;
 import org.jdom.Document;
 import org.jdom.Element;
 import org.jdom.JDOMException;
@@ -54,6 +56,19 @@ public class PublishNewsItemService extends HttpServlet
 		String title = titleElement.getText();
 		Element linkElement = item.getChild("link");
 		String link = linkElement.getText();
+		Element accessKeyElement = item.getChild("accessKey");
+		if (accessKeyElement == null)
+		{
+			resp.sendError(HttpServletResponse.SC_UNAUTHORIZED);
+			return;
+		}
+		String accessKey = accessKeyElement.getText();
+		User user = new UserDAO().findByAccessKey(accessKey);
+		if (user == null)
+		{
+			resp.sendError(HttpServletResponse.SC_UNAUTHORIZED);
+			return;
+		}
 		// Create a news item from submitted data.
 		NewsItem newsItem = new NewsItem();
 		newsItem.setTitle(title);

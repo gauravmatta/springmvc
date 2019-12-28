@@ -201,6 +201,8 @@
 		<web-resource-collection>
 			<web-resource-name>newsfeed</web-resource-name>
 			<url-pattern>/login</url-pattern>
+			<url-pattern>/publish</url-pattern>
+			<url-pattern>/unpublish</url-pattern>
 		</web-resource-collection>
 		<user-data-constraint>
 			<transport-guarantee>CONFIDENTIAL</transport-guarantee>

@@ -34,6 +34,8 @@ public class Init implements ServletContextListener {
 	throws Exception 
 	{
 		InitialContext enc = new InitialContext();
+//		String trustStorePath = servletContext.getRealPath("/WEB-INF/truststore");
+//		System.setProperty("javax.net.ssl.trustStore", trustStorePath);
 //		NamingEnumeration<NameClassPair> list = enc.list("java:comp/env");
 //		while (list.hasMore())
 //		{

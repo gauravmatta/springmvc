@@ -4,7 +4,14 @@ public class User {
 	private long id;
 	private String username;
 	private String password;
+	private String accessKey;
 	
+	public String getAccessKey() {
+		return accessKey;
+	}
+	public void setAccessKey(String accessKey) {
+		this.accessKey = accessKey;
+	}
 	public String getUsername() {
 		return username;
 	}

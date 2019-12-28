@@ -15,10 +15,12 @@ public class UserDAO extends DataAccessObject {
 		Long id = Long.parseLong(rs.getString("id"));
 		String username = rs.getString("username");
 		String password = rs.getString("password");
+		String accessKey = rs.getString("accesskey");
 		User user = new User();
 		user.setId(id);
 		user.setUsername(username);
 		user.setPassword(password);
+		user.setAccessKey(accessKey);
 		return user;
 	}
 	
@@ -177,6 +179,34 @@ public class UserDAO extends DataAccessObject {
 		finally
 		{
 			close(statement, connection);
+		}
+	}
+
+	public User findByAccessKey(String accessKey)
+	{
+		ResultSet rs = null;
+		PreparedStatement statement = null;
+		Connection connection = null;
+		try
+		{
+			connection = getConnection();
+			String sql = "select * from user where accesskey=?";
+			statement = connection.prepareStatement(sql);
+			statement.setString(1, accessKey);
+			rs = statement.executeQuery();
+			if (!rs.next())
+			{
+				return null;
+			}
+			return read(rs);
+		}
+		catch (SQLException e)
+		{
+			throw new RuntimeException(e);
+		}
+		finally
+		{
+			close(rs, statement, connection);
 		}
 	}
 }
