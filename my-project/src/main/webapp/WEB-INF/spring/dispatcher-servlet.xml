@@ -16,5 +16,10 @@
 		<property name="suffix" value=".jsp"></property>
 	</bean>
 	
+	<bean class="org.springframework.web.servlet.view.XmlViewResolver">
+		<property name="location" value="/WEB-INF/spring/views.xml"></property>
+		<property name="order" value="1"></property>
+	</bean>
+	
 	<mvc:resources location="/resources/" mapping="/resources/**"></mvc:resources>
 </beans>

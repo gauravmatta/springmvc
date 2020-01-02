@@ -25,6 +25,28 @@ public class HomeController {
 		return "Welcome Home";
 	}
 	
+	@RequestMapping("/xml")
+	public String goXml(Model model)
+	{
+		Project project=new Project();
+		project.setName("Java Tutorial");
+		project.setSponsor(null);
+		project.setDescription("A simple project initiated to Learn Java with Fun");
+		model.addAttribute("currentProject",project);
+		return "xmlwelcome";
+	}
+	
+	@RequestMapping("/welcome")
+	public String goNoxml(Model model)
+	{
+		Project project=new Project();
+		project.setName("Java Tutorial");
+		project.setSponsor(null);
+		project.setDescription("A simple project initiated to Learn Java with Fun");
+		model.addAttribute("currentProject",project);
+		return "welcome";
+	}
+	
 	@RequestMapping("/test/{testId}")
 	public String test(@PathVariable("testId") Long testId,Model model)
 	{
