@@ -4,7 +4,9 @@ import java.math.BigDecimal;
 import java.util.List;
 
 import javax.validation.constraints.NotBlank;
+import javax.xml.bind.annotation.XmlRootElement;
 
+@XmlRootElement(name="Project")
 public class Project {
 	private Long projectId;
 	private String name;

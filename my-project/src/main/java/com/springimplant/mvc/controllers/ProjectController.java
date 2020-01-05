@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.springimplant.mvc.data.entities.Project;
 import com.springimplant.mvc.data.services.ProjectService;
@@ -35,6 +36,14 @@ public class ProjectController {
 	public String findProject(Model model, @PathVariable("projectId") Long projectId) {
 		model.addAttribute("project",this.projectService.find(projectId));
 		return "project";
+	}
+	
+	@RequestMapping(value="/find/{projectId}")
+	@ResponseBody
+	public Project findProjectObject(Model model, @PathVariable("projectId") Long projectId)
+	{
+		Project p1=this.projectService.find(projectId);		
+		return p1;
 	}
 	
 	@RequestMapping(value="/find")
