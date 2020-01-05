@@ -96,7 +96,7 @@ public class ProjectController {
 		System.out.println(project);
 		model.addAttribute("project",project);
 		System.out.println("Invoking saveProject");
-		return "project_add";
+		return "redirect:/project/find";
 	}
 	
 	@RequestMapping(value="/add",method=RequestMethod.POST,params={"type=multi"})
