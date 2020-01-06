@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.springimplant.mvc.data.entities.Project;
 import com.springimplant.mvc.data.services.ProjectService;
@@ -78,7 +79,7 @@ public class ProjectController {
 	}
 	
 	@RequestMapping(value="/add",method=RequestMethod.POST)
-	public String saveProject(@Valid @ModelAttribute Project project,Errors errors,HttpServletRequest request,@RequestParam("name") String name,HttpSession session,Model model)
+	public String saveProject(@Valid @ModelAttribute Project project,Errors errors,HttpServletRequest request,@RequestParam("name") String name,HttpSession session,Model model,RedirectAttributes attributes)
 	{
 		if(errors.hasErrors())
 		{
@@ -94,6 +95,9 @@ public class ProjectController {
 		System.out.println(request.getParameter("name"));
 		System.out.println(name);
 		System.out.println(project);
+		project.setProjectId(55L);
+		this.projectService.save(project);
+		attributes.addAttribute("projectId", project.getProjectId().toString());
 		model.addAttribute("project",project);
 		System.out.println("Invoking saveProject");
 		return "redirect:/project/find";

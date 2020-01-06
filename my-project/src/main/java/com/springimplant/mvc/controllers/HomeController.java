@@ -5,6 +5,7 @@ import java.util.Enumeration;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -14,15 +15,26 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.springimplant.mvc.data.entities.Project;
+import com.springimplant.mvc.data.services.ProjectService;
 
 @Controller
 public class HomeController {
+	
+	@Autowired
+	private ProjectService service;
 	
 	@RequestMapping("/")
 	@ResponseBody
 	public String home(Model model)
 	{
 		return "Welcome Home";
+	}
+	
+	@RequestMapping(value="/", params="projectId")
+	public String goProjectHome(Model model,@RequestParam("projectId") Long projectId)
+	{
+		model.addAttribute("currentProject",this.service.find(projectId));
+		return "home";
 	}
 	
 	@RequestMapping("/xml")
