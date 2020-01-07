@@ -37,6 +37,13 @@ public class HomeController {
 		return "home";
 	}
 	
+	@RequestMapping(value="/showproject")
+	public String goHome(Model model,@ModelAttribute("project") Project project)
+	{
+		model.addAttribute("currentProject",project);
+		return "project";
+	}
+	
 	@RequestMapping("/xml")
 	public String goXml(Model model)
 	{

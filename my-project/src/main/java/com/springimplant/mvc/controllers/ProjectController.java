@@ -103,11 +103,27 @@ public class ProjectController {
 		return "redirect:/project/find";
 	}
 	
-	@RequestMapping(value="/add",method=RequestMethod.POST,params={"type=multi"})
-	public String saveMulti()
+	@RequestMapping(value="/add",method=RequestMethod.POST,params={"type=Multi Year"})
+	public String saveMulti(@Valid @ModelAttribute Project project,Errors errors,@RequestParam("name") String name,HttpSession session,HttpServletRequest request,RedirectAttributes attributes)
 	{
 		System.out.println("Invoking saveMulti");
-		return "project_add";
+		if(errors.hasErrors())
+		{
+			System.out.println("The Project is not Validated");
+			return "project_add";
+		}
+		else
+		{
+			System.out.println("The Project is Validated");
+		}
+		System.out.println(session.getAttribute("token"));
+		System.out.println(request.getParameter("name"));
+		System.out.println(name);
+		System.out.println(project);
+		project.setProjectId(66L);
+		this.projectService.save(project);
+		attributes.addFlashAttribute("project",project);
+		return "redirect:/showproject";
 	}
 	
 	@RequestMapping(value="/add",method=RequestMethod.POST,params={"type=multi","special"})
