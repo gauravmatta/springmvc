@@ -31,7 +31,7 @@
 					<li><a href="#">Find</a></li>
 				</ul>
 			</li>
-
+			<li>${currentDate}</li>
 		</ul>
 
 	</div>
