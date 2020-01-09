@@ -6,10 +6,12 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -18,11 +20,15 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
 import com.springimplant.mvc.data.entities.Resource;
+import com.springimplant.mvc.data.services.ResourceService;
 
 @Controller
 @RequestMapping("/resource")
 @SessionAttributes("resource")
 public class ResourceController {
+	
+	@Autowired
+	private ResourceService resourceService;
 
 	@RequestMapping("/review")
 	public String review(@ModelAttribute Resource resource)
@@ -36,6 +42,18 @@ public class ResourceController {
 	{
 		System.out.println("Invoking add() method");
 		return "resource_add";
+	}
+	
+	@RequestMapping("/{resourceId}")
+	public String findResource(Model model, @PathVariable("resourceId") Long projectId) {
+		model.addAttribute("resource",this.resourceService.find(projectId));
+		return "resource";
+	}
+	
+	@RequestMapping("/find/{resourceId}")
+	@ResponseBody
+	public Resource findResourceObject(@PathVariable("resourceId") Long resourceId){
+		return resourceService.find(resourceId);
 	}
 	
 	@RequestMapping("/exception")
@@ -61,6 +79,12 @@ public class ResourceController {
 		System.out.println(resource);
 		status.setComplete();
 		return "redirect:/resource/add";
+	}
+	
+	@RequestMapping("/find")
+	public String find(Model model){
+		model.addAttribute("resources", resourceService.findAll());
+		return "resources";
 	}
 	
 	@RequestMapping(value="/request",method=RequestMethod.POST)
