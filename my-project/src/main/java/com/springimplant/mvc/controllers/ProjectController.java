@@ -131,12 +131,5 @@ public class ProjectController {
 	{
 		System.out.println("Invoking saveSpecial");
 		return "project_add";
-	}
-	
-	@InitBinder
-	public void initBinder(WebDataBinder binder)
-	{
-		binder.addValidators(new ProjectValidator());
-	}
-	
+	}	
 }

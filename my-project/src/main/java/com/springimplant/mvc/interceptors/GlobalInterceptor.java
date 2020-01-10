@@ -31,7 +31,8 @@ public class GlobalInterceptor extends HandlerInterceptorAdapter {
 		System.out.println("Application Hits "+applicationHit.getHits());
 		sessionHit.setHits(sessionHit.getHits()+1);
 		System.out.println("Session Hits "+sessionHit.getHits());
-		request.setAttribute("currentDate",new Date());
+		// Moved to Controller Advice
+//		request.setAttribute("currentDate",new Date());
 		return super.preHandle(request, response, handler);
 	}
 

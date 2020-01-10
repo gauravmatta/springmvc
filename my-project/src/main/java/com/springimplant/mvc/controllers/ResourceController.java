@@ -66,12 +66,6 @@ public class ResourceController {
 		return "resource_add";
 	}
 	
-	@ExceptionHandler(Exception.class)
-	public String handleError(HttpServletRequest request)
-	{
-		return "controller_error";
-	}
-	
 	@RequestMapping("/save")
 	public String save(@ModelAttribute Resource resource,SessionStatus status) throws ClassNotFoundException
 	{
