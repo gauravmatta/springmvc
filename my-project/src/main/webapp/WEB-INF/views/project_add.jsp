@@ -61,6 +61,11 @@
 					<label for="hours">Authorized Hours</label>
 					<form:input path="authorizedHours" id="hours" cssClass="form-control"/>
 				</div>
+				
+				<div class="form-group">
+					<label for="startDate">Start Date (Julian)</label>
+					<form:input id="startDate" cssClass="form-control" path="startDate"/>
+				</div>
 			
 				<div class="form-group">
 					<label for="project-name">Description</label>

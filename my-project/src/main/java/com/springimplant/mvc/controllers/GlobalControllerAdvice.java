@@ -2,8 +2,11 @@ package com.springimplant.mvc.controllers;
 
 import java.util.Date;
 
+
 import javax.servlet.http.HttpServletRequest;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -15,22 +18,19 @@ import com.springimplant.mvc.data.validators.ProjectValidator;
 
 @ControllerAdvice(annotations = Controller.class)
 public class GlobalControllerAdvice {
-
+	
+	private static final Logger logger = LoggerFactory.getLogger(GlobalControllerAdvice.class);
+	
 	@ModelAttribute("currentDate")
 	public Date getCurrentDate()
 	{
 		return new Date();
 	}
 	
-	@InitBinder
-	public void initBinder(WebDataBinder binder)
-	{
-		binder.addValidators(new ProjectValidator());
-	}
-	
 	@ExceptionHandler(Exception.class)
 	public String handleError(HttpServletRequest request)
 	{
+		logger.info("IOException handler executed");
 		return "controller_error"; 
 	}
 }
