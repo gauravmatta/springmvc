@@ -10,7 +10,7 @@
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
 	
 	<mvc:annotation-driven conversion-service="conversion-service"/>
-	
+	<bean id="multiPartResolver" class="org.springframework.web.multipart.support.StandardServletMultipartResolver"/>
 	<bean id="conversion-service" class="org.springframework.context.support.ConversionServiceFactoryBean">
 		<property name="converters">
 			<list>
@@ -51,7 +51,7 @@
 				<bean class="org.springframework.web.servlet.view.XmlViewResolver">
 					<property name="location" value="/WEB-INF/spring/views.xml"></property>
 					<property name="order" value="1"></property>
-				</bean>	
+				</bean>
 			</list>
 		</property>
 		<property name="contentNegotiationManager">
