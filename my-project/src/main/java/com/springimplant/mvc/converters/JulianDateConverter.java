@@ -7,6 +7,7 @@ import java.util.Date;
 import org.springframework.core.convert.converter.Converter;
 
 public class JulianDateConverter implements Converter<String, Date> {
+
 	@Override
 	public Date convert(String strDate) {
 		Date tmpDate=null;
