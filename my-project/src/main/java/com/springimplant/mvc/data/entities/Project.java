@@ -1,6 +1,7 @@
 package com.springimplant.mvc.data.entities;
 
 import java.math.BigDecimal;
+import java.util.Date;
 import java.util.List;
 
 import javax.validation.constraints.NotBlank;
@@ -19,6 +20,7 @@ public class Project {
 	private boolean special;  
 	private String type;
 	private List<String> pointsOfContact;
+	private Date startDate;
 	public List<String> getPointsOfContact() {
 		return pointsOfContact;
 	}
@@ -84,6 +86,12 @@ public class Project {
 	public String toString() {
 		return "Project [projectId=" + projectId + ", name=" + name + ", description=" + description + ", sponsor="
 				+ sponsor + ", authorizedHours=" + authorizedHours + ", authorizedFunds=" + authorizedFunds + ", year="
-				+ year + ", special=" + special + ", type=" + type + ", pointsOfContact=" + pointsOfContact + "]";
+				+ year + ", special=" + special + ", type=" + type + ", pointsOfContact=" + pointsOfContact + ", startDate=" + startDate + "]";
+	}
+	public Date getStartDate() {
+		return startDate;
+	}
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
 	}  
 }

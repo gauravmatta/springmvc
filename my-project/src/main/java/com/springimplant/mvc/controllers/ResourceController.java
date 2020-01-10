@@ -52,8 +52,9 @@ public class ResourceController {
 	
 	@RequestMapping("/find/{resourceId}")
 	@ResponseBody
-	public Resource findResourceObject(@PathVariable("resourceId") Long resourceId){
-		return resourceService.find(resourceId);
+	public Resource findResourceObject(@PathVariable("resourceId") Resource resource){
+//		return resourceService.find(resourceId);
+		return resource;
 	}
 	
 	@RequestMapping("/exception")
