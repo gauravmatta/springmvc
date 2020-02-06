@@ -22,6 +22,10 @@ public class Candidate {
 		this.id = id;
 	}
 
+	public Candidate() {
+		super();
+	}
+
 	public Candidate(Long id, String name) {
 		super();
 		this.id = id;

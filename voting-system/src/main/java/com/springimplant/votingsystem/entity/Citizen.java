@@ -21,6 +21,10 @@ public class Citizen {
 		this.name = name;
 	}
 
+	public Citizen() {
+		super();
+	}
+
 	public Long getId() {
 		return id;
 	}
