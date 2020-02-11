@@ -14,6 +14,17 @@ public class Citizen {
 	
 	@Column(name="citizen_name")
 	private String name;
+	
+	@Column(name="hasVoted")
+	private boolean hasVoted;
+
+	public boolean isHasVoted() {
+		return hasVoted;
+	}
+
+	public void setHasVoted(boolean hasVoted) {
+		this.hasVoted = hasVoted;
+	}
 
 	public Citizen(Long id, String name) {
 		super();
