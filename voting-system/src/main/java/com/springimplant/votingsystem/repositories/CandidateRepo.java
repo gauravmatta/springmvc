@@ -8,5 +8,5 @@ import com.springimplant.votingsystem.entity.Citizen;
 
 @Repository
 public interface CandidateRepo extends JpaRepository<Candidate,Integer> {
-	
+	public Candidate findById(Long id);
 }

@@ -8,7 +8,7 @@
 <h1 style="color: green;">Thanks for your Precious Vote</h1>
 <div th:each="candidate : ${candidates}">
 Click to  vote for :
-<a th:href="@{/voteFor(id=${candidate.id})}" th:text="${candidate.name}"></a>
+<a th:href="@{/voteFor(id=${candidate.id},ctid=${citizen.id})}" th:text="${candidate.name}"></a>
 </div>
 </body>
 </html>

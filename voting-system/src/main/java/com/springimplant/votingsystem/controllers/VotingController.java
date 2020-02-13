@@ -36,12 +36,25 @@ public class VotingController {
 		{
 			List<Candidate> candidates=candidateRepo.findAll();
 			model.addAttribute("candidates",candidates);
+			model.addAttribute("citizen",citizen);
 			return "performVote.html";
 		}
 		else
 		{
 			return "hasVoted.html";
 		}
+	}
+	
+	@RequestMapping("/voteFor")
+	public String voteFor(@RequestParam Long id,@RequestParam Long ctid)
+	{
+		Candidate c= candidateRepo.findById(id);
+		c.setNumberOfVotes(c.getNumberOfVotes()+1);
+		candidateRepo.save(c);
+		Citizen citizen=citizenRepo.findById(ctid);
+		citizen.setHasVoted(true);
+		citizenRepo.save(citizen);
+		return "voted.html";
 	}
 	
 }

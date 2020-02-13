@@ -14,7 +14,7 @@ public class Candidate {
 	@Column(name="candidate_name")
 	private String name;
 
-	@Column(name="numberOfVotes")
+	@Column(name="numberOfVotes", columnDefinition = "integer default 0")
 	private Integer numberOfVotes; 
 	
 	public Integer getNumberOfVotes() {
