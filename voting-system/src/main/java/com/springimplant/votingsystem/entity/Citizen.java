@@ -15,7 +15,7 @@ public class Citizen {
 	@Column(name="citizen_name")
 	private String name;
 	
-	@Column(name="hasVoted")
+	@Column(name="hasVoted",columnDefinition = "boolean default false")
 	private boolean hasVoted;
 
 	public boolean isHasVoted() {
