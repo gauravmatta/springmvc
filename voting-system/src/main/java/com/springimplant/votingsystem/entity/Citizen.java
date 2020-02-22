@@ -12,7 +12,7 @@ public class Citizen {
 
 	@Id
 	@Column(name="id")
-	@GeneratedValue( strategy=GenerationType.AUTO )
+	@GeneratedValue( strategy=GenerationType.IDENTITY )
 	private Long id;
 	
 	@Column(name="citizen_name")

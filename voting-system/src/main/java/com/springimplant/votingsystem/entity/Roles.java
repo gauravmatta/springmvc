@@ -3,23 +3,22 @@ package com.springimplant.votingsystem.entity;
 import java.util.Set;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
+@Entity(name="roles")
 public class Roles {
 
 	@Id
 	@Column(name="id")
-	@GeneratedValue( strategy=GenerationType.AUTO )
+	@GeneratedValue( strategy=GenerationType.IDENTITY )
 	private Long id;
 	
 	@Column(name="roleName")
 	private String roleName;
-	
-	@ManyToMany(targetEntity=User.class)
-	private Set teacherSet;
 
 	public Long getId() {
 		return id;
@@ -29,11 +28,15 @@ public class Roles {
 		super();
 	}
 
-	public Roles(Long id, String roleName, Set teacherSet) {
+	public Roles(Long id, String roleName) {
 		super();
 		this.id = id;
 		this.roleName = roleName;
-		this.teacherSet = teacherSet;
+	}
+	
+	public Roles(String roleName) {
+		super();
+		this.roleName = roleName;
 	}
 
 	public void setId(Long id) {
@@ -46,13 +49,5 @@ public class Roles {
 
 	public void setRoleName(String roleName) {
 		this.roleName = roleName;
-	}
-
-	public Set getTeacherSet() {
-		return teacherSet;
-	}
-
-	public void setTeacherSet(Set teacherSet) {
-		this.teacherSet = teacherSet;
 	}
 }

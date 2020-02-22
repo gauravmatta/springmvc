@@ -10,11 +10,11 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
 @Entity(name="users")
-public class User {
+public class User extends Utils {
 	
 	@Id
 	@Column(name="id")
-	@GeneratedValue( strategy=GenerationType.AUTO )
+	@GeneratedValue( strategy=GenerationType.IDENTITY )
 	private Long id;
 	
 	@Column(name="username")
@@ -38,7 +38,7 @@ public class User {
 		super();
 		this.id = id;
 		this.username = username;
-		this.password = password;
+		this.password = md5Java(password);
 		this.roleSet = roleSet;
 	}
 
