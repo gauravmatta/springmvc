@@ -1,5 +1,9 @@
 package com.springimplant.votingsystem.controllers;
 
+import java.util.List;
+
+import javax.servlet.http.HttpSession;
+
 import org.jboss.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,8 +12,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.springimplant.votingsystem.entity.Candidate;
 import com.springimplant.votingsystem.entity.User;
 import com.springimplant.votingsystem.entity.Utils;
+import com.springimplant.votingsystem.repositories.CandidateRepo;
 import com.springimplant.votingsystem.repositories.UserRepo;
 
 @Controller
@@ -22,6 +28,9 @@ public class LoginController {
 	UserRepo userRepo;
 	
 	@Autowired
+	CandidateRepo candidaterepo;
+	
+	@Autowired
 	Utils utils;
 	
 	@RequestMapping("/")
@@ -32,7 +41,7 @@ public class LoginController {
 	}
 	
 	@RequestMapping(value="/",method=RequestMethod.POST)
-	public String login(@RequestParam String login,@RequestParam String password,Model model)
+	public String login(@RequestParam String login,@RequestParam String password,Model model,HttpSession session)
 	{
 		User u= userRepo.findByUsername(login);
 		if(u!=null)
@@ -42,7 +51,11 @@ public class LoginController {
 			logger.info(encodedPassword+"==>"+givenPassword);
 			if(encodedPassword.equals(givenPassword))
 			{
+				session.setAttribute("user",u);
 				logger.info("Password Match for "+u.getUsername());
+				List<Candidate> clist=candidaterepo.findAll();
+				model.addAttribute("candidateList",clist);
+				return "results.html";
 			}
 		}
 		else
