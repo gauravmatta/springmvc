@@ -4,7 +4,6 @@ package com.springimplant.complaint_manager;
 import java.util.Properties;
 
 import javax.sql.DataSource;
-import javax.transaction.TransactionManager;
 
 import org.apache.tomcat.dbcp.dbcp2.BasicDataSource;
 import org.hibernate.SessionFactory;
