@@ -2,6 +2,8 @@ package com.springimplant.complaint_manager.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -10,7 +12,8 @@ import javax.persistence.Table;
 public class Complaint {
 	
 	@Id
-	@Column(name="idcomplaints")
+	@Column(name="idcomplaints",updatable = false, nullable = false)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
 	@Column(name="message")
@@ -66,7 +69,7 @@ public class Complaint {
 
 	public Complaint(Integer id, String message, String senderName, String senderEmail) {
 		super();
-		this.id = id;
+//		this.id = id;
 		this.message = message;
 		this.senderName = senderName;
 		this.senderEmail = senderEmail;

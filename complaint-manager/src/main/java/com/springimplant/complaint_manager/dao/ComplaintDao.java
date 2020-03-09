@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
 import com.springimplant.complaint_manager.entities.Complaint;
@@ -19,8 +20,10 @@ public class ComplaintDao {
 
 	public void insertComplaint(Complaint complaint)
 	{
+		Transaction tx=session.beginTransaction();
 		session.save(complaint);
 		session.flush();
+		tx.commit();
 	}
 	
 	public List<Complaint> getAllComplaints()
