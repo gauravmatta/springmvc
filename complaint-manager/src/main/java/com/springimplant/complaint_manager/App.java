@@ -24,7 +24,8 @@ public class App
     @RequestMapping("/fileComplaint")
     public String fileComplaint()
     {
-    	Complaint complaint=new Complaint(1,"Hello","Gaurav","gaurav@mail.com");
+    	Complaint complaint=new Complaint("Hello","Gaurav","gaurav@mail.com");
+    	Complaint complaint1=new Complaint("Test Message","Test","test@test.com");
     	ComplaintDao complaintDao=new ComplaintDao(sessionFactory);
     	complaintDao.insertComplaint(complaint);
     	return "fileComplaint";

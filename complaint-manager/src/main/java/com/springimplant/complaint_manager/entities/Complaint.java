@@ -67,9 +67,8 @@ public class Complaint {
 		this.senderEmail = senderEmail;
 	}
 
-	public Complaint(Integer id, String message, String senderName, String senderEmail) {
+	public Complaint(String message, String senderName, String senderEmail) {
 		super();
-//		this.id = id;
 		this.message = message;
 		this.senderName = senderName;
 		this.senderEmail = senderEmail;
