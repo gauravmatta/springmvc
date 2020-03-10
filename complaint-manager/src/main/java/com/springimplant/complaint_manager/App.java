@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.springimplant.complaint_manager.dao.ComplaintDao;
 import com.springimplant.complaint_manager.entities.Complaint;
@@ -33,7 +34,7 @@ public class App
     }
     
     @RequestMapping("/submitComplaint")
-    public String submitComplaint()
+    public String submitComplaint(@RequestParam("complaint") String complaint)
     {
     	return "submitComplaint";
     }
