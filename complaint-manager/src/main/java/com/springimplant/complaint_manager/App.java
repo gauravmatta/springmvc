@@ -28,6 +28,7 @@ public class App
     	Complaint complaint1=new Complaint("Test Message","Test","test@test.com");
     	ComplaintDao complaintDao=new ComplaintDao(sessionFactory);
     	complaintDao.insertComplaint(complaint);
+    	complaintDao.insertComplaint(complaint1);
     	return "fileComplaint";
     }
     
