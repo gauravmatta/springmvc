@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+<h1>Thank You for submitting your complaint.We will get back to you never</h1>
 </body>
 </html>

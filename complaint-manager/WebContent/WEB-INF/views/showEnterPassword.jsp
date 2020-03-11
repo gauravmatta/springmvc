@@ -7,6 +7,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+<form action="/complaint-manager/showComplaints" method="post" id="passwordForm">
+	Password: <input type="password" name="pass"><br/>
+	<input type="submit" value="Submit">
+</form>
 </body>
 </html>

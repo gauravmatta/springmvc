@@ -7,13 +7,17 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.GenericGenerator;
+
 @Entity
 @Table(name="complaints")
 public class Complaint {
 	
 	@Id
 	@Column(name="idcomplaints",updatable = false, nullable = false)
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GenericGenerator(name="inc",strategy="increment")
+	@GeneratedValue(generator="inc")
+//	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
 	@Column(name="message")
