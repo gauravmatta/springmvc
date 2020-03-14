@@ -6,11 +6,6 @@
   <packaging>war</packaging>
   <dependencies>
   	<dependency>
-  		<groupId>org.springframework</groupId>
-  		<artifactId>spring-webmvc</artifactId>
-  		<version>5.1.7.RELEASE</version>
-  	</dependency>
-  	<dependency>
   		<groupId>org.slf4j</groupId>
   		<artifactId>slf4j-log4j13</artifactId>
   		<version>1.0.1</version>
@@ -34,6 +29,11 @@
   		<groupId>javax.servlet</groupId>
   		<artifactId>jstl</artifactId>
   		<version>1.2</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>org.springframework</groupId>
+  		<artifactId>spring-webmvc</artifactId>
+  		<version>5.2.4.RELEASE</version>
   	</dependency>
   </dependencies>
   <build>

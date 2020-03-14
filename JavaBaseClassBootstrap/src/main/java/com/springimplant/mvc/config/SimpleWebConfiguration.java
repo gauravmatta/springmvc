@@ -47,17 +47,14 @@ public class SimpleWebConfiguration implements WebMvcConfigurer {
 	    return bean;
 	}
 
-	@Override
 	public void configureViewResolvers(ViewResolverRegistry registry) {
 		registry.jsp("/WEB-INF/views/", ".jsp");
 	}
 
-	@Override
 	public void addViewControllers(ViewControllerRegistry registry) {
 //		registry.addViewController("/").setViewName("forward:/welcome");
 	}
 
-	@Override
 	public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
 		configurer.enable();
 	}
