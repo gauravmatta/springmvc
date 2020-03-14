@@ -10,6 +10,6 @@
 		<c:forEach var="c" items="${complaints}" varStatus="loopCounter">
 			<c:out value="${loopCounter.count}"/>
          	<c:out value = "${c.message}"/><p>
-      </c:forEach>
+      	</c:forEach>
 </body>
 </html>
