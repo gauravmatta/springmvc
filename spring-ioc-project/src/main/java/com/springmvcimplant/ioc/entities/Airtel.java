@@ -9,14 +9,12 @@ public class Airtel implements Sim {
 		System.out.println("setting Up Airtel");
 	}
 
-	@Override
 	public void calling() 
 	{
 		System.out.println("Calling using Airtel Mobile");
 	}
 
-	@Override
-	public void data() 
+	public void data()
 	{
 		System.out.println("Using Airtel Data");
 	}
