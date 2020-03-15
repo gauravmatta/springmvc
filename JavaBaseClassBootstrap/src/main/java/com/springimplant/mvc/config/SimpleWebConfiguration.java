@@ -25,7 +25,7 @@ public class SimpleWebConfiguration implements WebMvcConfigurer {
 //		UrlBasedViewResolver bean = new UrlBasedViewResolver();
 	    InternalResourceViewResolver bean = new InternalResourceViewResolver();
 	    bean.setViewClass(JstlView.class);
-	    bean.setPrefix("/WEB-INF/views/");
+	    bean.setPrefix("/webapp/WEB-INF/views/");
 	    bean.setSuffix(".jsp");
 	    bean.setOrder(0);
 	    return bean;
@@ -48,7 +48,7 @@ public class SimpleWebConfiguration implements WebMvcConfigurer {
 	}
 
 	public void configureViewResolvers(ViewResolverRegistry registry) {
-		registry.jsp("/WEB-INF/views/", ".jsp");
+		registry.jsp("/webapp/WEB-INF/views/", ".jsp");
 	}
 
 	public void addViewControllers(ViewControllerRegistry registry) {
