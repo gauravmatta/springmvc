@@ -20,13 +20,11 @@ public class SecurityFilter implements Filter {
 	
 	private Logger logger = Logger.getLogger(this.getClass());
 
-	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
 		logger.debug("doFilter()");
