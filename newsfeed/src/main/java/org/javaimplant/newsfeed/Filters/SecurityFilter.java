@@ -73,9 +73,9 @@ public class SecurityFilter implements Filter {
 		resp.sendRedirect("login");
 	}
 
-	@Override
 	public void destroy() {
 		// TODO Auto-generated method stub
 		
-	}	
+	}
+	
 }
