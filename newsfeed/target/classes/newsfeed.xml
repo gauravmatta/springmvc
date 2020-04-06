@@ -5,8 +5,8 @@
 	maxActive = "10"
 	maxIdle = "3"
 	maxWait = "10000"
-	username = "gaurav"
-	password = "gaurav"
+	username = "root"
+	password = ""
 	driverClassName = "com.mysql.jdbc.Driver"
 	url = "jdbc:mysql://localhost:3308/publisher?autoReconnect=true" />
 </Context>
