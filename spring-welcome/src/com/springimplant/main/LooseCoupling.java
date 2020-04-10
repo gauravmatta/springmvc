@@ -9,7 +9,7 @@ public class LooseCoupling {
 	public static void main(String args[])
 	{
 		ApplicationContext context=new ClassPathXmlApplicationContext("/resources/LooseCoupling.xml");
-		Student stu=context.getBean("stu",Student.class);
+		Student stu=(Student) context.getBean("stu",Student.class);
 		stu.getCheatingInterface().cheating();
 	}
 }

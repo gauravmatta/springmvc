@@ -14,11 +14,11 @@ public class Client
 //		Cheating cheat=new Cheating();
 //		student.setCheat(cheat);
 		ApplicationContext context= new ClassPathXmlApplicationContext("/resources/object_injection.xml");
-		Student student=context.getBean("stu",Student.class);
+		Student student=(Student) context.getBean("stu",Student.class);
 		student.cheating();
 		System.out.println(student);
 		
-		Pupil pupil=context.getBean("pupil",Pupil.class);
+		Pupil pupil=(Pupil) context.getBean("pupil",Pupil.class);
 		pupil.startCheating();
 		System.out.println(pupil);
 	}

@@ -20,7 +20,7 @@ public class ClientLogic {
 		
 		//Since BeanFactory IOC container is depricated now we use ApplicationContext as follows
 		ApplicationContext context=new ClassPathXmlApplicationContext("/resources/spconfig.xml");
-		WelcomeBean wb1=context.getBean("wb",WelcomeBean.class);
+		WelcomeBean wb1=(WelcomeBean) context.getBean("wb",WelcomeBean.class);
 		wb1.show();
 	}
 }
