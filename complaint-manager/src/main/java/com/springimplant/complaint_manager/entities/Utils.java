@@ -24,7 +24,7 @@ public class Utils {
 			digest = sb.toString(); 
 		} 
 		catch (UnsupportedEncodingException ex) 
-		{ 
+		{
 			Logger.getLogger(this.getClass().getSimpleName()).log(Level.SEVERE, null, ex); 
 		} 
 		catch (NoSuchAlgorithmException ex) 
