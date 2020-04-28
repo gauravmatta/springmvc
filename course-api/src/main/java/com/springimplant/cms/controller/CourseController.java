@@ -3,6 +3,7 @@ package com.springimplant.cms.controller;
 import java.math.BigInteger;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -22,6 +23,12 @@ public class CourseController {
 	
 	@Autowired
 	private CourseRepository courseRepository;
+
+	@GetMapping("/")
+	public String courseApiHome()
+	{
+		return "Course API Home";
+	}
 	
 	@GetMapping("/courses")
 	public List<Course> getCourses()
@@ -33,6 +40,12 @@ public class CourseController {
 	public Course getSpecificCourse(@PathVariable("id") BigInteger id)
 	{
 		return courseRepository.getOne(id);
+	}
+	
+	@GetMapping("/optional/{id}")
+	public Optional<Course> getSpecificOptionalCourse(@PathVariable("id") BigInteger id)
+	{
+		return courseRepository.findById(id);
 	}
 	
 	@PostMapping(value="/courses")
