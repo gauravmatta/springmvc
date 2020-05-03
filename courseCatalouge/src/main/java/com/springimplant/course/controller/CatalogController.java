@@ -10,6 +10,7 @@ import org.springframework.web.client.RestTemplate;
 
 import com.netflix.appinfo.InstanceInfo;
 import com.netflix.discovery.EurekaClient;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.springimplant.course.core.Course;
 
 @RestController
@@ -28,6 +29,7 @@ public class CatalogController {
 	}
 	
 	@GetMapping("/services/cataloghome")
+	@HystrixCommand(fallbackMethod = "displayDefaultHome")
 	public String getCatalogHomeService() {
 		String courseAppMsg="";
 		InstanceInfo instanceInfo=eurekaClient.getNextServerFromEureka("springimplant-course-api",false);
@@ -35,6 +37,11 @@ public class CatalogController {
 		RestTemplate restTemplate=new RestTemplate();
 		courseAppMsg=restTemplate.getForObject(courseUrl,String.class);
 		return("Welcome to Course Catalog "+courseAppMsg);
+	}
+	
+	public String displayDefaultHome()
+	{
+		return("Welcome to SpringImplant"+" Please try after sometime");
 	}
 	
 	@GetMapping("/catalog")
