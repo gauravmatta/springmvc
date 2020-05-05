@@ -1,20 +1,10 @@
-package com.springimplant.userapi.entity;
+package com.springimplant.course.core;
 
 import java.math.BigInteger;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.IdClass;
-
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
-@Entity
-@IdClass(UserId.class)
-@JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
 public class User {
-	@Id
+
 	private BigInteger userid;
-	@Id
 	private BigInteger courseid;
 	private String username;
 	
@@ -46,4 +36,6 @@ public class User {
 	public void setUsername(String username) {
 		this.username = username;
 	}
+	
+	
 }

@@ -1,6 +1,8 @@
 package com.springimplant.course.controller;
 
 import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,6 +14,7 @@ import com.netflix.appinfo.InstanceInfo;
 import com.netflix.discovery.EurekaClient;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.springimplant.course.core.Course;
+import com.springimplant.course.core.User;
 
 @RestController
 public class CatalogController {
@@ -76,11 +79,17 @@ public class CatalogController {
 	@GetMapping("/services/catalogcourse/{id}")
 	public String getCatalogCourseService(@PathVariable("id") BigInteger id) {
 		Course course=new Course();
+		List<User> users=new ArrayList<User>();
 		InstanceInfo instanceInfo=eurekaClient.getNextServerFromEureka("springimplant-course-api",false);
 		String courseUrl=instanceInfo.getHomePageUrl();
 		courseUrl+="/"+id;
 		RestTemplate restTemplate=new RestTemplate();
 		course=restTemplate.getForObject(courseUrl,Course.class);
-		return("Our Course is "+ course.getCoursename()+" by "+course.getAuthor());
+		instanceInfo=eurekaClient.getNextServerFromEureka("springimplant-user-api",false);
+		String userAppUrl=instanceInfo.getHomePageUrl();
+		userAppUrl=userAppUrl+"/"+course.getCourseid();
+//		String userlist=restTemplate.getForObject(userAppUrl,String.class);
+		users=restTemplate.getForObject(userAppUrl,List.class);
+		return("Our Course is "+ course.getCoursename()+" by "+course.getAuthor()+" and the enrollled Users are "+users.toString());
 	}
 }
