@@ -5,13 +5,13 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.2.6.RELEASE</version>
+		<version>2.2.7.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.springimplant</groupId>
-	<artifactId>courseCatalouge</artifactId>
+	<artifactId>currency-service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>courseCatalouge</name>
+	<name>currency-service</name>
 	<description>Demo project for Spring Boot</description>
 
 	<properties>
@@ -20,26 +20,15 @@
 	</properties>
 
 	<dependencies>
-	   	<dependency>
-      		<groupId>org.springframework.cloud</groupId>
-      		<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
-    	</dependency>
-   	    <dependency>
-      		<groupId>org.springframework.cloud</groupId>
-      		<artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
-    	</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-rest</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency>
-		<dependency>
 			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-netflix-ribbon</artifactId>
+			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
 		</dependency>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
@@ -53,17 +42,17 @@
 		</dependency>
 	</dependencies>
 
-  	<dependencyManagement>
-	    <dependencies>
-	      <dependency>
-	        <groupId>org.springframework.cloud</groupId>
-	        <artifactId>spring-cloud-dependencies</artifactId>
-	        <version>${spring-cloud.version}</version>
-	        <type>pom</type>
-	        <scope>import</scope>
-	      </dependency>
-	    </dependencies>
-  	</dependencyManagement>
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-dependencies</artifactId>
+				<version>${spring-cloud.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
 
 	<build>
 		<plugins>
