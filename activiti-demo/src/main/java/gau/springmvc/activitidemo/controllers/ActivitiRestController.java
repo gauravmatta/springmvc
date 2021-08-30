@@ -29,6 +29,6 @@ public class ActivitiRestController {
         System.out.println("Your process should be deployed...");
 		
 		runTimeService.startProcessInstanceByKey("Process_0u9wu14");
-		System.out.println("We have now "+runTimeService.createProcessInstanceQuery().count() + "process instances");
+		System.out.println("We have now "+runTimeService.createProcessInstanceQuery().count() + " process instances");
 	}	
 }
