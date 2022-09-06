@@ -1,0 +1,7 @@
+Try running following commands from Project Directory
+
+curl -H "Content-Type: text/plain" localhost:8081/reverse -d SpringImplant
+curl -H "Content-Type: application/json" localhost:8081/getBook
+curl -H "Content-Type: text/plain" localhost:8081/printMsg -d SpringImplant
+curl -H "Content-Type: text/plain" localhost:8081/printMsg -d SpringImplant
+curl -H "Content-Type: text/plain" localhost:8081/test -d SpringImplant
