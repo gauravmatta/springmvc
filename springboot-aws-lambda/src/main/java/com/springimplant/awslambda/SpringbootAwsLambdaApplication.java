@@ -11,13 +11,33 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 import com.springimplant.awslambda.domain.Order;
+import com.springimplant.awslambda.domain.Student;
 import com.springimplant.awslambda.repository.OrderDao;
+import com.springimplant.awslambda.repository.StudentRepository;
 
 @SpringBootApplication
 public class SpringbootAwsLambdaApplication {
 	
 	@Autowired
 	private OrderDao orderDao;
+	
+	@Autowired
+	private StudentRepository studentRepository;
+	
+	@Bean
+	public MyConsumer myConsumerBean() {
+		return new MyConsumer();
+	}
+	
+	@Bean
+	public Supplier<List<Student>> studentSupplier(){
+		return ()->studentRepository.list();
+	}
+	
+	@Bean
+	public Function<String, List<Student>> findByNameFunction() {
+		return (input) -> studentRepository.list().stream().filter(student -> student.getNameString().equals(input)).collect(Collectors.toList());
+	}
 	
 	@Bean
 	public Supplier<List<Order>> orders(){
