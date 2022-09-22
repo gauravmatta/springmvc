@@ -4,6 +4,9 @@ import java.math.BigInteger;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -46,6 +49,14 @@ public class CourseController {
 	public Optional<Course> getSpecificOptionalCourse(@PathVariable("id") BigInteger id)
 	{
 		return courseRepository.findById(id);
+	}
+	
+	@GetMapping("/staticcourses")
+	public List<Course> getCourses(@PathVariable("id") BigInteger id)
+	{
+		return Stream.of(new Course(1,"Java","Gaurav"),
+				new Course(2,"Spring","Rohit"),
+				new Course(3,"Hibernate","Mohit")).collect(Collectors.toList());
 	}
 	
 	@PostMapping(value="/courses")

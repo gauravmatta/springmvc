@@ -3,6 +3,8 @@ package com.springimplant.userapi.controllers;
 import java.math.BigInteger;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -34,6 +36,13 @@ public class UserController {
 	public List<User> getCourseForAUser(@PathVariable("id") BigInteger id)
 	{
 		return userRepository.findBycourseid(id);
+	}
+	
+	@GetMapping("/staticusers")
+	public List<User> getUsers() {
+		return Stream.of(new User(33,44,"Gaurav"),
+						new User(55,22,"Mohit"),
+						new User(67,43,"Rohit")).collect(Collectors.toList());
 	}
 	
 }

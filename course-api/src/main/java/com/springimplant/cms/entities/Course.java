@@ -19,6 +19,12 @@ private String author;
 public Course() {
 }
 
+public Course(int id, String name, String author) {
+	this.courseid=BigInteger.valueOf(id);
+	this.coursename=name;
+	this.author=author;
+}
+
 public BigInteger getCourseid() {
 	return courseid;
 }
