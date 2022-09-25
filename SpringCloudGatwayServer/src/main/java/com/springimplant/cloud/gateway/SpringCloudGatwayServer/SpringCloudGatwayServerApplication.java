@@ -51,5 +51,4 @@ public class SpringCloudGatwayServerApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(SpringCloudGatwayServerApplication.class, args);
 	}
-
 }
