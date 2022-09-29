@@ -1,6 +1,5 @@
 package com.springimplant.jwt.api.controller;
 
-import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -13,7 +12,7 @@ import com.springimplant.jwt.api.entity.AuthRequest;
 import com.springimplant.jwt.api.util.JwtUtil;
 
 @RestController
-public class WelcomeController {
+public class AuthController {
 	
 	@Autowired
 	private JwtUtil jwtUtil;

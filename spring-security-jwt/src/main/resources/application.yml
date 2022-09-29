@@ -14,7 +14,17 @@ spring:
       hibernate:
         format_sql: true
         dialect: org.hibernate.dialect.PostgreSQLDialect
-    
+  application:
+    name: authorization-api  
 
 server:
   port: 8081
+
+eureka:
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+#    serviceUrl:
+#      defaultZone: http://localhost:8671/eureka/
+#    instance:
+#      hostname: localhost
