@@ -1,6 +1,8 @@
 package com.springimplant.jwt.api;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -32,13 +34,27 @@ public class SpringSecurityJwtApplication {
 	
 	@Autowired
 	private RoleRepository roleRepository;
+
+	@PostConstruct
+	public void initRoles() {
+		List<Role> roles = Stream.of(
+				new Role(null, "Admin", "Admin", 1L, null, UserType.INTERNAL_GE_USER),
+				new Role(null, "SEM Engineer", "SEM Engineer", 2L, null, UserType.INTERNAL_GE_USER),
+				new Role(null, "Viewer", "Viewer", 3L, null, UserType.INTERNAL_GE_USER)
+				).collect(Collectors.toList());
+//		roleRepository.saveAll(roles);
+	}
+	
 	
 	@PostConstruct
 	public void initUsers() {
-//		List<User> users = Stream.of(
-//				new User(null,UserStatus.ACTIVE,"Gaurav","Matta","9891095692","gaurav.matta@ge.com","502553205",false, null, null, null, null,null),
-//				new User(null,UserStatus.ACTIVE,"Samir","Patkar","9891095692","samir.patkar@ge.com","503331667",false, null, null, null, null,null)
-//				).collect(Collectors.toList());
+		Set<Role> setRoles = new HashSet<Role>();
+		Role adminRole = roleRepository.findByName("Admin");
+		setRoles.add(adminRole);
+		List<User> users = Stream.of(
+				new User(null,UserStatus.ACTIVE,"Gaurav","Matta","9891095692","gaurav.matta@ge.com","502553205",false, null, null, setRoles, null,null),
+				new User(null,UserStatus.ACTIVE,"Samir","Patkar","9891095692","samir.patkar@ge.com","503331667",false, null, null, setRoles, null,null)
+				).collect(Collectors.toList());
 //		userRepository.saveAll(users);
 	}
 	
@@ -55,15 +71,7 @@ public class SpringSecurityJwtApplication {
 //		authorityRepository.saveAll(authorities);
 	}
 	
-	@PostConstruct
-	public void initRoles() {
-//		List<Role> roles = Stream.of(
-//				new Role(null, "Admin", "Admin", 1L, null, UserType.INTERNAL_GE_USER),
-//				new Role(null, "SEM Engineer", "SEM Engineer", 2L, null, UserType.INTERNAL_GE_USER),
-//				new Role(null, "Viewer", "Viewer", 3L, null, UserType.INTERNAL_GE_USER)
-//				).collect(Collectors.toList());
-//		roleRepository.saveAll(roles);
-	}
+
 
 	public static void main(String[] args) {
 		SpringApplication.run(SpringSecurityJwtApplication.class, args);
