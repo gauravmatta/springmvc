@@ -21,6 +21,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import org.hibernate.validator.constraints.Length;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -39,7 +40,7 @@ public class User implements UserDetails {
 	@Id
 	@SequenceGenerator(name = "users_seq", sequenceName = "users_seq")
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "users_seq")
-	private int id;
+	private Long id;
 	
 	@Column(name = "status")
 	@Convert(converter = UserStatus.UserStatusConverter.class)
@@ -57,7 +58,8 @@ public class User implements UserDetails {
 	@Column(name="email")
 	private String email;
 	
-	@Column(name = "sso_id")
+	@Column(name = "sso_id", nullable = false,length = 128)
+	@Length(min = 9,max = 9)
 	private String userId;
 	
 	@Column(name = "blocked")
@@ -75,7 +77,7 @@ public class User implements UserDetails {
 	inverseJoinColumns = @JoinColumn(name = "role_id"))
 	private Set<Role> roles = new HashSet<>();
 	
-	private String userName = firstName + lastName;
+	private String userName;
 	private String password;
 	
 	@Override
@@ -88,6 +90,8 @@ public class User implements UserDetails {
 					return authorities;
 				}).orElse(Collections.EMPTY_SET);
 	}
+	
+	
 	
 	@Override
 	public String getPassword() {
