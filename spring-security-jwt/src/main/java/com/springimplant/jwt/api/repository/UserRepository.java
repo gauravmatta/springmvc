@@ -9,6 +9,6 @@ import com.springimplant.jwt.api.entity.User;
 public interface UserRepository extends JpaRepository<User,Long> {
 
 	Optional<User> findByUserName(String username);
-	
+	Optional<User> findByUserId(String userId);
 
 }
