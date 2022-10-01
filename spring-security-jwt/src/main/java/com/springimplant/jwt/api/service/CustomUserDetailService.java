@@ -1,6 +1,7 @@
 package com.springimplant.jwt.api.service;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -20,7 +21,8 @@ public class CustomUserDetailService implements UserDetailsService{
 	
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-	User user = repository.findByUserName(username);
+	Optional<User> userObj = repository.findByUserName(username);
+	User user = userObj.get();
 	return new org.springframework.security.core.userdetails.User(user.getUsername(),new BCryptPasswordEncoder().encode(user.getPassword()),new ArrayList<>());
 	}
 	
