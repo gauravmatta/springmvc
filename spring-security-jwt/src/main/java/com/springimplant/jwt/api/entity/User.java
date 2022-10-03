@@ -25,6 +25,7 @@ import org.hibernate.validator.constraints.Length;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import com.netflix.eventbus.filter.AlwaysFalseEventFilter;
 import com.springimplant.jwt.api.entity.type.UserStatus;
 
 import lombok.AllArgsConstructor;
@@ -55,10 +56,10 @@ public class User implements UserDetails {
 	@Column(name = "phone")
 	private String phone;
 	
-	@Column(name="email")
+	@Column(name="email", nullable = false, unique = true )
 	private String email;
 	
-	@Column(name = "sso_id", nullable = false,length = 128)
+	@Column(name = "sso_id", nullable = false,length = 128, unique = true)
 	@Length(min = 9,max = 9)
 	private String userId;
 	

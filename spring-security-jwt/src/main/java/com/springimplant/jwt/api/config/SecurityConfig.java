@@ -1,5 +1,7 @@
 package com.springimplant.jwt.api.config;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -42,15 +44,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.userDetailsService(userDetailService);
+		auth.userDetailsService(userDetailService).passwordEncoder(new BCryptPasswordEncoder());
 	}
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.csrf().disable();
-		http.authorizeRequests().anyRequest().permitAll();
-		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-//		http.csrf().disable().authorizeRequests().antMatchers("/authenticate").permitAll().anyRequest().authenticated().and().exceptionHandling().and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+		http.authorizeRequests().antMatchers("/authenticate").permitAll()
+			.anyRequest().authenticated().and()
+			.exceptionHandling().authenticationEntryPoint(((request, response, authException) -> {
+				response.sendError(HttpServletResponse.SC_UNAUTHORIZED);
+				authException.getMessage();
+			} )).and()
+			.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 //		http.addFilterBefore(filter,UsernamePasswordAuthenticationFilter.class);
 	}
 }

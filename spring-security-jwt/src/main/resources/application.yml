@@ -28,3 +28,7 @@ eureka:
 #      defaultZone: http://localhost:8671/eureka/
 #    instance:
 #      hostname: localhost
+
+app:
+  jwt:
+    secret: javaimplant001
