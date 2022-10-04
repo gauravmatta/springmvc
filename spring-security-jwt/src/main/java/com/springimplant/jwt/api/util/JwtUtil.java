@@ -14,10 +14,17 @@ import com.springimplant.jwt.api.entity.User;
 import com.springimplant.jwt.api.repository.UserRepository;
 
 import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.MalformedJwtException;
 import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.SignatureException;
+import io.jsonwebtoken.UnsupportedJwtException;
+import io.jsonwebtoken.impl.DefaultClaims;
+import lombok.extern.slf4j.Slf4j;
 
 @Service
+@Slf4j
 public class JwtUtil {
 	
 		private static final long EXPIRE_DURATION=24*60*60*1000; //24 hrs
@@ -40,8 +47,24 @@ public class JwtUtil {
 	        final Claims claims = extractAllClaims(token);
 	        return claimsResolver.apply(claims);
 	    }
+	    
+	    
+	    
 	    private Claims extractAllClaims(String token) {
+	    	try {
 	        return Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody();
+	    	} catch(ExpiredJwtException ex) {
+	    		log.error("JWT Expired", ex);
+	    	} catch(IllegalArgumentException ex) {
+	    		log.error("Token is null, empty or has only white space",ex);
+	    	} catch (MalformedJwtException ex) {
+	    		log.error("JWT is invalid");
+	    	} catch (UnsupportedJwtException ex) {
+	    		log.error("JWT is not supported", ex);
+	    	} catch (SignatureException ex) {
+	    		log.error("Signature Validation failed",ex);
+	    	}
+	    	return new DefaultClaims();
 	    }
 
 	    private Boolean isTokenExpired(String token) {

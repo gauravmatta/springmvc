@@ -7,20 +7,22 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.aspectj.weaver.NewConstructorTypeMunger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.web.authentication.WebAuthenticationDetails;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
+import org.springframework.util.ObjectUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import com.springimplant.jwt.api.service.CustomUserDetailService;
 import com.springimplant.jwt.api.util.JwtUtil;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Component
+@Slf4j
 public class JwtFilter extends OncePerRequestFilter {
 	
 	@Autowired
@@ -32,22 +34,37 @@ public class JwtFilter extends OncePerRequestFilter {
 	@Override
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
 			throws ServletException, IOException {
-		String authrizationHeaderString = request.getHeader("Authorization");
 		String token = null;
-		String username = null;
-		if(authrizationHeaderString != null && authrizationHeaderString.startsWith("Bearer ")) {
-			token=authrizationHeaderString.substring(7);
-			username=jwtUtil.extractUsername(token);
+		if(hasAuthorizationHeader(request)) {
+			token=getAccessToken(request);
+			setAuthenticationContext(token,request);	
 		}
+		filterChain.doFilter(request, response);
+	}
+	
+	private void setAuthenticationContext(String token,HttpServletRequest request) {
+		String username=jwtUtil.extractUsername(token);
 		if(username!=null && SecurityContextHolder.getContext().getAuthentication() == null) {
 			UserDetails userDetails = customUserDetailService.loadUserByUsername(username);
-			if(jwtUtil.validateToken(token, userDetails)) {
+			if(Boolean.TRUE.equals(jwtUtil.validateToken(token, userDetails))) {
 				UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken= new UsernamePasswordAuthenticationToken(userDetails,null,userDetails.getAuthorities());
 				usernamePasswordAuthenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
 				SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
 			}
 		}
-		filterChain.doFilter(request, response);
 	}
-
+	
+	private String getAccessToken(HttpServletRequest request) {
+		String authrizationHeaderString = request.getHeader("Authorization");
+		log.info("Authorization Token: "+ authrizationHeaderString.split(" ")[1].trim());
+		return authrizationHeaderString.substring(7);
+	}
+	
+	private boolean hasAuthorizationHeader(HttpServletRequest request) {
+		String authrizationHeaderString = request.getHeader("Authorization");
+		log.info("Authorization header: "+ authrizationHeaderString);
+		return !ObjectUtils.isEmpty(authrizationHeaderString) && authrizationHeaderString.startsWith("Bearer ");
+	}
+	
+	
 }

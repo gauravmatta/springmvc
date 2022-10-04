@@ -57,6 +57,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				authException.getMessage();
 			} )).and()
 			.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-//		http.addFilterBefore(filter,UsernamePasswordAuthenticationFilter.class);
+		http.addFilterBefore(filter,UsernamePasswordAuthenticationFilter.class);
 	}
 }
