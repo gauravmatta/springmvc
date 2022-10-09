@@ -33,7 +33,7 @@ public class UserController {
 	@GetMapping("/{id}")
 	public User findBysso(@PathVariable("id") String id){
 		Optional<User> userObjOptional = userRepository.findByUserId(id);
-		return userObjOptional.get();
+		return userObjOptional.orElse(null);
 	}
 	
 	@PostMapping
