@@ -29,7 +29,7 @@ public class AuthController {
 	private AuthenticationManager authenticationManager;
 
 	@GetMapping("/")
-	public String Welcome() {
+	public String welcome() {
 		return "Welcome to Spring Implant";
 	}
 	
