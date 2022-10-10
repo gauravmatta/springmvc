@@ -9,8 +9,8 @@ import org.slf4j.LoggerFactory;
 
 public enum UserType {
 
-	INTERNAL_GE_USER,
-	EXTERNAL_GE_USER;
+	INTERNAL_USER,
+	EXTERNAL_USER;
 	
 	private static final Logger LOG = LoggerFactory.getLogger(UserType.class);
 	public static final UserTypeConverter CONVERTER = new UserTypeConverter();
