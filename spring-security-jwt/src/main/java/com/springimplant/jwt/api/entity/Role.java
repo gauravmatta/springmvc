@@ -43,6 +43,16 @@ public class Role {
 	@Column(name = "weight")
 	private Long weight;
 	
+	public Role(Long id) {
+		super();
+		this.id = id;
+	}
+	
+	public Role(String name) {
+		super();
+		this.name = name;
+	}
+	
 	@ManyToMany(targetEntity = Authority.class, fetch = FetchType.EAGER)
 	@JoinTable(name = "role_authority",
 	joinColumns = @JoinColumn(name="role_id"),

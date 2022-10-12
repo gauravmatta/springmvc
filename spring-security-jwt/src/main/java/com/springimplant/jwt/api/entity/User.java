@@ -119,4 +119,8 @@ public class User implements UserDetails {
 	public boolean isEnabled() {
 		return true;
 	}
+	
+	public void addRole(Role role) {
+		this.roles.add(role);
+	}
 }

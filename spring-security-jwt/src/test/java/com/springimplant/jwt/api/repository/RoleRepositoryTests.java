@@ -1,13 +1,11 @@
 package com.springimplant.jwt.api.repository;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.mockito.ArgumentMatchers.longThat;
 
-import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.List;
 
-import org.hibernate.query.criteria.internal.expression.function.AggregationFunction.COUNT;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
@@ -35,6 +33,11 @@ class RoleRepositoryTests {
 		assertTrue(numberOfRoles>0);
 	}
 	
-	
+	@Test
+	void testListRoles() {
+		List<Role> listRoles=repository.findAll();
+		assertThat(listRoles).isNotEmpty();
+		listRoles.forEach(System.out::println);
+	}
 	
 }

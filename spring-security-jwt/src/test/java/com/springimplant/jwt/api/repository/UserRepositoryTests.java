@@ -43,4 +43,15 @@ class UserRepositoryTests {
 		assertThat(savedUser.getId()).isPositive();
 	}
 	
+	@Test
+	void testAssignRolesToUser() {
+		Integer userId = 503331667;
+		Long roleId = (long) 52;
+		
+		User user = userRepository.findByUserId(userId.toString()).get();
+		user.addRole(new Role(roleId));
+		
+		User updatedUser =  userRepository.save(user);
+		assertThat(updatedUser.getRoles()).hasSizeGreaterThan(1);
+	}
 }
