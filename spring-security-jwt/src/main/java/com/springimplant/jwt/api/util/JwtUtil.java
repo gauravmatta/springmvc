@@ -48,8 +48,6 @@ public class JwtUtil {
 	        return claimsResolver.apply(claims);
 	    }
 	    
-	    
-	    
 	    private Claims extractAllClaims(String token) {
 	    	try {
 	        return Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody();
@@ -75,7 +73,8 @@ public class JwtUtil {
 	        Map<String, Object> claims = new HashMap<>();
 	        User user = userRepository.findByUserId(username).orElse(null);
 	        if( user != null) {
-	        	claims.put("created For", user.getFirstName() + " " + user.getLastName());	
+	        	claims.put("created For", user.getFirstName() + " " + user.getLastName());
+	        	claims.put("roles", user.getRoles().toString());
 	        }
 	        return createToken(claims, username);
 	    }
