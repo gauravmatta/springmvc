@@ -4,6 +4,7 @@ import java.net.URI;
 import java.util.List;
 import java.util.Optional;
 
+import javax.annotation.security.RolesAllowed;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,7 @@ public class UserController {
 	private UserRepository userRepository;
 	
 	@GetMapping
+	@RolesAllowed({"Scorecard"})
 	public List<User> list(){
 		return userRepository.findAll();
 	}

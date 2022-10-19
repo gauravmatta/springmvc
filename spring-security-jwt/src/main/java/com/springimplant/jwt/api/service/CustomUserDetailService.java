@@ -1,10 +1,12 @@
 package com.springimplant.jwt.api.service;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -32,7 +34,8 @@ public class CustomUserDetailService implements UserDetailsService{
 	if(userObj.isPresent()) {
 		user = userObj.get();	
 	}
-	List<Authority> allAuthorities = authorityRepository.findAll().stream().collect(Collectors.toList());
+//	List<Authority> allAuthorities = authorityRepository.findAll().stream().collect(Collectors.toList());
+	Collection<? extends GrantedAuthority> allAuthorities = user.getAuthorities();
 	return new org.springframework.security.core.userdetails.User(user.getUserId(),new BCryptPasswordEncoder().encode(user.getUserId()),allAuthorities);
 	}
 	
