@@ -1,8 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: gau.springmvc.activitidemo.ActivitiDemoApplicationTests
 -------------------------------------------------------------------------------
-Tests run: 3, Failures: 0, Errors: 3, Skipped: 0, Time elapsed: 0.01 sec <<< FAILURE! - in gau.springmvc.activitidemo.ActivitiDemoApplicationTests
-initializationError(gau.springmvc.activitidemo.ActivitiDemoApplicationTests)  Time elapsed: 0.003 sec  <<< ERROR!
+Tests run: 3, Failures: 0, Errors: 3, Skipped: 0, Time elapsed: 0.004 sec <<< FAILURE! - in gau.springmvc.activitidemo.ActivitiDemoApplicationTests
+initializationError(gau.springmvc.activitidemo.ActivitiDemoApplicationTests)  Time elapsed: 0.002 sec  <<< ERROR!
 java.lang.Exception: The class gau.springmvc.activitidemo.ActivitiDemoApplicationTests is not public.
 	at org.junit.validator.PublicClassValidator.validateTestClass(PublicClassValidator.java:29)
 	at org.junit.runners.ParentRunner.applyValidators(ParentRunner.java:134)
