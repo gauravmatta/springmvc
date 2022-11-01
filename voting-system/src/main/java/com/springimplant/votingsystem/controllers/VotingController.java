@@ -60,7 +60,7 @@ public class VotingController {
 		
 		if(!ctzn.isHasVoted())
 		{
-			Candidate c= candidateRepo.findById(id);
+			Candidate c= candidateRepo.findById(id).get();
 			c.setNumberOfVotes(c.getNumberOfVotes()+1);
 			candidateRepo.save(c);
 			ctzn.setHasVoted(true);

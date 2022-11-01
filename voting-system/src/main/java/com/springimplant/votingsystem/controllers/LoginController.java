@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.springimplant.votingsystem.entity.Candidate;
 import com.springimplant.votingsystem.entity.User;
-import com.springimplant.votingsystem.entity.Utils;
 import com.springimplant.votingsystem.repositories.CandidateRepo;
 import com.springimplant.votingsystem.repositories.UserRepo;
+import com.springimplant.votingsystem.util.Utils;
 
 @Controller
 @RequestMapping("/admin")

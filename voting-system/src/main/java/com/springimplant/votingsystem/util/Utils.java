@@ -1,4 +1,4 @@
-package com.springimplant.votingsystem.entity;
+package com.springimplant.votingsystem.util;
 
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
