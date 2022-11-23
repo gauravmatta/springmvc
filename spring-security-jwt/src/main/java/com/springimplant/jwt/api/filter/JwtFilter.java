@@ -19,7 +19,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.util.ObjectUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
 
-import com.springimplant.jwt.api.service.CustomUserDetailService;
+import com.springimplant.jwt.api.service.impl.CustomUserDetailServiceImpl;
 import com.springimplant.jwt.api.util.JwtUtil;
 
 import lombok.extern.slf4j.Slf4j;
@@ -29,7 +29,7 @@ import lombok.extern.slf4j.Slf4j;
 public class JwtFilter extends OncePerRequestFilter {
 	
 	@Autowired
-	private CustomUserDetailService customUserDetailService;
+	private CustomUserDetailServiceImpl customUserDetailService;
 
 	@Autowired
 	private JwtUtil jwtUtil;

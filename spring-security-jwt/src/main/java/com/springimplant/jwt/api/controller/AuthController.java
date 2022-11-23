@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.springimplant.jwt.api.entity.User;
 import com.springimplant.jwt.api.filter.JwtFilter;
-import com.springimplant.jwt.api.service.CustomUserDetailService;
+import com.springimplant.jwt.api.service.impl.CustomUserDetailServiceImpl;
 import com.springimplant.jwt.api.type.AuthRequest;
 import com.springimplant.jwt.api.type.AuthResponse;
 import com.springimplant.jwt.api.util.JwtUtil;
@@ -36,7 +36,7 @@ public class AuthController {
 	private AuthenticationManager authenticationManager;
 	
 	@Autowired
-	private CustomUserDetailService customUserDetailService;
+	private CustomUserDetailServiceImpl customUserDetailService;
 
 	@GetMapping("/")
 	public String welcome() {

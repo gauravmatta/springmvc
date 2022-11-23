@@ -19,7 +19,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import com.springimplant.jwt.api.filter.JwtFilter;
-import com.springimplant.jwt.api.service.CustomUserDetailService;
+import com.springimplant.jwt.api.service.impl.CustomUserDetailServiceImpl;
 
 @Configuration
 @EnableWebSecurity
@@ -31,7 +31,7 @@ import com.springimplant.jwt.api.service.CustomUserDetailService;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Autowired
-	private CustomUserDetailService userDetailService;
+	private CustomUserDetailServiceImpl userDetailService;
 	
 	@Autowired
 	private JwtFilter filter;
