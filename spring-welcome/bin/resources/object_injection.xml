@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<bean id="cheatId" class="com.springimplant.entities.Cheating"/>
+
+<bean id="stu" class="com.springimplant.entities.Student">
+		<property name="studentName" value="Gaurav Matta"/>
+		<property name="id" value="1001"/>
+		<property name="cheat" ref="cheatId"/>
+</bean>
+
+<bean id="pupil1" class="com.springimplant.entities.Pupil">
+	<property name="cheat">
+		<bean class="com.springimplant.entities.Cheating"></bean>
+	</property>
+</bean>
+
+<bean id="pupil" class="com.springimplant.entities.Pupil">
+		<property name="cheat" ref="cheatId"/>
+</bean>
+</beans>
