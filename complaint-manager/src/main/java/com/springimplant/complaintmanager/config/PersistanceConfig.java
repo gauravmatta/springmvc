@@ -47,7 +47,7 @@ public class PersistanceConfig {
 		return transacManager;
 	}
 	
-	@Bean
+	@Bean(name="entityManagerFactory")
 	LocalSessionFactoryBean sessionFactory()
 	{
 		LocalSessionFactoryBean sessionFactory=new LocalSessionFactoryBean();
