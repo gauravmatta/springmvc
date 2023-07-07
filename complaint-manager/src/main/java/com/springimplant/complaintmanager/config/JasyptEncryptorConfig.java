@@ -1,18 +1,17 @@
-package com.springimplant.complaintmanager;
+package com.springimplant.complaintmanager.config;
 
+import org.jasypt.digest.config.SimpleStringDigesterConfig;
+import org.jasypt.encryption.StringEncryptor;
 import org.jasypt.encryption.pbe.PooledPBEStringEncryptor;
 import org.jasypt.encryption.pbe.config.SimpleStringPBEConfig;
-import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
-class ComplaintManagerApplicationTests {
-
-	@Test
-	void contextLoads() {
-	}
+@Configuration
+public class JasyptEncryptorConfig {
 	
-	@Test
-	void testEncryptionKey(){
+//	@Bean(name = "jasyptStringEncryptor")
+	public StringEncryptor passwordEncryptor(){
 		PooledPBEStringEncryptor encryptor = new PooledPBEStringEncryptor();
 		SimpleStringPBEConfig config = new SimpleStringPBEConfig();
 		config.setPassword("springimplant");
@@ -23,7 +22,7 @@ class ComplaintManagerApplicationTests {
 		config.setSaltGeneratorClassName("org.jasypt.salt.RandomSaltGenerator");
 		config.setStringOutputType("base64");
 		encryptor.setConfig(config);
-		String plaintextString = "root";
-		System.out.println("Encrypted Key: "+encryptor.encrypt(plaintextString));
+		return encryptor;
 	}
+
 }

@@ -10,13 +10,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.springimplant.complaintmanager.config.Utils;
 import com.springimplant.complaintmanager.dao.ComplaintDao;
 import com.springimplant.complaintmanager.entities.Complaint;
 
-@Controller
+@RestController
 @PropertySource({"classpath:admin-properties.properties"})
 public class AppController
 {
@@ -29,7 +30,7 @@ public class AppController
 	@Autowired
 	Utils utils;
 	
-    @RequestMapping("/helloWorld")
+    @RequestMapping("/helloworld")
     public String helloWorld()
     {
     	return "HelloWorld";
