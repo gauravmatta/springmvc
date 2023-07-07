@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.springimplant.complaintmanager.config.Utils;
 import com.springimplant.complaintmanager.dao.ComplaintDao;
 import com.springimplant.complaintmanager.entities.Complaint;
-import com.springimplant.complaintmanager.entities.Utils;
 
 @Controller
 @PropertySource({"classpath:admin-properties.properties"})

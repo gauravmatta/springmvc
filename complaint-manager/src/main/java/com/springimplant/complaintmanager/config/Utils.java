@@ -1,4 +1,4 @@
-package com.springimplant.complaintmanager.entities;
+package com.springimplant.complaintmanager.config;
 
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
@@ -6,7 +6,11 @@ import java.security.NoSuchAlgorithmException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Service;
 
+@Configuration
+@Service
 public class Utils {
 	
 	public String md5Java(String message)
