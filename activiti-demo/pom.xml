@@ -65,6 +65,11 @@
 		    <artifactId>aws-java-sdk-iam</artifactId>
 		    <version>1.12.361</version>
 		</dependency>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<scope>provided</scope>
+		</dependency>
 	</dependencies>
 
 	<build>

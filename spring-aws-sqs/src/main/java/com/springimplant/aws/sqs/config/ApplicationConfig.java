@@ -1,0 +1,53 @@
+package com.springimplant.aws.sqs.config;
+
+import org.springframework.context.annotation.Configuration;
+
+import com.amazonaws.util.Base64;
+
+import software.amazon.awssdk.regions.Region;
+import software.amazon.awssdk.services.secretsmanager.SecretsManagerClient;
+import software.amazon.awssdk.services.secretsmanager.model.GetSecretValueRequest;
+import software.amazon.awssdk.services.secretsmanager.model.GetSecretValueResponse;
+
+
+@Configuration
+public class ApplicationConfig {
+
+	// Use this code snippet in your app.
+	// If you need more information about configurations or implementing the sample
+	// code, visit the AWS docs:
+	// https://docs.aws.amazon.com/sdk-for-java/latest/developer-guide/home.html	
+
+	public static void getSecret() {
+
+	    String secretName = "gsecret";
+	    Region region = Region.of("us-east-1");
+	    String secret, decodedBinarySecret;
+	    // Create a Secrets Manager client
+	    SecretsManagerClient client = SecretsManagerClient.builder()
+	            .region(region)
+	            .build();
+
+	    GetSecretValueRequest getSecretValueRequest = GetSecretValueRequest.builder()
+	            .secretId(secretName)
+	            .build();
+
+	    GetSecretValueResponse getSecretValueResponse;
+
+	    try {
+	        getSecretValueResponse = client.getSecretValue(getSecretValueRequest);
+	    } catch (Exception e) {
+	        // For a list of exceptions thrown, see
+	        // https://docs.aws.amazon.com/secretsmanager/latest/apireference/API_GetSecretValue.html
+	        throw e;
+	    }
+	    
+	    if(getSecretValueResponse.secretString() !== null) {
+	    	secret = getSecretValueResponse.secretString();
+	    } else {
+			decodedBinarySecret = new String(Base64.decode(getSecretValueResponse.getSe))
+		}
+	    // Your code goes here.
+	}
+	
+}
