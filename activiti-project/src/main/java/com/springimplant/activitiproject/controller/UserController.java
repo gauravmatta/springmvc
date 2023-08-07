@@ -1,9 +1,9 @@
-package com.example.activitiproject.controller;
+package com.springimplant.activitiproject.controller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.activitiproject.dtos.User;
+import com.springimplant.activitiproject.dtos.User;
 
 @RestController
 public class UserController {

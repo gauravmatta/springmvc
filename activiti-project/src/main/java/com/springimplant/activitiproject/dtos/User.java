@@ -1,4 +1,4 @@
-package com.example.activitiproject.dtos;
+package com.springimplant.activitiproject.dtos;
 
 import com.fasterxml.jackson.annotation.JsonRootName;
 
