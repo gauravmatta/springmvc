@@ -42,11 +42,11 @@ public class ApplicationConfig {
 	        throw e;
 	    }
 	    
-	    if(getSecretValueResponse.secretString() !== null) {
-	    	secret = getSecretValueResponse.secretString();
-	    } else {
-			decodedBinarySecret = new String(Base64.decode(getSecretValueResponse.getSe))
-		}
+//	    if(getSecretValueResponse.secretString() != null) {
+//	    	secret = getSecretValueResponse.secretString();
+//	    } else {
+//			decodedBinarySecret = new String(Base64.decode(getSecretValueResponse.getSe))
+//		}
 	    // Your code goes here.
 	}
 	
