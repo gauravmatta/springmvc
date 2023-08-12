@@ -7,4 +7,6 @@
 	<bean id="processEngineConfiguration" class="org.activiti.engine.impl.cfg.StandaloneInMemProcessEngineConfiguration">
 		<property name="databaseSchemaUpdate" value="true"/>
 	</bean>
+	<bean id="myclass" class="com.springimplant.artifactory.service.MyClass"></bean>
+	<bean id="myclassone" class="com.springimplant.artifactory.service.MyClassOne"></bean>
 </beans>
