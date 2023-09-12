@@ -5,6 +5,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.springimplant.activitiproject.dtos.User;
 
+import lombok.Builder;
+import lombok.Data;
+
 @RestController
 public class UserController {
 
