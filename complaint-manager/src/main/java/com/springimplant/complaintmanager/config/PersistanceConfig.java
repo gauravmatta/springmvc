@@ -20,15 +20,15 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
 @EnableTransactionManagement
-@PropertySource({"classpath:database-properties.properties"})
+@PropertySource("classpath:database-properties.properties")
 @ComponentScan({"com.springimplant.complaintmanager"})
 public class PersistanceConfig {
 	
 	@Autowired
 	private Environment env;
-	
-	@Bean
-	public DataSource dataSource()
+
+    @Bean
+    DataSource dataSource()
 	{
 		DataSourceBuilder<?> dataSource = DataSourceBuilder.create();
 		dataSource.driverClassName(env.getProperty("jdbc.driverCLassName"));
@@ -37,10 +37,10 @@ public class PersistanceConfig {
 		dataSource.password(env.getProperty("jdbc.pass"));
 		return dataSource.build();
 	}
-	
-	@Bean
-	@Autowired
-	public HibernateTransactionManager TransactionManager(SessionFactory sessionFactory)
+
+    @Bean
+    @Autowired
+    HibernateTransactionManager TransactionManager(SessionFactory sessionFactory)
 	{
 		HibernateTransactionManager transacManager=new HibernateTransactionManager();
 		transacManager.setSessionFactory(sessionFactory);

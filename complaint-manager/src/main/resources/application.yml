@@ -18,6 +18,10 @@ spring:
   datasource:
       tomcat:
        connection-properties: stringtype=unspecified
+  mvc:
+    view:
+      prefix: /WEB-INF/jsp/
+      suffix: .jsp
 jasypt:
   encryptor:
     password: springimplant
