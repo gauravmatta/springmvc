@@ -1,7 +1,8 @@
 package com.springimplant.config;
 
 
-import org.springframework.context.ApplicationContext;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.ComponentScans;
 import org.springframework.context.annotation.Configuration;
@@ -19,12 +20,18 @@ import com.springimplant.model.Student;
 		@ComponentScan("com.springimplant.service")
 })
 public class AppConfig {
+	
+	private static final Log log = LogFactory.getLog(AppConfig.class);
+//	private static final boolean isDebugging = log.isDebugEnabled();
+	
 	public static void main(String[] args) {
-		System.out.println("Hello Main World!");
-//		ApplicationContext context = new ClassPathXmlApplicationContext("com/springimplant/xml/config.xml");
+		log.info("Hello Main World!");
 		try (ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("com/springimplant/xml/config.xml")) {
-			Student s = (Student) context.getBean("Student1");
-			System.out.println(s.toString());
+			Student s1 = (Student) context.getBean("Student1");
+			Student s2 = (Student) context.getBean("Student2");
+			log.info(s1.toString());
+			System.out.println(s1.toString());
+			System.out.println(s2.toString());
 			}
 	}
 }
