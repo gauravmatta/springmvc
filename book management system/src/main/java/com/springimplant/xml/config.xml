@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href=""?>
+<beans 
+xmlns="http://www.springframework.org/schema/beans"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xmlns:context="http://www.springframework.org/schema/context"
+xmlns:p="http://www.springframework.org/schema/p"
+xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd
+http://www.springframework.org/schema/context
+http://www.springframework.org/schema/context/spring-context.xsd">
+
+<!-- Property Injection -->
+
+<bean class="com.springimplant.model.Student" name="Student1">
+	<property name="studentId">
+		<value>123</value>
+	</property>
+	<property name="studentName">
+		<value>Gaurav</value>
+	</property>
+	<property name="studentAddress">
+		<value>Delhi</value>
+	</property>
+	<property name="weekAttendence">
+		<value>1</value>
+	</property>
+	<property name="favorites" ref="Subject1"/>
+	<property name="subjects">
+		<set>
+		</set>
+	</property>
+</bean>
+
+<bean class="com.springimplant.model.Student" name="Student2">
+	<property name="studentId" value="234"/>
+	<property name="studentName" value="Manu"/>
+	<property name="studentAddress" value="Bangalore" />
+	<property name="subjects">
+		<set>
+			<value>Maths</value>
+			<value>English</value>
+			<value>Hindi</value>
+			<value>Knowledge</value>
+		</set>
+	</property>
+	<property name="weekAttendence">
+		<list>
+			<value>1</value>
+			<value>0</value>
+			<value>1</value>
+			<value>1</value>
+			<value>0</value>
+			<null/>
+		</list>
+	</property>
+	<property name="marks">
+		<map>
+			<entry key="Maths" value="50"></entry>
+			<entry key="English" value="60"></entry>
+			<entry key="Hindi" value="80"></entry>
+			<entry key="Knowledge" value="90"></entry>
+		</map>
+	</property>
+	<property name="attendenceKeys">
+		<props>
+			<prop key="Present">1</prop>
+			<prop key="Absent" >0</prop>
+		</props>
+	</property>
+	<property name="favorites">
+		<ref bean="Subject1" />
+	</property>
+</bean>
+
+<bean class="com.springimplant.model.Student" name="Studentp" p:studentId="345" p:studentName="Nikhil" p:studentAddress="Hyderabad" p:favorites-ref="Subject1"/>
+
+<bean class="com.springimplant.model.Book" name="Book1">
+	<property name="id" value="1"/>
+	<property name="title" value="Alphabets Writing"/>
+	<property name="author" value="Raj Comics"/>
+	<property name="price" value="30"/>
+</bean>
+
+<bean class="com.springimplant.model.Book" name="Book2">
+	<property name="id" value="1"/>
+	<property name="title" value="Phonics"/>
+	<property name="author" value="EduServe"/>
+	<property name="price" value="100"/>
+</bean>
+
+<bean class="com.springimplant.model.Subject" name="Subject1">
+	<property name="subjectId" value="1"></property>
+	<property name="subjectName" value="English"/>
+	<property name="books">
+		<list>
+			<ref bean="Book1"/>
+			<ref bean="Book2"/>
+		</list>
+	</property>
+</bean>
+
+<!-- Constructor Injection -->
+
+<bean class="com.springimplant.model.Student" name="Student3">
+	<!-- Type is used to remove ambigutity among constructors-->
+	<constructor-arg value="1" type="int"/>
+	<constructor-arg value="Mukesh"/>
+	<constructor-arg value="Mumbai"/>
+	<constructor-arg>
+		<list>
+			<value>1</value>
+			<value>1</value>
+			<value>1</value>
+			<value>1</value>
+			<value>1</value>
+			<null/>
+		</list>
+	</constructor-arg>
+	<constructor-arg>
+		<set>
+			<value>Maths</value>
+			<value>English</value>
+			<value>Hindi</value>
+			<value>Knowledge</value>
+		</set>
+	</constructor-arg>
+	<constructor-arg>
+		<map>
+			<entry key="Maths" value="10"></entry>
+			<entry key="English" value="20"></entry>
+			<entry key="Hindi" value="30"></entry>
+			<entry key="Knowledge" value="40"></entry>
+		</map>
+	</constructor-arg>
+	<constructor-arg>
+		<props>
+			<prop key="Present">1</prop>
+			<prop key="Absent" >0</prop>
+		</props>
+	</constructor-arg>
+	<constructor-arg>
+		<ref bean="Subject1" />
+	</constructor-arg>
+</bean>
+	
+
+
+</beans>

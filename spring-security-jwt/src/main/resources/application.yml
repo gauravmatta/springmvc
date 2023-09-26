@@ -5,16 +5,38 @@ spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/authentication
     username: postgres
-    password: root
+    password: postgres
   jpa:
     show-sql: true
     hibernate:
       ddl-auto: update
+      naming:
+        physical-strategy: com.springimplant.jwt.api.util.CustomDBNamingUtil
     properties:
       hibernate:
         format_sql: true
         dialect: org.hibernate.dialect.PostgreSQLDialect
-    
+  application:
+    name: authorization-api  
 
 server:
   port: 8081
+
+logging:
+  level:
+    '[org.hibernate.sql]': debug
+    '[org.hibernate.type]': trace
+    '[org.hibernate.type.descriptor.sql]': trace
+
+eureka:
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+#    serviceUrl:
+#      defaultZone: http://localhost:8671/eureka/
+#    instance:
+#      hostname: localhost
+
+app:
+  jwt:
+    secret: javaimplant001
