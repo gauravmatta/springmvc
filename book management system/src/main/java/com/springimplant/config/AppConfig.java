@@ -1,6 +1,9 @@
 package com.springimplant.config;
 
 
+import java.lang.System.Logger.Level;
+import java.util.logging.Logger;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.context.annotation.ComponentScan;
@@ -22,23 +25,26 @@ import com.springimplant.model.Subject;
 })
 public class AppConfig {
 	
-	private static final Log log = LogFactory.getLog(AppConfig.class);
+//	private static final Log log = LogFactory.getLog(AppConfig.class);
+	private static final Logger logger = Logger.getLogger(AppConfig.class.getName());
 //	private static final boolean isDebugging = log.isDebugEnabled();
 	
 	public static void main(String[] args) {
-		log.info("Hello Main World!");
+		logger.info("Hello Main World!");
 		try (ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("com/springimplant/xml/config.xml")) {
 			Student s1 = (Student) context.getBean("Student1");
 			Student s2 = (Student) context.getBean("Student2");
 			Student sp = (Student) context.getBean("Studentp");
-			Subject su1 = (Subject) context.getBean("Subject1");
-			log.info(s1.toString());
-			System.out.println(s1.toString());
-			System.out.println(s2.toString());
-			System.out.println(s2.getFavorites().getSubjectName());
-			System.out.println(sp.toString());
-			System.out.println("Subjects===========>");
-			System.out.println(su1.toString());
+			Student s3 = (Student) context.getBean("Student3");
+			Subject sub1 = (Subject) context.getBean("Subject1");
+			logger.info(s1.toString());
+			logger.info(s1.toString());
+			logger.info(s2.toString());
+			logger.info(s2.getFavorites().getSubjectName());
+			logger.info(sp.toString());
+			logger.info(s3.toString());
+			logger.info("Subjects===========>");
+			logger.info(sub1.toString());
 		}
 	}
 }

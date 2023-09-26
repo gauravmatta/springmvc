@@ -10,6 +10,8 @@ http://www.springframework.org/schema/beans/spring-beans.xsd
 http://www.springframework.org/schema/context
 http://www.springframework.org/schema/context/spring-context.xsd">
 
+<!-- Property Injection -->
+
 <bean class="com.springimplant.model.Student" name="Student1">
 	<property name="studentId">
 		<value>123</value>
@@ -87,7 +89,6 @@ http://www.springframework.org/schema/context/spring-context.xsd">
 	<property name="price" value="100"/>
 </bean>
 
-
 <bean class="com.springimplant.model.Subject" name="Subject1">
 	<property name="subjectId" value="1"></property>
 	<property name="subjectName" value="English"/>
@@ -98,5 +99,50 @@ http://www.springframework.org/schema/context/spring-context.xsd">
 		</list>
 	</property>
 </bean>
+
+<!-- Constructor Injection -->
+
+<bean class="com.springimplant.model.Student" name="Student3">
+	<constructor-arg value="1"/>
+	<constructor-arg value="Mukesh"/>
+	<constructor-arg value="Mumbai"/>
+	<constructor-arg>
+		<list>
+			<value>1</value>
+			<value>1</value>
+			<value>1</value>
+			<value>1</value>
+			<value>1</value>
+			<null/>
+		</list>
+	</constructor-arg>
+	<constructor-arg>
+		<set>
+			<value>Maths</value>
+			<value>English</value>
+			<value>Hindi</value>
+			<value>Knowledge</value>
+		</set>
+	</constructor-arg>
+	<constructor-arg>
+		<map>
+			<entry key="Maths" value="10"></entry>
+			<entry key="English" value="20"></entry>
+			<entry key="Hindi" value="30"></entry>
+			<entry key="Knowledge" value="40"></entry>
+		</map>
+	</constructor-arg>
+	<constructor-arg>
+		<props>
+			<prop key="Present">1</prop>
+			<prop key="Absent" >0</prop>
+		</props>
+	</constructor-arg>
+	<constructor-arg>
+		<ref bean="Subject1" />
+	</constructor-arg>
+</bean>
+	
+
 
 </beans>
