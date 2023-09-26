@@ -26,6 +26,37 @@ http://www.springframework.org/schema/context/spring-context.xsd">
 	<property name="studentId" value="234"/>
 	<property name="studentName" value="Manu"/>
 	<property name="studentAddress" value="Bangalore" />
+	<property name="subjects">
+		<set>
+			<value>Maths</value>
+			<value>English</value>
+			<value>Hindi</value>
+			<value>Knowledge</value>
+		</set>
+	</property>
+	<property name="weekAttendence">
+		<list>
+			<value>1</value>
+			<value>0</value>
+			<value>1</value>
+			<value>1</value>
+			<value>0</value>
+		</list>
+	</property>
+	<property name="marks">
+		<map>
+			<entry key="Maths" value="50"></entry>
+			<entry key="English" value="60"></entry>
+			<entry key="Hindi" value="80"></entry>
+			<entry key="Knowledge" value="90"></entry>
+		</map>
+	</property>
+	<property name="attendenceKeys">
+		<props>
+			<prop key="Present">1</prop>
+			<prop key="Absent" >0</prop>
+		</props>
+	</property>
 </bean>
 
 <bean class="com.springimplant.model.Student" name="Studentp" p:studentId="345" p:studentName="Nikhil" p:studentAddress="Hyderabad"/>
