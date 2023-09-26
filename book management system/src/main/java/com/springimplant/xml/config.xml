@@ -23,7 +23,8 @@ http://www.springframework.org/schema/context/spring-context.xsd">
 	<property name="weekAttendence">
 		<value>1</value>
 	</property>
-		<property name="subjects">
+	<property name="favorites" ref="Subject1"/>
+	<property name="subjects">
 		<set>
 		</set>
 	</property>
