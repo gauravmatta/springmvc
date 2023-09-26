@@ -103,7 +103,8 @@ http://www.springframework.org/schema/context/spring-context.xsd">
 <!-- Constructor Injection -->
 
 <bean class="com.springimplant.model.Student" name="Student3">
-	<constructor-arg value="1"/>
+	<!-- Type is used to remove ambigutity among constructors-->
+	<constructor-arg value="1" type="int"/>
 	<constructor-arg value="Mukesh"/>
 	<constructor-arg value="Mumbai"/>
 	<constructor-arg>
