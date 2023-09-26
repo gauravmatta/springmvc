@@ -5,11 +5,13 @@ spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/authentication
     username: postgres
-    password: root
+    password: postgres
   jpa:
     show-sql: true
     hibernate:
       ddl-auto: update
+      naming:
+        physical-strategy: com.springimplant.jwt.api.util.CustomDBNamingUtil
     properties:
       hibernate:
         format_sql: true
@@ -19,6 +21,12 @@ spring:
 
 server:
   port: 8081
+
+logging:
+  level:
+    '[org.hibernate.sql]': debug
+    '[org.hibernate.type]': trace
+    '[org.hibernate.type.descriptor.sql]': trace
 
 eureka:
   client:

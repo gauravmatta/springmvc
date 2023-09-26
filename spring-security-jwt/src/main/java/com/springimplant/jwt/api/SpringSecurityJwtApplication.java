@@ -9,10 +9,12 @@ import java.util.stream.Stream;
 
 import javax.annotation.PostConstruct;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
+import org.springframework.context.annotation.Bean;
 
 import com.springimplant.jwt.api.entity.Authority;
 import com.springimplant.jwt.api.entity.Role;
@@ -37,6 +39,11 @@ public class SpringSecurityJwtApplication {
 	private RoleRepository roleRepository;
 
 	
+	@Bean
+	public ModelMapper modelMapper() {
+		return new ModelMapper();
+	}
+	
 	@PostConstruct
 	public void initAuthorties() {
 //		List<Authority> authorities = Stream.of(
@@ -54,9 +61,9 @@ public class SpringSecurityJwtApplication {
 	public void initRoles() {
 //		Set<Authority> setAuthorities = authorityRepository.findAll().stream().collect(Collectors.toSet());
 //		List<Role> roles = Stream.of(
-//				new Role(null, "Admin", "Admin", 1L, setAuthorities, UserType.INTERNAL_GE_USER),
-//				new Role(null, "SEM Engineer", "SEM Engineer", 2L, null, UserType.INTERNAL_GE_USER),
-//				new Role(null, "Viewer", "Viewer", 3L, null, UserType.INTERNAL_GE_USER)
+//				new Role(null, "Admin", "Admin", 1L, setAuthorities, UserType.INTERNAL_USER),
+//				new Role(null, "SEM Engineer", "SEM Engineer", 2L, null, UserType.INTERNAL_USER),
+//				new Role(null, "Viewer", "Viewer", 3L, null, UserType.INTERNAL_USER)
 //				).collect(Collectors.toList());
 //		roleRepository.saveAll(roles);
 	}

@@ -9,17 +9,24 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.springimplant.jwt.api.entity.User;
+import com.springimplant.jwt.api.filter.JwtFilter;
+import com.springimplant.jwt.api.service.impl.CustomUserDetailServiceImpl;
 import com.springimplant.jwt.api.type.AuthRequest;
 import com.springimplant.jwt.api.type.AuthResponse;
 import com.springimplant.jwt.api.util.JwtUtil;
 
+import lombok.extern.slf4j.Slf4j;
+
 @RestController
+@Slf4j
 public class AuthController {
 	
 	@Autowired
@@ -27,6 +34,9 @@ public class AuthController {
 	
 	@Autowired
 	private AuthenticationManager authenticationManager;
+	
+	@Autowired
+	private CustomUserDetailServiceImpl customUserDetailService;
 
 	@GetMapping("/")
 	public String welcome() {
@@ -48,4 +58,23 @@ public class AuthController {
 			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
 		}
 	}
+	
+//	@PostMapping("/userdetails/{id}")
+//	public ResponseEntity<UserDetails> getUserDetails(@PathVariable("id") String id) {
+		
+//		String authrizationHeaderString = request.getHeader("Authorization");
+//		log.info("Authorization header: "+ authrizationHeaderString);
+		
+//		if(jwtFilter.h
+		
+//		if(hasAuthorizationHeader(request)) {
+//			token=getAccessToken(request);
+//			setAuthenticationContext(token,request);	
+//		}
+		
+//		UserDetails userDetails = customUserDetailService.loadUserByUsername(sso);
+//		return ResponseEntity.status(HttpStatus.OK).body(userDetails);
+//	}
+	
+	
 }

@@ -1,18 +1,20 @@
 package com.springimplant.config;
 
-import java.util.Properties;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
+import java.lang.System.Logger.Level;
+import java.util.logging.Logger;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.ComponentScans;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
-import org.springframework.core.env.Environment;
-import org.springframework.orm.hibernate5.HibernateTransactionManager;
-import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
-import static org.hibernate.cfg.Environment.*;
+
+import com.springimplant.model.Student;
+import com.springimplant.model.Subject;
 
 @Configuration
 @PropertySource("classpath:db.properties")
@@ -23,43 +25,26 @@ import static org.hibernate.cfg.Environment.*;
 })
 public class AppConfig {
 	
-	@Autowired
-	private Environment env;
-
-	@Bean
-	public LocalSessionFactoryBean getSessionFactory()
-	{
-		LocalSessionFactoryBean factoryBean=new LocalSessionFactoryBean();
-		Properties props=new Properties();
-		
-		//Setting JDBC Properties
-		props.put(DRIVER,env.getProperty("mysql.driver"));
-		props.put(URL,env.getProperty("mysql.url"));
-		props.put(USER,env.getProperty("mysql.user"));
-		props.put(PASS,env.getProperty("mysql.password"));
-		
-		//Setting Hibernate Properties
-		props.put(SHOW_SQL,env.getProperty("hibernate.show_sql"));
-		props.put(HBM2DDL_AUTO,env.getProperty("hibernate.hbm2ddl.auto"));
-		
-		//Setting c3P0 properties
-		props.put(C3P0_MIN_SIZE,env.getProperty("hibernate.c3p0.min_size"));
-		props.put(C3P0_MAX_SIZE,env.getProperty("hibernate.c3p0.max_size"));
-		props.put(C3P0_ACQUIRE_INCREMENT,env.getProperty("hibernate.c3p0.acquire_increment"));
-		props.put(C3P0_TIMEOUT,env.getProperty("hibernate.c3p0.timeout"));
-		props.put(C3P0_MAX_STATEMENTS,env.getProperty("hibernate.c3p0.max_statements"));
-		
-		factoryBean.setHibernateProperties(props);
-		factoryBean.setPackagesToScan("com.springimplant.model");
-		
-		return factoryBean;
-	}
+//	private static final Log log = LogFactory.getLog(AppConfig.class);
+	private static final Logger logger = Logger.getLogger(AppConfig.class.getName());
+//	private static final boolean isDebugging = log.isDebugEnabled();
 	
-	@Bean
-	public HibernateTransactionManager getTransactionManager()
-	{
-		HibernateTransactionManager transactionManager= new HibernateTransactionManager();
-		transactionManager.setSessionFactory(getSessionFactory().getObject());
-		return transactionManager;
+	public static void main(String[] args) {
+		logger.info("Hello Main World!");
+		try (ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("com/springimplant/xml/config.xml")) {
+			Student s1 = (Student) context.getBean("Student1");
+			Student s2 = (Student) context.getBean("Student2");
+			Student sp = (Student) context.getBean("Studentp");
+			Student s3 = (Student) context.getBean("Student3");
+			Subject sub1 = (Subject) context.getBean("Subject1");
+			logger.info(s1.toString());
+			logger.info(s1.toString());
+			logger.info(s2.toString());
+			logger.info(s2.getFavorites().getSubjectName());
+			logger.info(sp.toString());
+			logger.info(s3.toString());
+			logger.info("Subjects===========>");
+			logger.info(sub1.toString());
+		}
 	}
 }

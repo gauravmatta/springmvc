@@ -37,11 +37,8 @@ public class WebConfig implements WebMvcConfigurer {
 
 	@Override
 	public Validator getValidator() {
-		// TODO Auto-generated method stub
 		LocalValidatorFactoryBean validator=new LocalValidatorFactoryBean();
 		validator.setValidationMessageSource(messageSource());
 		return validator;
 	}
-	
-	
 }
