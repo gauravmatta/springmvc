@@ -65,7 +65,37 @@ http://www.springframework.org/schema/context/spring-context.xsd">
 			<prop key="Absent" >0</prop>
 		</props>
 	</property>
+	<property name="favorites">
+		<ref bean="Subject1" />
+	</property>
 </bean>
 
-<bean class="com.springimplant.model.Student" name="Studentp" p:studentId="345" p:studentName="Nikhil" p:studentAddress="Hyderabad"/>
+<bean class="com.springimplant.model.Student" name="Studentp" p:studentId="345" p:studentName="Nikhil" p:studentAddress="Hyderabad" p:favorites-ref="Subject1"/>
+
+<bean class="com.springimplant.model.Book" name="Book1">
+	<property name="id" value="1"/>
+	<property name="title" value="Alphabets Writing"/>
+	<property name="author" value="Raj Comics"/>
+	<property name="price" value="30"/>
+</bean>
+
+<bean class="com.springimplant.model.Book" name="Book2">
+	<property name="id" value="1"/>
+	<property name="title" value="Phonics"/>
+	<property name="author" value="EduServe"/>
+	<property name="price" value="100"/>
+</bean>
+
+
+<bean class="com.springimplant.model.Subject" name="Subject1">
+	<property name="subjectId" value="1"></property>
+	<property name="subjectName" value="English"/>
+	<property name="books">
+		<list>
+			<ref bean="Book1"/>
+			<ref bean="Book2"/>
+		</list>
+	</property>
+</bean>
+
 </beans>

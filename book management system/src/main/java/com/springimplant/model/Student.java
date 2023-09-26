@@ -20,4 +20,5 @@ public class Student {
 	private Set<String> subjects;
 	private Map<String,String> marks;
 	Properties attendenceKeys = new Properties();
+	Subject favorites;
 }
