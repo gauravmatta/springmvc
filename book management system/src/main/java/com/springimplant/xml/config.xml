@@ -28,4 +28,5 @@ http://www.springframework.org/schema/context/spring-context.xsd">
 	<property name="studentAddress" value="Bangalore" />
 </bean>
 
+<bean class="com.springimplant.model.Student" name="Studentp" p:studentId="345" p:studentName="Nikhil" p:studentAddress="Hyderabad"/>
 </beans>

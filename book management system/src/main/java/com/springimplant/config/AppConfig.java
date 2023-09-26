@@ -29,9 +29,11 @@ public class AppConfig {
 		try (ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("com/springimplant/xml/config.xml")) {
 			Student s1 = (Student) context.getBean("Student1");
 			Student s2 = (Student) context.getBean("Student2");
+			Student sp = (Student) context.getBean("Studentp");
 			log.info(s1.toString());
 			System.out.println(s1.toString());
 			System.out.println(s2.toString());
-			}
+			System.out.println(sp.toString());
+		}
 	}
 }
