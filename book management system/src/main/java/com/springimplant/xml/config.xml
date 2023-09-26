@@ -20,6 +20,13 @@ http://www.springframework.org/schema/context/spring-context.xsd">
 	<property name="studentAddress">
 		<value>Delhi</value>
 	</property>
+	<property name="weekAttendence">
+		<value>1</value>
+	</property>
+		<property name="subjects">
+		<set>
+		</set>
+	</property>
 </bean>
 
 <bean class="com.springimplant.model.Student" name="Student2">
