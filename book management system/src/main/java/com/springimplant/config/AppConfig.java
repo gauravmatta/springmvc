@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import com.springimplant.model.Student;
 import com.springimplant.model.Subject;
+import com.springimplant.util.Calc;
 
 @Configuration
 @PropertySource("classpath:db.properties")
@@ -43,6 +44,12 @@ public class AppConfig {
 			logger.info(s3.toString());
 			logger.info("Subjects===========>");
 			logger.info(sub1.toString());
+			Calc c1 = (Calc) context.getBean("Cal1");
+			c1.doSum();
+			Calc ci = (Calc) context.getBean("Cali");
+			ci.doSum();
+			Calc cl = (Calc) context.getBean("Call");
+			cl.doSum();
 		}
 	}
 }

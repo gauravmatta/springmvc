@@ -12,7 +12,6 @@ http://www.springframework.org/schema/context
 http://www.springframework.org/schema/context/spring-context.xsd">
 
 <!-- Property Injection -->
-
 <bean class="com.springimplant.model.Student" name="Student1">
 	<property name="studentId">
 		<value>123</value>
@@ -101,9 +100,9 @@ http://www.springframework.org/schema/context/spring-context.xsd">
 		</list>
 	</property>
 </bean>
+<!-- Property Injection -->
 
 <!-- Constructor Injection -->
-
 <bean class="com.springimplant.model.Student" name="Student3">
 	<!-- Type is used to remove ambigutity among constructors-->
 	<constructor-arg value="1" type="int"/>
@@ -144,4 +143,24 @@ http://www.springframework.org/schema/context/spring-context.xsd">
 	<constructor-arg ref="Subject1"/>
 </bean>
 <bean class="com.springimplant.model.Book" name="Bookc" c:id="3" c:title="Poems" c:author="Eduserve" c:price="70.00"/>
+<!-- Constructor Injection -->
+
+
+<!-- Constructor Ambiguity Problem Solution-->
+<bean class="com.springimplant.util.Calc" name="Cal1" >
+	<constructor-arg value="12"/>
+	<constructor-arg value="34"/>
+</bean>
+
+<bean class="com.springimplant.util.Calc" name="Cali" >
+	<constructor-arg value="10" type="int"/>
+	<constructor-arg value="30" type="int"/>
+</bean>
+<!-- Way to define index/order of constructor values-->
+<bean class="com.springimplant.util.Calc" name="Call" >
+	<constructor-arg value="50" type="double" index="1"/>
+	<constructor-arg value="100" type="double" index="0"/>
+</bean>
+<!-- Constructor Ambiguity Problem Solution-->
+
 </beans>
