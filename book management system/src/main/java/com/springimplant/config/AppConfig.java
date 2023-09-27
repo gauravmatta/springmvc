@@ -25,9 +25,7 @@ import com.springimplant.model.Subject;
 })
 public class AppConfig {
 	
-//	private static final Log log = LogFactory.getLog(AppConfig.class);
 	private static final Logger logger = Logger.getLogger(AppConfig.class.getName());
-//	private static final boolean isDebugging = log.isDebugEnabled();
 	
 	public static void main(String[] args) {
 		logger.info("Hello Main World!");
