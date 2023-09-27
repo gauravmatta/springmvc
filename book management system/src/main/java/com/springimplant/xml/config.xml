@@ -5,6 +5,7 @@ xmlns="http://www.springframework.org/schema/beans"
 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 xmlns:context="http://www.springframework.org/schema/context"
 xmlns:p="http://www.springframework.org/schema/p"
+xmlns:c="http://www.springframework.org/schema/c"
 xsi:schemaLocation="http://www.springframework.org/schema/beans
 http://www.springframework.org/schema/beans/spring-beans.xsd
 http://www.springframework.org/schema/context
@@ -83,7 +84,7 @@ http://www.springframework.org/schema/context/spring-context.xsd">
 </bean>
 
 <bean class="com.springimplant.model.Book" name="Book2">
-	<property name="id" value="1"/>
+	<property name="id" value="2"/>
 	<property name="title" value="Phonics"/>
 	<property name="author" value="EduServe"/>
 	<property name="price" value="100"/>
@@ -96,6 +97,7 @@ http://www.springframework.org/schema/context/spring-context.xsd">
 		<list>
 			<ref bean="Book1"/>
 			<ref bean="Book2"/>
+			<ref bean="Bookc"/>
 		</list>
 	</property>
 </bean>
@@ -139,11 +141,7 @@ http://www.springframework.org/schema/context/spring-context.xsd">
 			<prop key="Absent" >0</prop>
 		</props>
 	</constructor-arg>
-	<constructor-arg>
-		<ref bean="Subject1" />
-	</constructor-arg>
+	<constructor-arg ref="Subject1"/>
 </bean>
-	
-
-
+<bean class="com.springimplant.model.Book" name="Bookc" c:id="3" c:title="Poems" c:author="Eduserve" c:price="70.00"/>
 </beans>
