@@ -235,6 +235,13 @@ http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 </bean>
 <!-- Autowiring by Type -->
 
+<!-- Autowiring by constructor -->
+<bean class="com.springimplant.model.Subject" name="Subject4" autowire="constructor">
+	<property name="subjectId" value="4"></property>
+	<property name="subjectName" value="Activiti"/>
+</bean>
+<!-- Autowiring by constructor -->
+
 <!-- Bean of type Java util Properties-->
 <bean id="attendkey" class="java.util.Properties" name="attendenceKeys"/>
 <bean id="attendkey.load" class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
