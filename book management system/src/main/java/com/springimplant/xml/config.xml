@@ -219,4 +219,73 @@ http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 	</property>
 </bean>
 <!-- Implementing Bean Lifecycle using Interfaces-->
+
+<!-- Autowiring Beans -->
+<bean class="com.springimplant.model.Book" name="Book9" init-method="init" destroy-method="destroy">
+	<property name="id" value="9"/>
+	<property name="title" value="Baby Animals"/>
+	<property name="author" value="Wonder House Books"/>
+	<property name="price" value="200"/>
+</bean>
+
+<bean class="com.springimplant.model.Subject" name="favorites">
+	<property name="subjectId" value="3"></property>
+	<property name="subjectName" value="Knowledge"/>
+	<property name="books">
+		<list>
+			<ref bean="Book9"/>
+		</list>
+	</property>
+</bean>
+
+<!-- Bean of type Java util Properties-->
+<bean id="attendkey" class="java.util.Properties" name="attendenceKeys"/>
+<bean id="attendkey.load" class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+   <property name="targetObject"><ref bean="attendkey"/></property>
+   <property name="targetMethod"><value>putAll</value></property>
+   <property name="arguments">
+	   <props>
+		   <prop key="Present">1</prop>
+		   <prop key="Absent" >-1</prop>
+	 </props>
+  </property>
+</bean>
+<!-- Bean of type Java util Properties-->
+
+<!-- Autowiring by Name -->
+<bean class="com.springimplant.model.Student" name="Student4" autowire="byName">
+	<property name="studentId" value="4"/>
+	<property name="studentName" value="Amrik"/>
+	<property name="studentAddress" value="Punjab" />
+	<property name="subjects">
+		<set>
+			<value>Maths</value>
+			<value>English</value>
+			<value>Hindi</value>
+			<value>Knowledge</value>
+		</set>
+	</property>
+	<property name="weekAttendence">
+		<list>
+			<value>1</value>
+			<value>1</value>
+			<value>1</value>
+			<value>1</value>
+			<value>0</value>
+			<null/>
+		</list>
+	</property>
+	<property name="marks">
+		<map>
+			<entry key="Maths" value="20"></entry>
+			<entry key="English" value="30"></entry>
+			<entry key="Hindi" value="60"></entry>
+			<entry key="Knowledge" value="70"></entry>
+		</map>
+	</property>
+</bean>
+<!-- Autowiring by Name -->
+<!-- Autowiring Beans -->
+
+
 </beans>

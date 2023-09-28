@@ -55,6 +55,8 @@ public class AppConfig {
 			logger.info(b4.toString());
 			Subject sub2 = (Subject) context.getBean("Subject2");
 			logger.info(sub2.toString());
+			Student s4 = context.getBean("Student4",Student.class);
+			logger.info(s4.toString());
 			context.registerShutdownHook();
 		}
 	}
