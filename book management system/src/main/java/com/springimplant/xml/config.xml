@@ -228,15 +228,12 @@ http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 	<property name="price" value="200"/>
 </bean>
 
-<bean class="com.springimplant.model.Subject" name="favorites">
+<!-- Autowiring by Type -->
+<bean class="com.springimplant.model.Subject" name="favorites" autowire="byType">
 	<property name="subjectId" value="3"></property>
 	<property name="subjectName" value="Knowledge"/>
-	<property name="books">
-		<list>
-			<ref bean="Book9"/>
-		</list>
-	</property>
 </bean>
+<!-- Autowiring by Type -->
 
 <!-- Bean of type Java util Properties-->
 <bean id="attendkey" class="java.util.Properties" name="attendenceKeys"/>
