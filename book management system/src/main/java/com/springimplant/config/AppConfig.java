@@ -53,6 +53,8 @@ public class AppConfig {
 			cl.doSum();
 			Book b4 = (Book) context.getBean("Book4");
 			logger.info(b4.toString());
+			Subject sub2 = (Subject) context.getBean("Subject2");
+			logger.info(sub2.toString());
 			context.registerShutdownHook();
 		}
 	}

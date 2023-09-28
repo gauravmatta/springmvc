@@ -97,6 +97,8 @@ http://www.springframework.org/schema/context/spring-context.xsd">
 			<ref bean="Book1"/>
 			<ref bean="Book2"/>
 			<ref bean="Bookc"/>
+			<ref bean="Book4"/>
+			<ref bean="Book8"/>
 		</list>
 	</property>
 </bean>
@@ -165,11 +167,48 @@ http://www.springframework.org/schema/context/spring-context.xsd">
 
 <!-- Lifecycle Implementation init and destroy methods -->
 <bean class="com.springimplant.model.Book" name="Book4" init-method="init" destroy-method="destroy">
-	<property name="id" value="1"/>
+	<property name="id" value="4"/>
 	<property name="title" value="Cursive Writing"/>
 	<property name="author" value="Pearsons"/>
 	<property name="price" value="150"/>
 </bean>
+<bean class="com.springimplant.model.Book" name="Book8" init-method="init" destroy-method="destroy">
+	<property name="id" value="8"/>
+	<property name="title" value="Essay"/>
+	<property name="author" value="Pearsons"/>
+	<property name="price" value="150"/>
+</bean>
+<bean class="com.springimplant.model.Book" name="Book5" init-method="init" destroy-method="destroy">
+	<property name="id" value="5"/>
+	<property name="title" value="Varanmala"/>
+	<property name="author" value="Raj Comics"/>
+	<property name="price" value="150"/>
+</bean>
+<bean class="com.springimplant.model.Book" name="Book6" init-method="init" destroy-method="destroy">
+	<property name="id" value="6"/>
+	<property name="title" value="Kavi Sandesh"/>
+	<property name="author" value="Raj Comics"/>
+	<property name="price" value="150"/>
+</bean>
+<bean class="com.springimplant.model.Book" name="Book7" init-method="init" destroy-method="destroy">
+	<property name="id" value="7"/>
+	<property name="title" value="Akshar Rachna"/>
+	<property name="author" value="Sahitya Katha"/>
+	<property name="price" value="150"/>
+</bean>
+<!-- Lifecycle Implementation init and destroy methods -->
 
-
+<!-- Implementing Bean Lifecycle using Interfaces-->
+<bean class="com.springimplant.model.Subject" name="Subject2">
+	<property name="subjectId" value="2"></property>
+	<property name="subjectName" value="Hindi"/>
+	<property name="books">
+		<list>
+			<ref bean="Book5"/>
+			<ref bean="Book6"/>
+			<ref bean="Book7"/>
+		</list>
+	</property>
+</bean>
+<!-- Implementing Bean Lifecycle using Interfaces-->
 </beans>

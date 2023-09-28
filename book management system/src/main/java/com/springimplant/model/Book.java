@@ -54,15 +54,15 @@ public class Book {
 	}
 
 	public void setPrice(double price) {
-		System.out.println("Setting properties");
+		System.out.println("Setting Price for Book "+ this.title);
 		this.price = price;
 	}
 	
 	public void init() {
-		System.out.println("Inside init Method");
+		System.out.println("Initializing Book "+this.title);
 	}
 	
 	public void destroy() {
-		System.out.println("Inside destroy Method");
+		System.out.println("Destroying Book "+this.title);
 	}
 }
