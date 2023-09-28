@@ -13,6 +13,7 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import com.springimplant.model.Book;
 import com.springimplant.model.Student;
 import com.springimplant.model.Subject;
 import com.springimplant.util.Calc;
@@ -50,6 +51,9 @@ public class AppConfig {
 			ci.doSum();
 			Calc cl = (Calc) context.getBean("Call");
 			cl.doSum();
+			Book b4 = (Book) context.getBean("Book4");
+			logger.info(b4.toString());
+			context.registerShutdownHook();
 		}
 	}
 }

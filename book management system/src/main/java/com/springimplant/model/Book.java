@@ -46,7 +46,7 @@ public class Book {
 
 	@Override
 	public String toString() {
-		return "Book [id=" + id + ", title=" + title + ", author=" + author + "]";
+		return "Book [id=" + id + ", title=" + title + ", author=" + author + ", price="+price+"]";
 	}
 
 	public double getPrice() {
@@ -54,6 +54,15 @@ public class Book {
 	}
 
 	public void setPrice(double price) {
+		System.out.println("Setting properties");
 		this.price = price;
+	}
+	
+	public void init() {
+		System.out.println("Inside init Method");
+	}
+	
+	public void destroy() {
+		System.out.println("Inside destroy Method");
 	}
 }
