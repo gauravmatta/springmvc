@@ -5,6 +5,8 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -29,4 +31,15 @@ public class Student {
 	private Map<String,String> marks;
 	Properties attendenceKeys = new Properties();
 	Subject favorites;
+	
+	@PostConstruct
+	public void start() {
+		System.out.println("Initializing Student "+this.studentName);
+	}
+	
+	@PreDestroy
+	public void end() {
+		System.out.println("Destroying Student "+this.studentName);
+	}
+	
 }
