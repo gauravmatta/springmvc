@@ -3,6 +3,7 @@ package com.springimplant.model;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 
 import lombok.ToString;
 
@@ -11,11 +12,13 @@ public class Teacher {
 
 //	Initialize Teacher Using Type
 	@Autowired
+//	To specify specific bean
+	@Qualifier("delhi")
 	private Address address;
 	private List<Student> stulst;
 	
 //	Initialize using Constructor
-	@Autowired
+//	@Autowired
 	public Teacher(Address address, List<Student> stulst) {
 		super();
 		this.address = address;
