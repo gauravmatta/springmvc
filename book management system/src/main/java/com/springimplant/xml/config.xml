@@ -52,6 +52,14 @@ http://www.springframework.org/schema/util/spring-util.xsd">
 	<value>0</value>
 </util:list>
 <!-- Bean of type Java util List-->
+<!-- Bean of type Standalone Collection Map-->
+<util:map map-class="java.util.HashMap" id="alldistinction">
+	<entry key="Maths" value="75"></entry>
+	<entry key="English" value="75"></entry>
+	<entry key="Hindi" value="75"></entry>
+	<entry key="Knowledge" value="75"></entry>
+</util:map>
+<!-- Bean of type Standalone Collection Map-->
 <!-- Standalone Collections -->
 
 <!-- Property Injection -->
@@ -67,6 +75,7 @@ http://www.springframework.org/schema/util/spring-util.xsd">
 	</property>
 	<property name="weekAttendence" ref="presentAttendence"/>
 	<property name="favorites" ref="Subject1"/>
+	<property name="marks" ref="alldistinction"/>
 	<property name="subjects">
 		<set>
 		</set>
