@@ -25,7 +25,8 @@ public class Student {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int studentId;
 	private String studentName;
-	private String studentAddress;
+	private String streetAddress;
+	private Address address;
 	private List<String> weekAttendence;
 	private Set<String> subjects;
 	private Map<String,String> marks;

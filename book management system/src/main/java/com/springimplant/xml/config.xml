@@ -27,8 +27,8 @@ http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 	<property name="studentName">
 		<value>Gaurav</value>
 	</property>
-	<property name="studentAddress">
-		<value>Delhi</value>
+	<property name="streetAddress">
+		<value>D334</value>
 	</property>
 	<property name="weekAttendence">
 		<value>1</value>
@@ -38,12 +38,30 @@ http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 		<set>
 		</set>
 	</property>
+	<property name="address">
+		<ref bean="delhi"/>
+	</property>
+</bean>
+
+<bean class="com.springimplant.model.Address" name="delhi">
+	<property name="state" value="Delhi"/>
+	<property name="city" value="New Delhi"/>
+</bean>
+
+<bean class="com.springimplant.model.Address" name="punjab">
+	<property name="state" value="Punjab"/>
+	<property name="city" value="Amritser"/>
+</bean>
+
+<bean class="com.springimplant.model.Address" name="mumbai">
+	<property name="state" value="Mumbai"/>
+	<property name="city" value="Bandra"/>
 </bean>
 
 <bean class="com.springimplant.model.Student" name="Student2">
 	<property name="studentId" value="234"/>
 	<property name="studentName" value="Manu"/>
-	<property name="studentAddress" value="Bangalore" />
+	<property name="streetAddress" value="B144" />
 	<property name="subjects">
 		<set>
 			<value>Maths</value>
@@ -79,9 +97,12 @@ http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 	<property name="favorites">
 		<ref bean="Subject1" />
 	</property>
+	<property name="address">
+		<ref bean="mumbai"/>
+	</property>
 </bean>
 
-<bean class="com.springimplant.model.Student" name="Studentp" p:studentId="345" p:studentName="Nikhil" p:studentAddress="Hyderabad" p:favorites-ref="Subject1"/>
+<bean class="com.springimplant.model.Student" name="Studentp" p:studentId="345" p:studentName="Nikhil" p:streetAddress="H190" p:favorites-ref="Subject1" p:address-ref="delhi"/>
 
 <bean class="com.springimplant.model.Book" name="Book1">
 	<property name="id" value="1"/>
@@ -117,7 +138,7 @@ http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 	<!-- Type is used to remove ambigutity among constructors-->
 	<constructor-arg value="1" type="int"/>
 	<constructor-arg value="Mukesh"/>
-	<constructor-arg value="Mumbai"/>
+	<constructor-arg value="M445"/>
 	<constructor-arg>
 		<list>
 			<value>1</value>
@@ -151,6 +172,7 @@ http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 		</props>
 	</constructor-arg>
 	<constructor-arg ref="Subject1"/>
+	<constructor-arg ref="mumbai"/>
 </bean>
 <bean class="com.springimplant.model.Book" name="Bookc" c:id="3" c:title="Poems" c:author="Eduserve" c:price="70.00"/>
 <!-- Constructor Injection -->
@@ -240,6 +262,41 @@ http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 	<property name="subjectId" value="4"></property>
 	<property name="subjectName" value="Activiti"/>
 </bean>
+<bean class="com.springimplant.model.Address" name="address">
+	<property name="state" value="Hyderabad"/>
+	<property name="city" value="Telangana"/>
+</bean>
+<bean class="com.springimplant.model.Student" name="Student5" autowire="constructor">
+	<constructor-arg value="5" type="int"/>
+	<constructor-arg value="Prateek"/>
+	<constructor-arg value="P14" />
+	<constructor-arg>
+		<set>
+			<value>Maths</value>
+			<value>English</value>
+			<value>Hindi</value>
+			<value>Knowledge</value>
+		</set>
+	</constructor-arg>
+	<constructor-arg>
+		<list>
+			<value>1</value>
+			<value>1</value>
+			<value>1</value>
+			<value>1</value>
+			<value>0</value>
+			<null/>
+		</list>
+	</constructor-arg>
+	<constructor-arg>
+		<map>
+			<entry key="Maths" value="20"></entry>
+			<entry key="English" value="30"></entry>
+			<entry key="Hindi" value="60"></entry>
+			<entry key="Knowledge" value="70"></entry>
+		</map>
+	</constructor-arg>
+</bean>
 <!-- Autowiring by constructor -->
 
 <!-- Bean of type Java util Properties-->
@@ -260,7 +317,7 @@ http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 <bean class="com.springimplant.model.Student" name="Student4" autowire="byName">
 	<property name="studentId" value="4"/>
 	<property name="studentName" value="Amrik"/>
-	<property name="studentAddress" value="Punjab" />
+	<property name="streetAddress" value="P14" />
 	<property name="subjects">
 		<set>
 			<value>Maths</value>
