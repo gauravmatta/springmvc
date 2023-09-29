@@ -14,6 +14,7 @@ public class Teacher {
 	private Address address;
 	private List<Student> stulst;
 	
+//	Initialize using Constructor
 	@Autowired
 	public Teacher(Address address, List<Student> stulst) {
 		super();
@@ -26,6 +27,7 @@ public class Teacher {
 		return stulst;
 	}
 	
+//	Initialize using Setter
 	@Autowired
 	public void setStulst(List<Student> stulst) {
 		this.stulst = stulst;
