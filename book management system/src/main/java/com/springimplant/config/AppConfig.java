@@ -16,6 +16,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import com.springimplant.model.Book;
 import com.springimplant.model.Student;
 import com.springimplant.model.Subject;
+import com.springimplant.model.Teacher;
 import com.springimplant.util.Calc;
 
 @Configuration
@@ -61,6 +62,8 @@ public class AppConfig {
 			logger.info(sub4.toString());
 			Student s5 = context.getBean("Student5",Student.class);
 			logger.info(s5.toString());
+			Teacher t1= context.getBean("Teach1",Teacher.class);
+			logger.info(t1.toString());
 			context.registerShutdownHook();
 		}
 	}

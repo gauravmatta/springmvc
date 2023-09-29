@@ -346,6 +346,8 @@ http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 	</property>
 </bean>
 <!-- Autowiring by Name -->
+<bean class="com.springimplant.model.Teacher" name="Teach1"/>
+
 <!-- Autowiring Beans -->
 
 

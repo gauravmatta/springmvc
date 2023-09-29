@@ -1,0 +1,34 @@
+package com.springimplant.model;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import lombok.ToString;
+
+@ToString
+public class Teacher {
+
+//	Initialize Teacher Using Type
+	@Autowired
+	private Address address;
+	private List<Student> stulst;
+	
+	@Autowired
+	public Teacher(Address address, List<Student> stulst) {
+		super();
+		this.address = address;
+		this.stulst = stulst;
+		System.out.println("Initialize Teacher Using Constructor");
+	}
+	
+	public List<Student> getStulst() {
+		return stulst;
+	}
+	
+	@Autowired
+	public void setStulst(List<Student> stulst) {
+		this.stulst = stulst;
+		System.out.println("Initialize Teacher Using Setter");
+	}
+}
