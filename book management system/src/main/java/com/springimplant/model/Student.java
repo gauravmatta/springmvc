@@ -33,8 +33,11 @@ public class Student {
 	@Value("19c")
 	private String streetAddress;
 	private Address address;
+	@Value("#{absentAttendence}")
 	private List<String> weekAttendence;
+	@Value("#{subjects}")
 	private Set<String> subjects;
+	@Value("#{alldistinction}")
 	private Map<String,String> marks;
 	Properties attendenceKeys = new Properties();
 	Subject favorites;

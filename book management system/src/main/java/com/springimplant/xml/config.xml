@@ -66,6 +66,14 @@ http://www.springframework.org/schema/util/spring-util.xsd">
 	<entry key="Knowledge" value="75"></entry>
 </util:map>
 <!-- Bean of type Standalone Collection Map-->
+<!-- Bean of type Java util Set-->
+<util:set set-class="java.util.LinkedHashSet" id="subjects">
+	<value>Maths</value>
+	<value>English</value>
+	<value>Hindi</value>
+	<value>Knowledge</value>
+</util:set>
+<!-- Bean of type Java util Set-->
 <!-- Standalone Collections -->
 
 <!-- Property Injection -->
