@@ -35,6 +35,12 @@ http://www.springframework.org/schema/util/spring-util.xsd">
 	 </props>
   </property>
 </bean>
+<util:properties id="dbconfig">
+	<prop key="driver">com.mysql.jdbc.Driver</prop>
+	<prop key="username">gaurav</prop>
+	<prop key="password">abc</prop>
+	<prop key="url">mysql:jdbc://localhost:3306/database</prop>
+</util:properties>
 <!-- Bean of type Java util Properties-->
 <!-- Bean of type Java util List-->
 <util:list list-class="java.util.LinkedList" id="presentAttendence">
