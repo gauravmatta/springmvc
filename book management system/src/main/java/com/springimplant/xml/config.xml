@@ -6,10 +6,13 @@ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 xmlns:context="http://www.springframework.org/schema/context"
 xmlns:p="http://www.springframework.org/schema/p"
 xmlns:c="http://www.springframework.org/schema/c"
+xmlns:util="http://www.springframework.org/schema/util"
 xsi:schemaLocation="http://www.springframework.org/schema/beans
-http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+http://www.springframework.org/schema/beans/spring-beans.xsd
 http://www.springframework.org/schema/context
-http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+http://www.springframework.org/schema/context/spring-context.xsd
+http://www.springframework.org/schema/util
+http://www.springframework.org/schema/util/spring-util.xsd">
 
 <!-- Enables all Annotations of Java EE-->
 <context:annotation-config />
@@ -19,10 +22,42 @@ http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 <bean class="org.springframework.context.annotation.CommonAnnotationBeanPostProcessor"/>
 <!-- To Enable Particular Annotaion create it's bean -->
 
+<!-- Standalone Collections -->
+<!-- Bean of type Java util Properties-->
+<bean id="attendkey" class="java.util.Properties" name="attendenceKeys"/>
+<bean id="attendkey.load" class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+   <property name="targetObject"><ref bean="attendkey"/></property>
+   <property name="targetMethod"><value>putAll</value></property>
+   <property name="arguments">
+	   <props>
+		   <prop key="Present">1</prop>
+		   <prop key="Absent" >-1</prop>
+	 </props>
+  </property>
+</bean>
+<!-- Bean of type Java util Properties-->
+<!-- Bean of type Java util List-->
+<util:list list-class="java.util.LinkedList" id="presentAttendence">
+	<value>1</value>
+	<value>1</value>
+	<value>1</value>
+	<value>1</value>
+	<value>1</value>
+</util:list>
+<util:list list-class="java.util.Vector" id="absentAttendence">
+	<value>0</value>
+	<value>0</value>
+	<value>0</value>
+	<value>0</value>
+	<value>0</value>
+</util:list>
+<!-- Bean of type Java util List-->
+<!-- Standalone Collections -->
+
 <!-- Property Injection -->
 <bean class="com.springimplant.model.Student" name="Student1">
 	<property name="studentId">
-		<value>123</value>
+		<value>1</value>
 	</property>
 	<property name="studentName">
 		<value>Gaurav</value>
@@ -30,9 +65,7 @@ http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 	<property name="streetAddress">
 		<value>D334</value>
 	</property>
-	<property name="weekAttendence">
-		<value>1</value>
-	</property>
+	<property name="weekAttendence" ref="presentAttendence"/>
 	<property name="favorites" ref="Subject1"/>
 	<property name="subjects">
 		<set>
@@ -70,16 +103,7 @@ http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 			<value>Knowledge</value>
 		</set>
 	</property>
-	<property name="weekAttendence">
-		<list>
-			<value>1</value>
-			<value>0</value>
-			<value>1</value>
-			<value>1</value>
-			<value>0</value>
-			<null/>
-		</list>
-	</property>
+	<property name="weekAttendence" ref="absentAttendence"/>
 	<property name="marks">
 		<map>
 			<entry key="Maths" value="50"></entry>
@@ -299,20 +323,6 @@ http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 </bean>
 <!-- Autowiring by constructor -->
 
-<!-- Bean of type Java util Properties-->
-<bean id="attendkey" class="java.util.Properties" name="attendenceKeys"/>
-<bean id="attendkey.load" class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
-   <property name="targetObject"><ref bean="attendkey"/></property>
-   <property name="targetMethod"><value>putAll</value></property>
-   <property name="arguments">
-	   <props>
-		   <prop key="Present">1</prop>
-		   <prop key="Absent" >-1</prop>
-	 </props>
-  </property>
-</bean>
-<!-- Bean of type Java util Properties-->
-
 <!-- Autowiring by Name -->
 <bean class="com.springimplant.model.Student" name="Student4" autowire="byName">
 	<property name="studentId" value="4"/>
@@ -347,8 +357,5 @@ http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 </bean>
 <!-- Autowiring by Name -->
 <bean class="com.springimplant.model.Teacher" name="Teach1"/>
-
 <!-- Autowiring Beans -->
-
-
 </beans>

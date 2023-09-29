@@ -39,11 +39,13 @@ public class AppConfig {
 			Student s3 = (Student) context.getBean("Student3");
 			Subject sub1 = (Subject) context.getBean("Subject1");
 			logger.info(s1.toString());
-			logger.info(s1.toString());
+			logger.info("Class of S1 Week Attedence: "+s1.getWeekAttendence().getClass().getName());
 			logger.info(s2.toString());
+			logger.info("Class of S2 Week Attedence: "+s2.getWeekAttendence().getClass().getName());
 			logger.info(s2.getFavorites().getSubjectName());
 			logger.info(sp.toString());
 			logger.info(s3.toString());
+			logger.info("Class of S3 Week Attedence: "+s3.getWeekAttendence().getClass().getName());
 			logger.info("Subjects===========>");
 			logger.info(sub1.toString());
 			Calc c1 = (Calc) context.getBean("Cal1");
