@@ -68,5 +68,11 @@ public class AppConfig {
 			logger.info(t1.toString());
 			context.registerShutdownHook();
 		}
+		System.out.println("==================================================");
+		try (ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("com/springimplant/xml/stereoconfig.xml")) {
+			context.registerShutdownHook();
+			Student s6 = context.getBean("stu",Student.class);
+			logger.info(s6.toString());
+		}
 	}
 }
