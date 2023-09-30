@@ -1,5 +1,6 @@
 package com.springmvc.bms.configuration;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashSet;
 import java.util.LinkedList;
@@ -14,6 +15,9 @@ import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
+
+import com.springmvc.bms.beans.Book;
+import com.springmvc.bms.beans.Subject;
 
 @Configuration
 //@EnableWebMvc
@@ -57,5 +61,29 @@ public class HelloWorldConfiguration {
 		subjects.add("Hindi");
 		subjects.add("Knowledge");
 		return subjects;
+	}
+	
+	@Bean(name= "alphabets")
+	public Book getBookAlphabets() {
+		return new Book(1,"Alphabets Writing","Raj Comics", 50);
+	}
+	
+	@Bean(name= "phonics")
+	public Book getBookPhonics() {
+		return new Book(2,"Phonics","EduServe", 100);
+	}
+	
+	@Bean(name="engbooks")
+	public List<Book> books(){
+		List<Book> bks = new ArrayList<>();
+		bks.add(getBookAlphabets());
+		bks.add(getBookPhonics());
+		return bks;
+	}
+	
+	@Bean(name="subject")
+	public Subject getSubject(){
+		List<Book> bks = books();
+		return new Subject(bks);
 	}
 }

@@ -9,6 +9,7 @@ import javax.persistence.Id;
 
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
+import org.springframework.stereotype.Component;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -18,6 +19,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Component("sub")
 public class Subject implements InitializingBean,DisposableBean {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,5 +35,9 @@ public class Subject implements InitializingBean,DisposableBean {
 	@Override
 	public void destroy() throws Exception {
 		System.out.println("Destroying Subject "+this.subjectName);
+	}
+	
+	public Subject(List<Book> books) {
+		this.books=books;
 	}
 }
