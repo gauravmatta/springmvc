@@ -30,7 +30,7 @@ public class HelloWorldConfiguration {
 	
 	@Bean(name = "absentAttendence")
 	public List<String> presentAttendence() {
-		List<String> attendence = new LinkedList<String>();
+		List<String> attendence = new LinkedList<>();
 		attendence.add("0");
 		attendence.add("0");
 		attendence.add("0");
