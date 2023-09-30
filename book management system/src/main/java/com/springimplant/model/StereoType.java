@@ -28,4 +28,10 @@ public class StereoType {
 	@Value("#{alldistinction}")
 	private Map<String,String> marks;
 	Properties attendenceKeys = new Properties();
+	@Value("#{T(java.lang.Math).cbrt(729)}")
+	private double cbrt;
+	@Value("#{T(java.lang.Math).E}")
+	private double e;
+	@Value("#{T(java.lang.Math).PI}")
+	private double pie;
 }
