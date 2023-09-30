@@ -34,4 +34,6 @@ public class StereoType {
 	private double e;
 	@Value("#{T(java.lang.Math).PI}")
 	private double pie;
+	@Value("#{new com.springimplant.model.Address('New Delhi','Delhi')}")
+	private Address address;
 }
