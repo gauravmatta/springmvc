@@ -9,9 +9,14 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import lombok.ToString;
+
 @Component("stereo")
 @Scope("prototype")
+@ToString
 public class StereoType {
+	@Value("#{ 22+11 }")
+	private int id;	
 	@Value("Gaurav Matta")
 	private String studentName;
 	@Value("19c")

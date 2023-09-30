@@ -11,6 +11,8 @@ import org.springframework.context.annotation.ComponentScans;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.expression.Expression;
+import org.springframework.expression.spel.standard.SpelExpressionParser;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import com.springimplant.model.Book;
@@ -81,6 +83,7 @@ public class AppConfig {
 			Student s7 = context.getBean("stu",Student.class);
 			System.out.println("Hashcode of Student s7 "+s7.hashCode());
 			StereoType st1 = context.getBean("stereo",StereoType.class);
+			logger.info(st1.toString());
 			System.out.println("Hashcode of Stereo Bean st1 "+st1.hashCode());
 			StereoType st2 = context.getBean("stereo",StereoType.class);
 			System.out.println("Hashcode of Stereo Bean st2 "+st2.hashCode());
@@ -89,5 +92,8 @@ public class AppConfig {
 			StereoType st4 = context.getBean("stereo1",StereoType.class);
 			System.out.println("Hashcode of Stereo Bean st4 "+st4.hashCode());
 		}
+		SpelExpressionParser parser = new SpelExpressionParser();
+		Expression res = parser.parseExpression("55+44");
+		System.out.println(res.getValue());
 	}
 }
