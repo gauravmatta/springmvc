@@ -36,4 +36,6 @@ public class StereoType {
 	private double pie;
 	@Value("#{new com.springimplant.model.Address('New Delhi','Delhi')}")
 	private Address address;
+	@Value("#{ 8>3 }")
+	private boolean isActive;
 }
