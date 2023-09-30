@@ -77,7 +77,7 @@ http://www.springframework.org/schema/util/spring-util.xsd">
 <!-- Standalone Collections -->
 
 <!-- Property Injection -->
-<bean class="com.springimplant.model.Student" name="Student1">
+<bean class="com.springimplant.model.Student" name="Student1" scope="prototype">
 	<property name="studentId">
 		<value>1</value>
 	</property>

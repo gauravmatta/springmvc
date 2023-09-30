@@ -38,4 +38,6 @@ http://www.springframework.org/schema/util/spring-util.xsd">
 	<entry key="Hindi" value="75"></entry>
 	<entry key="Knowledge" value="75"></entry>
 </util:map>
+
+<bean class="com.springimplant.model.StereoType" name="stereo1" scope="prototype" />
 </beans>
