@@ -28,6 +28,12 @@ public class Project {
 			student.setStreetAddress("Mumbai");
 			int sresult = studentDao.insert(student);
 			System.out.println("Student Added "+sresult);
+			Student student1 = new Student();
+			student1.setStudentId(2);
+			student1.setStudentName("Manmeet");
+			student1.setStreetAddress("Punjab");
+			int sresult1 = studentDao.update(student1);
+			System.out.println("Student Updated "+sresult1);
 			context.close();
 		}
 	}
