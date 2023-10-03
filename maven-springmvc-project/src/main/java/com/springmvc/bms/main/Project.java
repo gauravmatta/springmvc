@@ -1,10 +1,12 @@
 package com.springmvc.bms.main;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.jdbc.core.JdbcTemplate;
 
 import com.springmvc.bms.beans.Student;
 import com.springmvc.bms.beans.Subject;
 import com.springmvc.bms.configuration.HelloWorldConfiguration;
+import com.springmvc.bms.dao.StudentDao;
 
 
 
@@ -15,6 +17,17 @@ public class Project {
 			System.out.println(s1.toString());
 			Subject sub = context.getBean("subject",Subject.class);
 			System.out.println(sub.toString());
+			JdbcTemplate template = context.getBean("jdbcTemplate",JdbcTemplate.class);
+			String query = "insert into student(id,studentName,streetAddress) values(?,?,?)";
+			int result = template.update(query,2,"Janmeet","Jalandhar");
+			System.out.println("Number of Record Inserted: "+ result);
+			StudentDao studentDao = context.getBean("StudentDaoImpl",StudentDao.class);
+			Student student = new Student();
+			student.setStudentId(3);
+			student.setStudentName("Mukesh");
+			student.setStreetAddress("Mumbai");
+			int sresult = studentDao.insert(student);
+			System.out.println("Student Added "+sresult);
 			context.close();
 		}
 	}

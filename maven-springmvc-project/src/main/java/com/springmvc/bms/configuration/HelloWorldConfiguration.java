@@ -8,9 +8,14 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import javax.sql.DataSource;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
@@ -18,10 +23,12 @@ import org.springframework.web.servlet.view.JstlView;
 
 import com.springmvc.bms.beans.Book;
 import com.springmvc.bms.beans.Subject;
+import com.springmvc.bms.dao.StudentDaoImpl;
 
 @Configuration
 //@EnableWebMvc
 @ComponentScan(basePackages="com.springmvc.bms")
+@PropertySource("classpath:db.properties")
 public class HelloWorldConfiguration {
 	@Bean
     public ViewResolver viewResolver() {
@@ -31,6 +38,31 @@ public class HelloWorldConfiguration {
         viewResolver.setSuffix(".jsp");
         return viewResolver;
     }
+	
+	@Bean(name="StudentDaoImpl")
+	public StudentDaoImpl setsdao() {
+		StudentDaoImpl simpl = new StudentDaoImpl();
+		simpl.setJdbcTemplate(jdbcTemplate());
+		return simpl;
+	}
+	
+	@Bean
+	public JdbcTemplate jdbcTemplate() {
+		JdbcTemplate template = new JdbcTemplate();
+		DriverManagerDataSource myds = ds();
+		template.setDataSource(myds);
+		return template;
+	}
+	
+	@Bean("ds")
+	public DriverManagerDataSource ds() {
+		DriverManagerDataSource source = new DriverManagerDataSource();
+		source.setDriverClassName("com.mysql.cj.jdbc.Driver");
+		source.setUrl("jdbc:mysql://localhost:3306/springjdbc");
+		source.setUsername("root");
+		source.setPassword("root@04G");
+		return source;
+	}
 	
 	@Bean(name = "absentAttendence")
 	public List<String> presentAttendence() {
