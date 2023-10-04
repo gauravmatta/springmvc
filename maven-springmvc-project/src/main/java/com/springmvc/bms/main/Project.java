@@ -34,6 +34,10 @@ public class Project {
 			student1.setStreetAddress("Punjab");
 			int sresult1 = studentDao.update(student1);
 			System.out.println("Student Updated "+sresult1);
+			int sresult2 = studentDao.delete(3);
+			System.out.println("Student Deleted "+sresult2);
+			int sresult3 = studentDao.deleteDuplicates();
+			System.out.println("Duplicates Deleted "+sresult3);
 			context.close();
 		}
 	}
