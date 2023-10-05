@@ -1,5 +1,7 @@
 package com.springmvc.bms.main;
 
+import java.util.List;
+
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.jdbc.core.JdbcTemplate;
 
@@ -40,6 +42,10 @@ public class Project {
 			System.out.println("Duplicates Deleted "+sresult3);
 			Student student4 = studentDao.getStudent(1);
 			System.out.println("Select Result "+student4);
+			List<Student> students = studentDao.getAllStudents();
+			for(Student s:students) {
+				System.out.println(s);
+			}
 			context.close();
 		}
 	}
