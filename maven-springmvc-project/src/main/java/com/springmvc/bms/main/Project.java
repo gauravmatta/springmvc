@@ -38,6 +38,8 @@ public class Project {
 			System.out.println("Student Deleted "+sresult2);
 			int sresult3 = studentDao.deleteDuplicates();
 			System.out.println("Duplicates Deleted "+sresult3);
+			Student student4 = studentDao.getStudent(1);
+			System.out.println("Select Result "+student4);
 			context.close();
 		}
 	}

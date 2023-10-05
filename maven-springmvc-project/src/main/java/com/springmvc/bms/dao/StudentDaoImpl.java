@@ -1,6 +1,7 @@
 package com.springmvc.bms.dao;
 
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 
 import com.springmvc.bms.beans.Student;
 
@@ -40,5 +41,11 @@ public class StudentDaoImpl implements StudentDao {
 				+ "FROM springjdbc.student) ds where ds.row_num>1 )";
 		return this.jdbcTemplate.update(query);
 	}
-	
+
+	@Override
+	public Student getStudent(int studentId) {
+		String query = "Select * from student where id=?";
+		RowMapper<Student> rowMapper = new RowMapperImpl();
+		return this.jdbcTemplate.queryForObject(query,rowMapper,studentId);
+	}	
 }

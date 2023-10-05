@@ -7,4 +7,5 @@ public interface StudentDao {
 	public int update(Student student);
 	public int delete(int studentId);
 	public int deleteDuplicates();
+	public Student getStudent(int studentId);
 }
