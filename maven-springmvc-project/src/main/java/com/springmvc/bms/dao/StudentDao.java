@@ -2,8 +2,11 @@ package com.springmvc.bms.dao;
 
 import java.util.List;
 
+import org.springframework.stereotype.Component;
+
 import com.springmvc.bms.beans.Student;
 
+@Component("studentDao")
 public interface StudentDao {
 	public int insert(Student student);
 	public int update(Student student);

@@ -30,7 +30,29 @@ public class Project {
 			student.setStreetAddress("Mumbai");
 			int sresult = studentDao.insert(student);
 			System.out.println("Student Added "+sresult);
+			
+			//Bean creation From Component Annotation 
+			StudentDao studentDaoAnnotation = context.getBean("studentDao",StudentDao.class);
 			Student student1 = new Student();
+			student1.setStudentId(3);
+			student1.setStudentName("Mukesh");
+			student1.setStreetAddress("Mumbai");
+			sresult = studentDaoAnnotation.insert(student);
+			System.out.println("Student Added "+sresult);
+			student1 = new Student();
+			student1.setStudentId(2);
+			student1.setStudentName("Janmeet");
+			student1.setStreetAddress("Jalandhar");
+			sresult = studentDaoAnnotation.insert(student);
+			System.out.println("Student Added "+sresult);
+			//Bean creation From Component Annotation
+			
+			student1 = new Student();
+			student1.setStudentId(3);
+			student1.setStudentName("Mukesh");
+			student1.setStreetAddress("Mumbai");
+			sresult = studentDaoAnnotation.insert(student);
+			student1 = new Student();
 			student1.setStudentId(2);
 			student1.setStudentName("Manmeet");
 			student1.setStreetAddress("Punjab");
