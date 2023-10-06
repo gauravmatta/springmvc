@@ -46,7 +46,7 @@ public class HelloWorldConfiguration {
 		return simpl;
 	}
 	
-	@Bean
+	@Bean(name="jdbcTemplate")
 	public JdbcTemplate jdbcTemplate() {
 		JdbcTemplate template = new JdbcTemplate();
 		DriverManagerDataSource myds = ds();
