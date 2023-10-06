@@ -2,6 +2,7 @@ package com.springimplant.mvc.interceptors;
 
 import java.util.Date;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -9,12 +10,11 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import com.springimplant.mvc.HitCounter;
 
-import jakarta.annotation.Resource;
 
 
 public class GlobalInterceptor extends HandlerInterceptorAdapter {
 	
-	@Resource 
+	@Resource
 	private HitCounter RequestHit;
 	
 	@Resource
