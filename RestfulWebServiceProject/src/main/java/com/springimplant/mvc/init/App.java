@@ -40,18 +40,61 @@ public class App {
 				switch (input) {
 				case 1:
 					// add new Student
+					System.out.println("Enter user id:");
+					int uid = Integer.parseInt(br.readLine());
+					System.out.println("Enter user name:");
+					String uName = br.readLine();
+					System.out.println("Enter user Address:");
+					String address = br.readLine();
+					Student stu = sdao.getStudent(uid);
+					if(stu != null) {
+						throw new Exception("Student id already exists");
+					} else {
+						Student s = new Student();
+						s.setStudentId(uid);
+						s.setStudentName(uName);
+						s.setStreetAddress(address);
+						int id = sdao.insert(s);
+						System.out.println("Inserted Student "+ id);
+					}
 					break;
 				case 2:
-					// display all
+					students = sdao.getAllStudents();
+					students.forEach(s -> System.out.println(s));
 					break;
 				case 3:
-					// display single
+					System.out.println("Enter user id:");
+					uid = Integer.parseInt(br.readLine());
+					stu =sdao.getStudent(uid);
+					if(stu == null) {
+						throw new Exception("Student id is Invalid");
+					} else {
+						System.out.println(stu.toString());
+					}
 					break;
 				case 4:
-//					delete student
+					System.out.println("Enter user id:");
+					uid = Integer.parseInt(br.readLine());
+					sdao.deleteStudent(uid);
 					break;
 				case 5:
-//					update student
+					System.out.println("Enter user id:");
+					uid = Integer.parseInt(br.readLine()); 
+					System.out.println("Enter user name:");
+					uName = br.readLine();
+					System.out.println("Enter user Address:");
+					address = br.readLine();
+					stu =sdao.getStudent(uid);
+					if(stu == null) {
+						throw new Exception("Student id is Invalid");
+					} else {
+						Student s = new Student();
+						s.setStudentId(uid);
+						s.setStudentName(uName);
+						s.setStreetAddress(address);
+						sdao.updateStudent(s);
+						System.out.println("Updated Student "+ uid);
+					}
 					break;
 				case 6:
 					go = false;

@@ -30,6 +30,7 @@ public class StudentDao {
 		return this.hibernateTemplate.loadAll(Student.class);
 	}
 	
+	@Transactional
 	public void deleteStudent(int studentId) {
 		Student stu = this.hibernateTemplate.get(Student.class,studentId);
 		this.hibernateTemplate.delete(stu);
