@@ -4,9 +4,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Happy Loading</title>
+<title>Index Home</title>
 </head>
 <body>
-Loaded by resolver
+This is Root Index
 </body>
 </html>
