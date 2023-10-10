@@ -1,16 +1,17 @@
 package com.springmvc.bms.controllers;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @RequestMapping("/home")
 public class HomeController {
 
 	@RequestMapping("/")
-	public String gohome()
+	public String gohome(Model model)
 	{
+		model.addAttribute("name","Gaurav Matta");
 		return "home";
 	}
 	

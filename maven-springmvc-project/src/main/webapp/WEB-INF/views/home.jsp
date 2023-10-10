@@ -7,6 +7,9 @@
 <title>Root Home</title>
 </head>
 <body>
-This is Root Home
+<% 
+String name = (String) request.getAttribute("name");
+%>
+<h1>This is Root Home of user <%=name%></h1>
 </body>
 </html>
