@@ -37,4 +37,16 @@ public class HomeController {
 		modelAndView.setViewName("index");
 		return modelAndView;
 	}
+	
+	@RequestMapping("/help")
+	public ModelAndView gohelp()
+	{
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.addObject("name","Samuel");
+		modelAndView.addObject("rollnumber",12);
+		LocalDateTime now = LocalDateTime.now();
+		modelAndView.addObject("time",now);
+		modelAndView.setViewName("help");
+		return modelAndView;
+	}
 }
