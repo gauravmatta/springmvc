@@ -9,7 +9,9 @@
 <body>
 <% 
 String name = (String) request.getAttribute("name");
+Integer id = (Integer) request.getAttribute("id");
 %>
 <h1>This is Root Home of user <%=name%></h1>
+<h1>Id of user <%=id%></h1>
 </body>
 </html>

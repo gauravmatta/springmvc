@@ -12,6 +12,7 @@ public class HomeController {
 	public String gohome(Model model)
 	{
 		model.addAttribute("name","Gaurav Matta");
+		model.addAttribute("id",37);
 		return "home";
 	}
 	
