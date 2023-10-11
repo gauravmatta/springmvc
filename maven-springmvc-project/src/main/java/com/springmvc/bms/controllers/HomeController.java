@@ -1,11 +1,13 @@
 package com.springmvc.bms.controllers;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping("/home")
@@ -25,8 +27,14 @@ public class HomeController {
 	}
 	
 	@RequestMapping("/index")
-	public String goindex()
+	public ModelAndView goindex()
 	{
-		return "index";
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.addObject("name","Samuel");
+		modelAndView.addObject("rollnumber",12);
+		LocalDateTime now = LocalDateTime.now();
+		modelAndView.addObject("time",now);
+		modelAndView.setViewName("index");
+		return modelAndView;
 	}
 }
