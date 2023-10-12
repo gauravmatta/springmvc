@@ -4,10 +4,10 @@ import java.util.List;
 
 import org.springframework.orm.hibernate5.HibernateTemplate;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.springimplant.mvc.model.Student;
 
-import jakarta.transaction.Transactional;
 import lombok.Data;
 
 @Data
