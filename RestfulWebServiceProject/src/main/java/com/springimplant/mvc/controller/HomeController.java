@@ -6,14 +6,16 @@ import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping("/home")
 public class HomeController {
 
-	@RequestMapping("/")
+	@GetMapping(value="/")
 	public String gohome(Model model)
 	{
 		model.addAttribute("name","Gaurav Matta");
@@ -26,7 +28,7 @@ public class HomeController {
 		return "home";
 	}
 	
-	@RequestMapping("/index")
+	@GetMapping(value="/index")
 	public ModelAndView goindex()
 	{
 		ModelAndView modelAndView = new ModelAndView();
@@ -38,7 +40,7 @@ public class HomeController {
 		return modelAndView;
 	}
 	
-	@RequestMapping("/help")
+	@GetMapping(value="/help")
 	public ModelAndView gohelp()
 	{
 		ModelAndView modelAndView = new ModelAndView();
@@ -46,6 +48,11 @@ public class HomeController {
 		modelAndView.addObject("rollnumber",12);
 		LocalDateTime now = LocalDateTime.now();
 		modelAndView.addObject("time",now);
+		List<String> friends = new ArrayList<>();
+		friends.add("Sumit");
+		friends.add("Arpit");
+		friends.add("Akshay");
+		modelAndView.addObject("friends", friends);
 		modelAndView.setViewName("help");
 		return modelAndView;
 	}
