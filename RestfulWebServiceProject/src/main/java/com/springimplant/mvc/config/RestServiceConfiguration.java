@@ -3,7 +3,6 @@ package com.springimplant.mvc.config;
 import java.util.Properties;
 
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.hibernate5.HibernateTemplate;
@@ -16,7 +15,7 @@ import com.springimplant.mvc.model.Student;
 
 @Configuration
 //@EnableWebMvc
-@ComponentScan(basePackages="com.springmvc.bms")
+//@ComponentScan(basePackages="com.springimplant.mvc")
 public class RestServiceConfiguration {
 	
 	@Bean(name="studentDao")
@@ -25,7 +24,6 @@ public class RestServiceConfiguration {
 		dao.setHibernateTemplate(getHibernateTemplate());
 		return dao;
 	}
-	
 	
 	@Bean("transactionManager")
 	public HibernateTransactionManager getTmanger() {
