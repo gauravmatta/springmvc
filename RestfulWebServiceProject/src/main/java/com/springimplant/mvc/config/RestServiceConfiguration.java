@@ -36,7 +36,7 @@ public class RestServiceConfiguration {
 	public DriverManagerDataSource ds() {
 		DriverManagerDataSource source = new DriverManagerDataSource();
 		source.setDriverClassName("com.mysql.cj.jdbc.Driver");
-		source.setUrl("jdbc:mysql://localhost:3306/springjdbc");
+		source.setUrl("jdbc:mysql://localhost:3306/restservice");
 		source.setUsername("root");
 		source.setPassword("root@04G");
 		return source;
