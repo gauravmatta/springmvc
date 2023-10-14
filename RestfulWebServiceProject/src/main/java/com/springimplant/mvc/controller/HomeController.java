@@ -52,6 +52,7 @@ public class HomeController {
 		friends.add("Sumit");
 		friends.add("Arpit");
 		friends.add("Akshay");
+		friends.add("Amit");
 		modelAndView.addObject("friends", friends);
 		modelAndView.setViewName("help");
 		return modelAndView;
