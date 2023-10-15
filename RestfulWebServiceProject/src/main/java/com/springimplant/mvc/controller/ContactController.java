@@ -4,9 +4,12 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import com.springimplant.mvc.model.User;
 
 @Controller
 public class ContactController {
@@ -14,6 +17,11 @@ public class ContactController {
 	@RequestMapping(value = "/contact")
 	public String showForm() {
 		return "contact";
+	}
+	
+	@RequestMapping(value = "/reach")
+	public String reachForm() {
+		return "reach";
 	}
 	
 	@RequestMapping(value= "/processform",method = RequestMethod.POST)
@@ -32,4 +40,15 @@ public class ContactController {
 		model.addAttribute("userPassword", UserPassword);
 		return "success";
 	}
+	
+	@RequestMapping(value= "/submitForm",method = RequestMethod.POST)
+	public String submitForm(
+			@ModelAttribute User user,
+			Model model) {
+		System.out.println("Userinfo is "+ user);
+		model.addAttribute("user", user);
+		return "success";
+	}
+	
+	
 }
