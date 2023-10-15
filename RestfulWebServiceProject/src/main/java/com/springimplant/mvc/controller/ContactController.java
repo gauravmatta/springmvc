@@ -72,7 +72,8 @@ public class ContactController {
 		model.addAttribute("useremail", userEmail);
 		model.addAttribute("username", userName);
 		model.addAttribute("userPassword", userPassword);
-		this.userservice.createUser(user);
+		int createdUser = this.userservice.createUser(user);
+		model.addAttribute("savemsg","User craeted with id "+ createdUser);
 		return "success";
 	}
 	
