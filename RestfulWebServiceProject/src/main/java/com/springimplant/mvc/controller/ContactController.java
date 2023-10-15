@@ -2,6 +2,7 @@ package com.springimplant.mvc.controller;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -10,9 +11,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.springimplant.mvc.model.User;
+import com.springimplant.mvc.service.UserService;
 
 @Controller
 public class ContactController {
+	
+	@Autowired
+	private UserService userservice;
 
 	@RequestMapping(value = "/contact")
 	public String showForm() {
@@ -67,6 +72,7 @@ public class ContactController {
 		model.addAttribute("useremail", userEmail);
 		model.addAttribute("username", userName);
 		model.addAttribute("userPassword", userPassword);
+		this.userservice.createUser(user);
 		return "success";
 	}
 	
