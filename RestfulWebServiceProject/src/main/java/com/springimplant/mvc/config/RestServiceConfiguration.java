@@ -12,6 +12,7 @@ import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import com.springimplant.mvc.dao.StudentDao;
 import com.springimplant.mvc.model.Account;
 import com.springimplant.mvc.model.Student;
+import com.springimplant.mvc.model.User;
 
 @Configuration
 //@EnableWebMvc
@@ -52,7 +53,7 @@ public class RestServiceConfiguration {
 		props.setProperty("hibernate.show_sql", "true");
 		props.setProperty("hibernate.hbm2ddl.auto", "update");		
 		bean.setHibernateProperties(props);
-		Class<?> [] annotatedClasses =  {Student.class,Account.class};
+		Class<?> [] annotatedClasses =  {Student.class,Account.class,User.class};
 		bean.setAnnotatedClasses(annotatedClasses);
 		return bean;
 	}

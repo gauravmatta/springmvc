@@ -15,6 +15,7 @@
   </head>
   <body>
   <h3 class="text-center">${Header}</h3>
+  <h3 class="text-center">${maDesc}</h3>
   <div class="container mt-5">
   	<h3>Registration Form</h3>
 	  <form action="submitForm" method="post">
