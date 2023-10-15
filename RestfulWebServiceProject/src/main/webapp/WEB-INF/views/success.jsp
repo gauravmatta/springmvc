@@ -8,6 +8,12 @@
 <title>Insert title here</title>
 </head>
 <body>
+<h1>${Header}</h1>
+<h2>${Desc}</h2>
+<hr>
+<h1>${maHeader}</h1>
+<h2>${maDesc}</h2>
+<hr>
 <h1> Welcome , ${username}</h1>
 <h1> Your Email is , ${useremail}</h1>
 <h1> Your Password is , ${userPassword}</h1>

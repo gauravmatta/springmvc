@@ -19,13 +19,13 @@ public class ContactController {
 		return "contact";
 	}
 	
-	@RequestMapping(value = "/reach")
-	public String reachForm() {
-		return "reach";
-	}
-	
 	@RequestMapping(value= "/processform",method = RequestMethod.POST)
-	public String handleForm(HttpServletRequest request,@RequestParam("email") String userEmail,@RequestParam("username") String userName,@RequestParam("password") String UserPassword,Model model) {
+	public String handleForm(
+			HttpServletRequest request,
+			@RequestParam("email") String userEmail,
+			@RequestParam("username") String userName,
+			@RequestParam("password") String UserPassword,
+			Model model) {
 		String reqemail = request.getParameter("email");
 		System.out.println("User Email is "+ reqemail);
 		System.out.println("User Email is "+ userEmail);
@@ -41,12 +41,32 @@ public class ContactController {
 		return "success";
 	}
 	
+	@ModelAttribute
+	public void commonDataforModel(Model m) {
+		m.addAttribute("maHeader","Spring Implant Blog");
+		m.addAttribute("maDesc","Blog for Programmers");
+	}
+	
+	@RequestMapping(value = "/reach")
+	public String reachForm(Model m) {
+		m.addAttribute("Header","Spring Implant");
+		m.addAttribute("Desc","Home for Programmer");
+		return "reach";
+	}
+	
 	@RequestMapping(value= "/submitForm",method = RequestMethod.POST)
 	public String submitForm(
 			@ModelAttribute User user,
+			@RequestParam("email") String userEmail,
+			@RequestParam("username") String userName,
+			@RequestParam("password") String userPassword,
 			Model model) {
 		System.out.println("Userinfo is "+ user);
-		model.addAttribute("user", user);
+		model.addAttribute("Header","Spring Implant");
+		model.addAttribute("Desc","Home for Programmer");
+		model.addAttribute("useremail", userEmail);
+		model.addAttribute("username", userName);
+		model.addAttribute("userPassword", userPassword);
 		return "success";
 	}
 	
