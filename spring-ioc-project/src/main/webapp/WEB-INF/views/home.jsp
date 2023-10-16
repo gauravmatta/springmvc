@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>This is Home View</title>
 </head>
 <body>
 Train Me Here
