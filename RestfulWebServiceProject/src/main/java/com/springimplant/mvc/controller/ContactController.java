@@ -66,6 +66,9 @@ public class ContactController {
 			@RequestParam("username") String userName,
 			@RequestParam("password") String userPassword,
 			Model model) {
+		if(user.getUsername().isBlank() || user.getEmail().isBlank() || user.getPassword().isBlank()) {
+			return "redirect:/reach";
+		}
 		System.out.println("Userinfo is "+ user);
 		model.addAttribute("Header","Spring Implant");
 		model.addAttribute("Desc","Home for Programmer");

@@ -1,5 +1,9 @@
 package com.springimplant.mvc.controller;
 
+import java.io.IOException;
+
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.view.RedirectView;
@@ -27,6 +31,17 @@ public class RedirectController {
 		RedirectView redirectView = new RedirectView();
 		redirectView.setUrl("https://www.google.com");
 		return redirectView;
+	}
+	
+	@RequestMapping("/three")
+	public String three(HttpServletResponse response) {
+		System.out.println("This is three Handler");
+		try {
+			response.sendRedirect("enjoy");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return "contact";
 	}
 	
 	@RequestMapping("/enjoy")
