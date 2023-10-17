@@ -69,7 +69,7 @@
 								</select>
 							</div>
 							<div class="container text-center">
-								<button class="btn btn-outline-light">Search</button>
+								<button type="submit" class="btn btn-primary">Search</button>
 							</div>
 						</form>
 					</div>
