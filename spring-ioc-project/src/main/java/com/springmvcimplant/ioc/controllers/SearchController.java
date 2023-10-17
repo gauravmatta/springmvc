@@ -22,4 +22,10 @@ public class SearchController {
 		System.out.println("Going to Home");
 		return "home";
 	}
+	
+	@RequestMapping("/form")
+	public String form() {
+		System.out.println("Going to Form");
+		return "form";
+	}
 }
