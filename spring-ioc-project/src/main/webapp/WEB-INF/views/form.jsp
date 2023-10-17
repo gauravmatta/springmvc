@@ -35,7 +35,7 @@
 							
 							<div class="form-group">
 								<label for="dob">Your DOB:</label> <input name="dob" type="text"
-									class="form-control" id="dob" placeholder="Enter DOB" />
+									class="form-control" id="dob" placeholder="dd/mm/yyyy" />
 							</div>
 							
 							<div class="form-group">
@@ -64,9 +64,8 @@
 								<label for="gender">Select Type</label> <select
 									class="custom-select" name="studenttype">
 									<option selected>Select Type</option>
-									<option value="old">Old Student</option>
-									<option value="2">Two</option>
-									<option value="3">Three</option>
+									<option value="oldstudent">Old Student</option>
+									<option value="normalstudent">Normal Student</option>
 								</select>
 							</div>
 							<div class="container text-center">
