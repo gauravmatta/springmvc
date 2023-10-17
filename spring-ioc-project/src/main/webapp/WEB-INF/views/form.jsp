@@ -3,13 +3,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<!-- Required meta tags -->
-  	<meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-	<title>Tutor Form</title>
+<!-- Bootstrap CSS -->
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	crossorigin="anonymous">
+<title>Tutor Form</title>
 </head>
 <body style="background: #e2e2e2;">
 	<div class="container mt-4">
@@ -17,8 +21,7 @@
 			<div class="col-md-6 offset-md-3">
 				<div class="card">
 					<div class="card-body">
-						<h3 class="text-center text-white"
-							style="text-transform: uppercase;">Tutor Form</h3>
+						<h3 class="text-center">Tutor Form</h3>
 						<form class="mt-3" action="handle">
 							<div class="form-group">
 								<label for="name">Name:</label> <input name="name" type="text"
@@ -27,17 +30,17 @@
 									class="form-text text-muted">We'll never share your
 									email with anyone else.</small>
 							</div>
-							
+
 							<div class="form-group">
 								<label for="id">Your id:</label> <input name="id" type="text"
 									class="form-control" id="id" placeholder="Enter ID" />
 							</div>
-							
+
 							<div class="form-group">
 								<label for="dob">Your DOB:</label> <input name="dob" type="text"
 									class="form-control" id="dob" placeholder="dd/mm/yyyy" />
 							</div>
-							
+
 							<div class="form-group">
 								<label for="course">Example Course</label> <select multiple
 									class="form-control" id="course" name="course">
