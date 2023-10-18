@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,10 +19,13 @@
 <body style="background: #e2e2e2;">
 	<div class="container mt-4">
 		<div class="row">
-			<div class="col-md-6 offset-md-3">
+			<div class="col-md-8 offset-md-2">
 				<div class="card">
 					<div class="card-body">
 						<h3 class="text-center">Tutor Form</h3>
+						<div class="alert alert-danger" role="alert">
+  							This is a danger alert—check it out!
+						</div>
 						<form class="mt-3" action="handle" method="post">
 							<div class="form-group">
 								<label for="name">Name:</label> <input name="name" type="text"
@@ -37,7 +41,7 @@
 							</div>
 
 							<div class="form-group">
-								<label for="dob">Your DOB:</label> <input name="dob" type="text"
+								<label for="dob">Your DOB:</label> <input name="dob" type="date"
 									class="form-control" id="dob" placeholder="dd/mm/yyyy" />
 							</div>
 
@@ -70,6 +74,17 @@
 									<option value="oldstudent">Old Student</option>
 									<option value="normalstudent">Normal Student</option>
 								</select>
+							</div>
+							<div class="card">
+								<div class="card-body">
+									<p>Your Address</p>
+										<div class="form-group">
+											<input name="address.street" type="text" class="form-control" placeholder="Enter Street">
+										</div>
+										<div class="form-group">
+											<input name="address.city" type="text" class="form-control" placeholder="Enter City">
+										</div>
+								</div>
 							</div>
 							<div class="container text-center">
 								<button type="submit" class="btn btn-primary">Search</button>

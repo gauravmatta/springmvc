@@ -1,6 +1,7 @@
 package com.springmvcimplant.ioc.controllers;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -34,9 +35,15 @@ public class SearchController {
 	}
 	
 	@RequestMapping(path="/handle",method = RequestMethod.POST)
-	public String handle(@ModelAttribute("student") Student student) {
+//	public String handle(@RequestParam Map<String, String> reqParam) {
+	public String handle(@ModelAttribute("student") Student student,BindingResult result) {
+		if(result.hasErrors()) {
+			return "form";
+		}
 		System.out.println("Going to Handle");
+//		System.out.println(reqParam);
 		System.out.println(student.toString());
+		System.out.println(student.getAddress());
 		return "success";
 	}
 }

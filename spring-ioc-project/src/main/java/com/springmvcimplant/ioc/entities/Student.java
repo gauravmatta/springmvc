@@ -18,4 +18,5 @@ private Date dob;
 private List<String> course;
 private String gender;
 private String studenttype;
+private Address address;
 }
