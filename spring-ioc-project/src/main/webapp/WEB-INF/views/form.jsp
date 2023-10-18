@@ -24,7 +24,7 @@
 					<div class="card-body">
 						<h3 class="text-center">Tutor Form</h3>
 						<div class="alert alert-danger" role="alert">
-  							This is a danger alert—check it out!
+  							<form:errors path="student.*" />
 						</div>
 						<form class="mt-3" action="handle" method="post">
 							<div class="form-group">
