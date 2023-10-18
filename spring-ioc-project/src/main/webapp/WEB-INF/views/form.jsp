@@ -22,7 +22,7 @@
 				<div class="card">
 					<div class="card-body">
 						<h3 class="text-center">Tutor Form</h3>
-						<form class="mt-3" action="handle">
+						<form class="mt-3" action="handle" method="post">
 							<div class="form-group">
 								<label for="name">Name:</label> <input name="name" type="text"
 									class="form-control" id="name" aria-describedby="emailHelp"
