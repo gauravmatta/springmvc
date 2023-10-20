@@ -1,12 +1,17 @@
 package com.springmvcimplant.ioc.controllers;
 
+import org.springframework.core.convert.ConversionException;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.view.RedirectView;
 
 import com.springmvcimplant.ioc.entities.Student;
@@ -28,6 +33,22 @@ public class SearchController {
 		RedirectView redirectView = new RedirectView();
 		redirectView.setUrl(url);
 		return redirectView;
+	}
+	
+	@RequestMapping("/nullexception")
+	public String nullException() {
+		System.out.println("Triggering Null Exception");
+		String str = null;
+		System.out.println(str.length());
+		return "home";
+	}
+	
+	@RequestMapping("/numberexception")
+	public String numberException() {
+		System.out.println("Triggering Number Exception");
+		String str = "Gaurav";
+		Integer.parseInt(str);
+		return "home";
 	}
 
 	@RequestMapping("/home")
@@ -53,5 +74,27 @@ public class SearchController {
 		System.out.println(student.toString());
 		System.out.println(student.getAddress());
 		return "success";
+	}
+	
+	@ResponseStatus(value=HttpStatus.INTERNAL_SERVER_ERROR)
+	@ExceptionHandler({NullPointerException.class})
+	public String NullExceptionHandler(Model m) {
+		System.out.println("Null Pointer Exception Occurred");
+		m.addAttribute("msg","Null Pointer Exception");
+		return "null_error";
+	}
+	
+	@ExceptionHandler({ConversionException.class,NumberFormatException.class})
+	public String ConversionExceptionHandler(Model m) {
+		System.out.println("Number Format Exception Occurred");
+		m.addAttribute("msg","Number Format Exception");
+		return "null_error";
+	}
+	
+	@ExceptionHandler({Exception.class})
+	public String GenericExceptionHandler(Model m) {
+		System.out.println("General Exception Occurred");
+		m.addAttribute("msg","General Exception");
+		return "null_error";
 	}
 }
