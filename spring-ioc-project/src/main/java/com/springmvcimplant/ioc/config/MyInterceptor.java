@@ -13,7 +13,8 @@ public class MyInterceptor  implements HandlerInterceptor{
 			throws Exception {
 		System.out.println("This is Pre Handler..");
 		String name=request.getParameter("name");
-		if(name.startsWith("G")) {
+		System.out.println("Name is ==> "+name);
+		if(name!=null && name.startsWith("G")) {
 			response.setContentType("text/html");
 			response.getWriter().println("Invalid Name....Name should not start with G");
 			return false;
