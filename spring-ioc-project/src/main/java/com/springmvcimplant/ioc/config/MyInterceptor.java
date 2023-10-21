@@ -12,6 +12,12 @@ public class MyInterceptor  implements HandlerInterceptor{
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
 		System.out.println("This is prehandler..");
+		String name=request.getParameter("name");
+		if(name.startsWith("G")) {
+			response.setContentType("text/html");
+			response.getWriter().println("Invalid Name....Name should not start with G");
+			return false;
+		}
 		return HandlerInterceptor.super.preHandle(request, response, handler);
 	}
 
