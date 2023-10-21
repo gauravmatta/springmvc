@@ -84,6 +84,7 @@ public class SearchController {
 		return "null_error";
 	}
 	
+	@ResponseStatus(value=HttpStatus.INTERNAL_SERVER_ERROR)
 	@ExceptionHandler({ConversionException.class,NumberFormatException.class})
 	public String ConversionExceptionHandler(Model m) {
 		System.out.println("Number Format Exception Occurred");
@@ -91,6 +92,7 @@ public class SearchController {
 		return "null_error";
 	}
 	
+	@ResponseStatus(value=HttpStatus.INTERNAL_SERVER_ERROR)
 	@ExceptionHandler({Exception.class})
 	public String GenericExceptionHandler(Model m) {
 		System.out.println("General Exception Occurred");

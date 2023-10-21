@@ -1,4 +1,4 @@
-package com.springimplant.ioc.autowired;
+package com.springmvcimplant.ioc.autowired;
 
 public class Heart {
 	public void pump()
