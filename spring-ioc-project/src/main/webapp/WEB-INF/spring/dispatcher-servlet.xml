@@ -23,4 +23,10 @@
 		<property name="maxUploadSize" value="400"></property>
 	</bean>
 	<mvc:resources location="/resources/" mapping="/resources/**"></mvc:resources>
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/search/*" />
+			<bean class="com.springmvcimplant.ioc.config.MyInterceptor"></bean>
+		</mvc:interceptor>
+	</mvc:interceptors>
 </beans>
