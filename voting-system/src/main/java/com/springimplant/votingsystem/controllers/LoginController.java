@@ -16,7 +16,6 @@ import com.springimplant.votingsystem.entity.Candidate;
 import com.springimplant.votingsystem.entity.User;
 import com.springimplant.votingsystem.repositories.CandidateRepo;
 import com.springimplant.votingsystem.repositories.UserRepo;
-import com.springimplant.votingsystem.util.Utils;
 
 @Controller
 @RequestMapping("/admin")
@@ -30,8 +29,8 @@ public class LoginController {
 	@Autowired
 	CandidateRepo candidaterepo;
 	
-	@Autowired
-	Utils utils;
+//	@Autowired
+//	Utils utils;
 	
 	@RequestMapping("/")
 	public String login()
@@ -46,17 +45,17 @@ public class LoginController {
 		User u= userRepo.findByUsername(login);
 		if(u!=null)
 		{
-			String encodedPassword=utils.md5Java(password);
+//			String encodedPassword=utils.md5Java(password);
 			String givenPassword=u.getPassword();
-			logger.info(encodedPassword+"==>"+givenPassword);
-			if(encodedPassword.equals(givenPassword))
-			{
-				session.setAttribute("user",u);
-				logger.info("Password Match for "+u.getUsername());
-				List<Candidate> clist=candidaterepo.findAll();
-				model.addAttribute("candidateList",clist);
-				return "results.html";
-			}
+//			logger.info(encodedPassword+"==>"+givenPassword);
+//			if(encodedPassword.equals(givenPassword))
+//			{
+//				session.setAttribute("user",u);
+//				logger.info("Password Match for "+u.getUsername());
+//				List<Candidate> clist=candidaterepo.findAll();
+//				model.addAttribute("candidateList",clist);
+//				return "results.html";
+//			}
 		}
 		else
 		{

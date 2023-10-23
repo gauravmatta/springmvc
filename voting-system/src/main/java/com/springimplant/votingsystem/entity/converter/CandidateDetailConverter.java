@@ -15,7 +15,7 @@ public class CandidateDetailConverter implements AttributeConverter<Collection<C
 
 	@Override
 	public String convertToDatabaseColumn(Collection<CandidateDetail> attribute) {
-		return null;
+		return GSON.toJson(attribute);
 	}
 
 	@Override
