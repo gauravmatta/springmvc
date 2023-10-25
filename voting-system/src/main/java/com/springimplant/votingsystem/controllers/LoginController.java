@@ -52,8 +52,8 @@ public class LoginController {
 //			{
 //				session.setAttribute("user",u);
 //				logger.info("Password Match for "+u.getUsername());
-//				List<Candidate> clist=candidaterepo.findAll();
-//				model.addAttribute("candidateList",clist);
+				List<Candidate> clist=candidaterepo.findAll();
+				model.addAttribute("candidateList",clist);
 //				return "results.html";
 //			}
 		}
