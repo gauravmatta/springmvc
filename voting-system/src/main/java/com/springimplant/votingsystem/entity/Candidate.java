@@ -11,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.ColumnTransformer;
 import org.hibernate.annotations.Type;
 import org.springframework.core.LocalVariableTableParameterNameDiscoverer;
 
@@ -39,9 +40,9 @@ public class Candidate {
 	@Column(name="numberOfVotes", columnDefinition = "integer default 0")
 	private Integer numberOfVotes;
 	
-	@Type(type = "json")
 	@Column(name = "details",columnDefinition = "jsonb")
-//	@Convert(converter = CandidateDetailConverter.class)
+	@Convert(converter = CandidateDetailConverter.class)
+	@ColumnTransformer(write = "?::jsonb")
 	private List<CandidateDetail> details;
 	
 	public Candidate(Long id, String name) {
