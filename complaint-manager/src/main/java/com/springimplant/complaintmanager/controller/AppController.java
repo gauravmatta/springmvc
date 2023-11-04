@@ -9,8 +9,6 @@ import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
@@ -62,13 +60,14 @@ public class AppController
     	return "submitComplaint";
     }
     
-    @RequestMapping(name="/showComplaints",method=RequestMethod.GET)
+    @GetMapping(name="/showComplaints")
     public String showComplaints()
     {
+    	System.out.println("Here I am");
     	return "showEnterPassword";
     }
     
-    @RequestMapping(name="/showComplaints",method=RequestMethod.POST)
+    @PostMapping(name="/showComplaints")
     public ModelAndView showComplaintsPost(@RequestParam("pass") String pass,ModelAndView modelAndView)
     {
     	String syspass=env.getProperty("admin.password");
