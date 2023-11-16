@@ -4,9 +4,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>Complaint Submitted</title>
 </head>
 <body>
-
+<h1>Thank you for submitting your complaint. We will get back to you as soon as possible.</h1>
 </body>
 </html>

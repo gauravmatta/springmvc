@@ -9,6 +9,7 @@ import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,6 +28,7 @@ import com.springimplant.complaintmanager.entities.Complaint;
  */
 @Controller
 @RequestMapping("/home")
+@PropertySource({"classpath:admin-properties.properties"})
 public class HomeController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
@@ -64,31 +66,32 @@ public class HomeController {
    		@RequestParam("name") String name, 
    		@RequestParam("email") String email)
    {
-   	//System.out.println(complaint);
+   	System.out.println(complaint);
    	ComplaintDao dao=new ComplaintDao(sessionFactory);
    	Complaint comp=new Complaint(complaint,name,email);
    	dao.insertComplaint(comp);
    	return "submitComplaint";
    }
    
-   @GetMapping(name="/showComplaints")
+   @GetMapping("/showComplaints")
    public String showComplaints()
    {
    	System.out.println("Here I am");
    	return "showEnterPassword";
    }
    
-   @PostMapping(name="/showComplaints")
+   @PostMapping("/showComplaints")
    public ModelAndView showComplaintsPost(@RequestParam("pass") String pass,ModelAndView modelAndView)
    {
    	String syspass=env.getProperty("admin.password");
    	String encodedPass=utils.md5Java(pass);
-   	if(encodedPass.equals(syspass))
+//   	if(encodedPass.equals(syspass))
+   	if(pass.equals(syspass))
    	{
-        	ComplaintDao complaintDao=new ComplaintDao(sessionFactory);
-        	List<Complaint> complaints=complaintDao.getAllComplaints();
-        	modelAndView.addObject("complaints", complaints);
-        	modelAndView.setViewName("showComplaints");
+    	ComplaintDao complaintDao=new ComplaintDao(sessionFactory);
+    	List<Complaint> complaints=complaintDao.getAllComplaints();
+    	modelAndView.addObject("complaints", complaints);
+    	modelAndView.setViewName("showComplaints");
        	for(Complaint c:complaintDao.getAllComplaints())
        	{
        		System.out.println(c);
@@ -96,7 +99,7 @@ public class HomeController {
    	}
    	else
    	{
-   		modelAndView.setViewName("showEnterPassword");
+   		modelAndView.setViewName("showEnterPasswords");
    	}
    	
    	return modelAndView;

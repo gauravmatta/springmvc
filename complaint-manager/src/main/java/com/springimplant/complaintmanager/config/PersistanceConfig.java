@@ -4,7 +4,10 @@ package com.springimplant.complaintmanager.config;
 import java.util.Properties;
 
 import javax.sql.DataSource;
+
 import org.hibernate.SessionFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
@@ -15,7 +18,6 @@ import org.springframework.core.env.Environment;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
-import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 
 
@@ -25,23 +27,14 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 @ComponentScan({"com.springimplant.complaintmanager"})
 public class PersistanceConfig {
 	
+	private static final Logger logger = LoggerFactory.getLogger(PersistanceConfig.class);
+	
 	@Autowired
 	private Environment env;
 
     @Bean
-    DataSource dataSource()
-	{
-		DataSourceBuilder<?> dataSource = DataSourceBuilder.create();
-		dataSource.driverClassName(env.getProperty("jdbc.driverCLassName"));
-		dataSource.url(env.getProperty("jdbc.url"));
-		dataSource.username(env.getProperty("jdbc.user"));
-		dataSource.password(env.getProperty("jdbc.pass"));
-		return dataSource.build();
-	}
-
-    @Bean
     @Autowired
-    HibernateTransactionManager TransactionManager(SessionFactory sessionFactory)
+    HibernateTransactionManager transactionManager(SessionFactory sessionFactory)
 	{
 		HibernateTransactionManager transacManager=new HibernateTransactionManager();
 		transacManager.setSessionFactory(sessionFactory);
@@ -58,10 +51,23 @@ public class PersistanceConfig {
 		return sessionFactory;
 	}
 	
+	@Bean
+    DataSource dataSource()
+	{
+		DataSourceBuilder<?> dataSource = DataSourceBuilder.create();
+		dataSource.driverClassName(env.getProperty("jdbc.driverCLassName"));
+		logger.info(env.getProperty("jdbc.driverCLassName"));
+		dataSource.url(env.getProperty("jdbc.url"));
+		dataSource.username(env.getProperty("jdbc.user"));
+		dataSource.password(env.getProperty("jdbc.pass"));
+		return dataSource.build();
+	}
+	
 	Properties hibernateConfig()
 	{
 		Properties configProp=new Properties();
 		configProp.setProperty("hibernate.hdm2ddl.auto",env.getProperty("hibernate.hdm2ddl.auto"));
+		System.out.println(env.getProperty("hibernate.hdm2ddl.auto"));
 		configProp.setProperty("hibernate.dialect",env.getProperty("hibernate.dialect"));
 		configProp.setProperty("hibernate.show_sql",env.getProperty("hibernate.show_sql"));
 		return configProp;

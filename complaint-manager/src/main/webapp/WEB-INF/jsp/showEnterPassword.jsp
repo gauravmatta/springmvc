@@ -8,5 +8,12 @@
 </head>
 <body>
 
+<form action="showComplaints" method="post" id="passwordForm">
+	
+		Password: <input type="password" name="pass"/><br />
+		<input type="submit" value ="submit"/>
+	
+	</form>
+
 </body>
 </html>
