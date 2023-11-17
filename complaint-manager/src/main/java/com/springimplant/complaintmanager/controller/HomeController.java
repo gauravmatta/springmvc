@@ -62,9 +62,9 @@ public class HomeController {
    
    @PostMapping("/submitComplaint")
    public String submitComplaint(
-   		@RequestParam("complaint") String complaint,
-   		@RequestParam("name") String name, 
-   		@RequestParam("email") String email)
+   		@RequestParam String complaint,
+   		@RequestParam String name, 
+   		@RequestParam String email)
    {
    	System.out.println(complaint);
    	ComplaintDao dao=new ComplaintDao(sessionFactory);
@@ -81,12 +81,11 @@ public class HomeController {
    }
    
    @PostMapping("/showComplaints")
-   public ModelAndView showComplaintsPost(@RequestParam("pass") String pass,ModelAndView modelAndView)
+   public ModelAndView showComplaintsPost(@RequestParam String pass,ModelAndView modelAndView)
    {
    	String syspass=env.getProperty("admin.password");
    	String encodedPass=utils.md5Java(pass);
-//   	if(encodedPass.equals(syspass))
-   	if(pass.equals(syspass))
+   	if(encodedPass.equals(syspass))
    	{
     	ComplaintDao complaintDao=new ComplaintDao(sessionFactory);
     	List<Complaint> complaints=complaintDao.getAllComplaints();

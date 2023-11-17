@@ -11,7 +11,6 @@ table, tr, td {
 }
 </style>
 </head>
-
 <body>
 ${complaints}
 	<table>
@@ -28,16 +27,8 @@ ${complaints}
 				<td><c:out value="${complaint.senderName}" /></td>
 				<td><c:out value="${complaint.message}" /></td>
 				<td><c:out value="${complaint.senderEmail}" /></td>
-
-
-
-
 			</tr>
-
 		</c:forEach>
 	</table>
-
-
-
 </body>
 </html>

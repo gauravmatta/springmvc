@@ -10,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.jdbc.DataSourceBuilder;
+import org.springframework.boot.sql.init.dependency.DependsOnDatabaseInitialization;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -18,7 +19,6 @@ import org.springframework.core.env.Environment;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
-
 
 
 @Configuration
@@ -33,6 +33,7 @@ public class PersistanceConfig {
 	private Environment env;
 
     @Bean
+    @DependsOnDatabaseInitialization
     @Autowired
     HibernateTransactionManager transactionManager(SessionFactory sessionFactory)
 	{
@@ -40,9 +41,10 @@ public class PersistanceConfig {
 		transacManager.setSessionFactory(sessionFactory);
 		return transacManager;
 	}
-	
-	@Bean(name="entityManagerFactory")
-	LocalSessionFactoryBean sessionFactory()
+
+    @Bean(name = "entityManagerFactory")
+    @DependsOnDatabaseInitialization
+    LocalSessionFactoryBean sessionFactory()
 	{
 		LocalSessionFactoryBean sessionFactory=new LocalSessionFactoryBean();
 		sessionFactory.setDataSource(dataSource());

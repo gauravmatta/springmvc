@@ -23,7 +23,7 @@ public class Utils {
 			StringBuilder sb = new StringBuilder(2*hash.length); 
 			for(byte b : hash)
 			{ 
-				sb.append(String.format("%02x", b&0xff)); 
+				sb.append("%02x".formatted(b & 0xff)); 
 			} 
 			digest = sb.toString(); 
 		} 
