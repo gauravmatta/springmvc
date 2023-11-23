@@ -1,5 +1,6 @@
 package com.springimplant.taskmanager;
 
+import com.springimplant.taskmanager.page.HomePage;
 import com.springimplant.taskmanager.page.LoginPage;
 import com.springimplant.taskmanager.page.RegistrationPage;
 import com.vaadin.navigator.Navigator;
@@ -25,7 +26,8 @@ public class TaskUI extends UI {
 	
 	public void route(String uri) {
 		if(VaadinSession.getCurrent().getAttribute("user") != null) {
-			
+			getUI().getNavigator().addView(HomePage.NAME,HomePage.class);
+			Page.getCurrent().setUriFragment("!"+HomePage.NAME);
 		} else {
 			getNavigator().navigateTo(LoginPage.NAME);
 		}

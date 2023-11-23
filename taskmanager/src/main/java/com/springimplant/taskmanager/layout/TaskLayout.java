@@ -1,0 +1,19 @@
+package com.springimplant.taskmanager.layout;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.springimplant.taskmanager.service.UserService;
+import com.vaadin.spring.annotation.SpringComponent;
+import com.vaadin.ui.VerticalLayout;
+
+@SpringComponent
+public class TaskLayout extends VerticalLayout {
+	
+	@Autowired
+	UserService service;
+	
+	public void setTasks() {
+		
+	}
+	
+}
