@@ -2,6 +2,7 @@ package com.springimplant.taskmanager.layout;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.springimplant.taskmanager.entity.User;
 import com.springimplant.taskmanager.service.UserService;
 import com.vaadin.spring.annotation.SpringComponent;
 import com.vaadin.ui.VerticalLayout;
@@ -12,8 +13,9 @@ public class TaskLayout extends VerticalLayout {
 	@Autowired
 	UserService service;
 	
-	public void setTasks() {
-		
+	public void setTasks(User user) {
+		removeAllComponents();
+		user.getTasks().forEach(task -> addComponent(new TaskItemLayout(task, service, user)));
 	}
 	
 }

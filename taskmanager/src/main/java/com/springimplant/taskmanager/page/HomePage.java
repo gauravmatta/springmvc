@@ -2,6 +2,7 @@ package com.springimplant.taskmanager.page;
 import java.util.List;
 
 import com.springimplant.taskmanager.entity.User;
+import com.springimplant.taskmanager.layout.TaskLayout;
 import com.springimplant.taskmanager.service.UserService;
 import com.springimplant.taskmanager.utils.ApplicationContextUtils;
 import com.vaadin.navigator.View;
@@ -20,9 +21,13 @@ public class HomePage extends VerticalLayout implements View {
 	public static final String NAME = "home";
 	TextField task;
 	UserService userService;
+	TaskLayout taskLayout;
+	User currentUser;
 	
 	public HomePage() {
 		userService = ApplicationContextUtils.getApplicationContext().getBean(UserService.class);
+		taskLayout = ApplicationContextUtils.getApplicationContext().getBean(TaskLayout.class);
+		currentUser=(User) VaadinSession.getCurrent().getAttribute("user");
 		addHeader();
 		addTaskForm();
 		addTaskList();
@@ -41,16 +46,18 @@ public class HomePage extends VerticalLayout implements View {
 		Button add = new Button("add");
 		form.addComponents(task,add);
 		add.addClickListener(e->{
-			User user = (User) VaadinSession.getCurrent().getAttribute("user");
-			user.getTasks().add(task.getValue());
+			
+			currentUser.getTasks().add(task.getValue());
 			task.clear();
-			userService.save(user);
+			userService.save(currentUser);
+			taskLayout.setTasks(currentUser);
 		});
 		addComponent(form);
 	}
 	
 	private void addTaskList() {
-		
+		taskLayout.setTasks(currentUser);
+		addComponent(taskLayout);
 	}
 	
 	private void addLogout() {
