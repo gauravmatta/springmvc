@@ -4,4 +4,6 @@ public interface Business {
 
 	int calculatSum(int[] data);
 
+	int calculateSumUsingDataService();
+
 }
