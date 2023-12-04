@@ -3,6 +3,7 @@ package com.springimplant.unittesting.services.impl;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -30,5 +31,12 @@ class ListMockTest {
 		when(mock.get(0)).thenReturn("Spring Implant");
 		assertEquals("Spring Implant",mock.get(0));
 		assertEquals(null,mock.get(1));
+	}
+	
+	@Test
+	void returnWithGenericParameters() {
+		when(mock.get(anyInt())).thenReturn("Spring Implant");
+		assertEquals("Spring Implant",mock.get(0));
+		assertEquals("Spring Implant",mock.get(1));
 	}
 }
