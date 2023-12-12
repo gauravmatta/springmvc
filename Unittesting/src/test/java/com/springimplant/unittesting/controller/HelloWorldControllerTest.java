@@ -34,7 +34,7 @@ class HelloWorldControllerTest {
 					.andExpect(status().isOk())
 					.andExpect(content().string("Hello World"))
 					.andExpect(content().contentType(MediaType.APPLICATION_JSON))
-					.andReturn();	
+					.andReturn();
 			
 			
 //			   // Execute the GET request
