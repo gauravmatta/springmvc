@@ -1,11 +1,11 @@
 package com.springimplant.unittesting.controller;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.skyscreamer.jsonassert.JSONAssert;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.http.MediaType;
@@ -33,9 +33,12 @@ class ItemControllerTest {
 					.andExpect(content().json("{\"id\": 1,\"name\":\"Ball\",\"price\":10,\"quantity\":100}"))
 					.andExpect(content().contentType(MediaType.APPLICATION_JSON))
 					.andReturn();
+			JSONAssert.assertEquals("{\"id\": 1,\"name\":\"Ball\",\"price\":10,\"quantity\":100}",result.getResponse().getContentAsString(), false);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		
 	}
 	
 	
