@@ -45,14 +45,12 @@ class ItemControllerTest {
 			JSONAssert.assertEquals("{\"id\": 1,\"name\":\"Ball\",\"price\":10,\"quantity\":100}",result.getResponse().getContentAsString(), false);
 		} catch (Exception e) {
 			e.printStackTrace();
-		}	
+		}
 	}
 	
 	@Test
 	void itemFromBusinessService_basic() {
-		
-		when(itemService.retriveHardcodedItem()).thenReturn(new Item(3,"Wickets",400,10));
-		
+		when(itemService.retriveHardcodedItem()).thenReturn(new Item(3,"Wickets",400,10));	
 		RequestBuilder request = MockMvcRequestBuilders.get("/item-from-business-service").accept(MediaType.APPLICATION_JSON);		
 		try {
 			MvcResult result = 
@@ -66,6 +64,4 @@ class ItemControllerTest {
 			e.printStackTrace();
 		}
 	}
-	
-	
 }
