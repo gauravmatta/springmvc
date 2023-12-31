@@ -25,7 +25,7 @@ class ItemServiceTest {
 	private ItemRepository repository;
 
 	@Test
-	void calculateSumUsingDataService_basic() {
+	void retriveAllItems_basic() {
 		when(repository.findAll()).thenReturn(
 				Arrays.asList(
 						new Item(3,"Wickets",400,10),
