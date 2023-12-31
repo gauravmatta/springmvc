@@ -22,7 +22,11 @@ public class ItemServiceImpl implements ItemService {
 	
 	@Override
 	public List<Item> retriveAllItems(){
-		return itemRepository.findAll();
+		List<Item> items = itemRepository.findAll();
+		for(Item item:items) {
+			item.setValue(item.getPrice() * item.getQuantity());
+		}
+		return items;
 	}
 
 }
