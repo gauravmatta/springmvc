@@ -24,5 +24,4 @@ class AssertJTest {
 		.startsWith("ABC")
 		.endsWith("CDE");
 	}
-
 }
