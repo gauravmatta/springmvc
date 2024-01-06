@@ -1,5 +1,8 @@
 package com.springimplant.unittesting.services.impl;
 
+import java.util.Arrays;
+import java.util.OptionalInt;
+
 import com.springimplant.unittesting.services.Business;
 import com.springimplant.unittesting.services.DataService;
 
@@ -17,6 +20,10 @@ public class BusinessImpl implements Business{
 			sum += value;
 		}
 		return sum;
+	}
+	
+	public int calculateSumUsingFunctionalCode(int[] data) {
+		return Arrays.stream(data).reduce(Integer::sum).orElse(0);
 	}
 	
 	@Override
