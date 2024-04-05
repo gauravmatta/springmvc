@@ -1,0 +1,21 @@
+server:
+  port: 8002
+spring.redis.host: localhost
+spring.redis.port: 6369
+spring:
+    cloud:
+        gateway:
+            routes:
+            #Route Mapping to Voting System Project
+            #RouteIdentifier
+            - id: loginMicroservice
+            #Respective webservice url which need to be mapped
+              uri: http://localhost:8081/
+            #Request Context Path Mapping
+              predicates:
+              - Path=/admin/**
+            #Route Mapping
+            - id: electionMicroservice
+              uri: http://localhost:8082/
+              predicates:
+              - Path=/api/v1/**

@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
+import com.springimplant.votingsystem.util.Utils;
+
 @Entity(name="users")
 public class User extends Utils {
 	

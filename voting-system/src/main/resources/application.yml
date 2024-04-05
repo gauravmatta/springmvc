@@ -1,0 +1,42 @@
+spring:
+  application:
+    name: voting-system
+  datasource:
+#    url: spring.datasource.url=jdbc:mysql://localhost:3306/votingsystem
+    url: jdbc:postgresql://localhost:5432/votingsystem
+    username: postgres
+    password: postgres
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+      naming:
+        physical-strategy: com.springimplant.votingsystem.util.CustomPhysicalNamingStrategy
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        jdbc:
+          lob:
+            non_contextual_creation: true
+  h2:
+    console:
+      enabled: true 
+server:
+  port: 8081
+
+logging:
+  pattern:
+    console: '%d{yyyy-MM-dd HH:mm:ss} [%X{correlationId}] - %msg%n'
+  level:
+    '[org.hibernate]': info
+    '[org.springframework.web]': info
+    '[org.hibernate.sql]': debug
+    '[org.hibernate.type]': trace
+    '[org.hibernate.type.descriptor.sql]': trace
+  
+eureka:
+  client:
+    registerWithEureka: false
+    fetchRegistry: false

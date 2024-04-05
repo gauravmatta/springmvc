@@ -1,12 +1,32 @@
 package com.springimplant.votingsystem.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Column;
+import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
-@Entity(name="candidates")
+import org.hibernate.annotations.ColumnTransformer;
+import org.hibernate.annotations.Type;
+import org.springframework.core.LocalVariableTableParameterNameDiscoverer;
+
+import com.springimplant.votingsystem.entity.converter.CandidateDetailConverter;
+import com.springimplant.votingsystem.entity.json.object.CandidateDetail;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Entity
+@Table(name="candidates")
 public class Candidate {
 
 	@Id
@@ -18,40 +38,23 @@ public class Candidate {
 	private String name;
 
 	@Column(name="numberOfVotes", columnDefinition = "integer default 0")
-	private Integer numberOfVotes; 
+	private Integer numberOfVotes;
 	
-	public Integer getNumberOfVotes() {
-		return numberOfVotes;
-	}
-
-	public void setNumberOfVotes(Integer numberOfVotes) {
-		this.numberOfVotes = numberOfVotes;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public Candidate() {
-		super();
-	}
-
+	@Column(name = "details",columnDefinition = "jsonb")
+	@Convert(converter = CandidateDetailConverter.class)
+	@ColumnTransformer(write = "?::jsonb")
+	private List<CandidateDetail> details;
+	
 	public Candidate(Long id, String name) {
 		super();
-		this.id = id;
 		this.name = name;
+		List<CandidateDetail> cdl = new ArrayList<>();
+		CandidateDetail cd = new CandidateDetail();
+		cd.setAssets("2000");
+		cd.setLiabilities("2000");
+		cd.setYear("2021");
+		cdl.add(cd);
+		this.details=cdl;
+		this.numberOfVotes=0;
 	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-	
 }

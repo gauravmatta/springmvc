@@ -8,15 +8,15 @@ import org.jboss.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.springimplant.votingsystem.entity.Candidate;
 import com.springimplant.votingsystem.entity.User;
-import com.springimplant.votingsystem.entity.Utils;
 import com.springimplant.votingsystem.repositories.CandidateRepo;
 import com.springimplant.votingsystem.repositories.UserRepo;
+import com.springimplant.votingsystem.util.Utils;
 
 @Controller
 @RequestMapping("/admin")
@@ -40,7 +40,7 @@ public class LoginController {
 		return "login.html";
 	}
 	
-	@RequestMapping(value="/",method=RequestMethod.POST)
+	@PostMapping("/")
 	public String login(@RequestParam String login,@RequestParam String password,Model model,HttpSession session)
 	{
 		User u= userRepo.findByUsername(login);

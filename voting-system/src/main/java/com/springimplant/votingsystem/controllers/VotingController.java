@@ -60,13 +60,10 @@ public class VotingController {
 		
 		if(!ctzn.isHasVoted())
 		{
-			Candidate c= candidateRepo.findById(id);
+			Candidate c= candidateRepo.findById(id).get();
 			c.setNumberOfVotes(c.getNumberOfVotes()+1);
 			candidateRepo.save(c);
 			ctzn.setHasVoted(true);
-			Citizen citizen=citizenRepo.findById(ctid);
-			citizen.setHasVoted(true);
-			citizenRepo.save(citizen);
 			citizenRepo.save(ctzn);
 			return "voted.html";
 		}
@@ -74,3 +71,4 @@ public class VotingController {
 	}
 	
 }
+

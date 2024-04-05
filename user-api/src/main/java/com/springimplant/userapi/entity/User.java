@@ -23,6 +23,12 @@ public class User {
 		
 	}
 
+	public User(int userid, int courseid, String username) {
+		this.userid=BigInteger.valueOf(userid);
+		this.courseid=BigInteger.valueOf(courseid);
+		this.username=username;
+	}
+
 	public BigInteger getUserid() {
 		return userid;
 	}

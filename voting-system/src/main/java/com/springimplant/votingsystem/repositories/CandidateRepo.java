@@ -1,12 +1,11 @@
 package com.springimplant.votingsystem.repositories;
 
+import java.util.Optional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
 
 import com.springimplant.votingsystem.entity.Candidate;
-import com.springimplant.votingsystem.entity.Citizen;
 
-@Repository
-public interface CandidateRepo extends JpaRepository<Candidate,Integer> {
-	public Candidate findById(Long id);
+public interface CandidateRepo extends JpaRepository<Candidate,Long> {
+	public Optional<Candidate> findById(Long id);
 }
