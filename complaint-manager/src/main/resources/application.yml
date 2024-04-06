@@ -24,6 +24,17 @@ spring:
     view:
       prefix: /WEB-INF/jsp/
       suffix: .jsp
+
+logging:
+  pattern:
+    console: '%d{yyyy-MM-dd HH:mm:ss} [%X{correlationId}] - %msg%n'
+  level:
+    '[org.hibernate]': info
+    '[org.springframework.web]': info
+    '[org.hibernate.sql]': debug
+    '[org.hibernate.type]': trace
+    '[org.hibernate.type.descriptor.sql]': trace
+
 jasypt:
   encryptor:
     password: springimplant
