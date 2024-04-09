@@ -24,7 +24,10 @@ spring:
     view:
       prefix: /WEB-INF/jsp/
       suffix: .jsp
-
+  docker:
+    compose:
+      enabled: true
+      file: docker-compose.yml
 logging:
   pattern:
     console: '%d{yyyy-MM-dd HH:mm:ss} [%X{correlationId}] - %msg%n'
