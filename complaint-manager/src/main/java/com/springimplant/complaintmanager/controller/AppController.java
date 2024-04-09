@@ -19,14 +19,14 @@ public class AppController
     @GetMapping("/helloworld")
     public String helloWorld()
     {
-    	log.info("Hola ");
+    	log.info("Hello World ");
     	return "HelloWorld";
     }
     
     @GetMapping("/")
     public String home(Principal principal)
     {
-    	log.info("Hola ");
+    	log.info("Root ");
     	return "Hello, "+ principal.getName();
     }
 }
