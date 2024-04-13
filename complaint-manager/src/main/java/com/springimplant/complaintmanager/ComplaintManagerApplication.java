@@ -10,6 +10,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import com.ulisesbocchio.jasyptspringboot.annotation.EnableEncryptableProperties;
 
 import io.micrometer.context.ContextRegistry;
+import reactor.core.publisher.Hooks;
 
 @SpringBootApplication(scanBasePackages = "com.springimplant.complaintmanager")
 @EnableEncryptableProperties
@@ -21,6 +22,7 @@ public class ComplaintManagerApplication extends SpringBootServletInitializer {
     }
 
 	public static void main(String[] args) {
+		Hooks.enableAutomaticContextPropagation();
 		ContextRegistry.getInstance().registerThreadLocalAccessor("cid",
 				() -> MDC.get("cid"),
 				cid->MDC.put("cid",cid),
