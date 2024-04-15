@@ -30,7 +30,7 @@ spring:
       file: docker-compose.yml
 logging:
   pattern:
-    console: '%d{yyyy-MM-dd HH:mm:ss} [%X{correlationId}] - %msg%n'
+    console: '%d{yyyy-MM-dd HH:mm:ss} %-5p [%-5level] [%thread] [%X{correlationId}] - %msg%n'
   level:
     '[org.hibernate]': info
     '[org.springframework.web]': info
