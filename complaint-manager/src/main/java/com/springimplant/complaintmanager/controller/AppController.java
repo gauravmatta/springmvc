@@ -38,7 +38,7 @@ public class AppController
     @GetMapping("/helloworld")
     public Map<String,String> helloWorld(@RequestParam(defaultValue = "World") String name)
     {
-    	log.info("Hello {}",name);
+    	log.trace("Hello {}",name);
     	return Map.of("greeting","Hello "+name);
     }
     
