@@ -43,3 +43,8 @@ logging:
 jasypt:
   encryptor:
     password: springimplant
+
+flyway:
+  baselineOnMigrate: true
+  locations: classpath:db/migration
+  
