@@ -18,12 +18,13 @@ import io.swagger.v3.oas.annotations.servers.Server;
 		termsOfService = "T&C",
 		contact = @Contact(
 				name = "Spring Implant",
-				email = "gaurav.matta.tech@gmail.com"
+				email = "gaurav.matta.tech@gmail.com",
+				url = "springimplant.blogspot.com"
 				),
 		license = @License(
 				name = "Your License No"
 				),
-		version = "v1"
+		version = "ApiV1"
 	),
 	servers = {
 			@Server(
