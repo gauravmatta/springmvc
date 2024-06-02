@@ -6,7 +6,6 @@ import java.util.Map;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.boot.autoconfigure.web.reactive.function.client.WebClientAutoConfiguration;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,11 +17,15 @@ import org.springframework.web.reactive.function.client.WebClient;
 
 import com.springimplant.complaintmanager.service.MathService;
 
-import jakarta.persistence.Entity;
+import io.swagger.v3.oas.annotations.Hidden;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import lombok.extern.slf4j.Slf4j;
 
 @RestController
 @Slf4j
+@SecurityRequirement(name="auth")
 public class AppController
 {
 	@Autowired
@@ -36,6 +39,20 @@ public class AppController
 	private MathService mathService;
 	
     @GetMapping("/helloworld")
+    @Operation(
+    		tags = "GET Say Hello",
+    		description = "Say Hello",
+    		responses = {
+    				@ApiResponse(
+    						description = "Success",
+    						responseCode = "200"
+    						),
+    				@ApiResponse(
+    						description = "Data Not Found",
+    						responseCode = "404"
+    						)
+    		}
+    		)
     public Map<String,String> helloWorld(@RequestParam(defaultValue = "World") String name)
     {
     	log.trace("Hello {}",name);
@@ -49,6 +66,7 @@ public class AppController
     	return "Hello, "+ principal.getName();
     }
     
+    @Hidden
     @GetMapping("/webclient")
     public String webClient(@RequestParam String name) {
     	log.info("Webclient End Point Called");
