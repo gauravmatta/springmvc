@@ -1,7 +1,15 @@
 package com.springimplant.cms.entities;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@Entity
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
 public class Topic {
 
+	@Id
 	private String id;
 	private String name;
 	private String description;
