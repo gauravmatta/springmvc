@@ -39,12 +39,10 @@ logging:
     '[org.hibernate.type]': trace
     '[org.hibernate.type.descriptor.sql]': trace
     '[com.springimplant]' : TRACE
-
+    '[org.springframework.security]': TRACE
 jasypt:
   encryptor:
     password: springimplant
-
 flyway:
   baselineOnMigrate: true
   locations: classpath:db/migration
-  
