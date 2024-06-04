@@ -4,10 +4,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Spring Implant Logout</title>
 </head>
 <body>
-Hello Developers
-<a href="/logout">Logout</a>
+	Logout home <br>
+	<a href="/">home</a>
 </body>
 </html>
