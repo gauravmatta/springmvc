@@ -1,6 +1,9 @@
 package com.springimplant.cms.config;
 
+import static org.springframework.security.config.Customizer.withDefaults;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.security.oauth2.client.EnableOAuth2Sso;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;
@@ -14,6 +17,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
+@EnableOAuth2Sso
 public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
@@ -39,10 +43,10 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		})        
-           .formLogin(login -> login
+		})
+        .formLogin(login -> login
                      .loginPage("/home/login").permitAll())
-	       .logout(logout -> logout.invalidateHttpSession(true)
+	    .logout(logout -> logout.invalidateHttpSession(true)
 	                .clearAuthentication(true)
 	                .logoutRequestMatcher(new AntPathRequestMatcher("/home/logout"))
 	                .logoutSuccessUrl("/home/logout-success").permitAll());
