@@ -1,13 +1,11 @@
 package com.springimplant.main;
 
 import java.sql.Connection;
+import java.sql.Driver;
 import java.sql.DriverAction;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
-
-import com.mysql.jdbc.Driver;
-
 
 public class JDBCQ1 implements DriverAction{
 	public static void main (String args[]) {
