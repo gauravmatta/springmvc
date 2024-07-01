@@ -4,14 +4,30 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
+import com.springimplant.entity.Employee;
 import com.springimplant.util.HibernateUtil;
 
 public class HibernateMain {
 	
-	SessionFactory session = HibernateUtil.getSessionFactory();
+	static Session session = HibernateUtil.getSessionFactory().openSession();
 
 	public static void main(String[] args) {
-//		Transaction t = 
+		Transaction t = session.beginTransaction();
+		try {
+			Employee emp = session.get(Employee.class,103);
+			System.out.println("103 id :"+emp.getNames()+":"+emp.getSalary());
+			emp.setSalary(15000);
+			session.update(emp);
+			t.commit();
+			System.out.println("after 1st Commit 103 id"+emp.getNames()+":"+emp.getSalary());
+			t.begin();
+			session.update(emp);
+			t.commit();
+			Employee emp1 = session.get(Employee.class,103);
+			System.out.println("after 2nd commit 103 id :"+emp1.getNames()+":"+emp1.getSalary());
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
 
 	}
 
