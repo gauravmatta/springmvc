@@ -8,6 +8,11 @@ import com.springimplant.entity.Employee;
 
 public class UpdateEventListener implements PostUpdateEventListener {
 
+	private static final long serialVersionUID = -4578268194633559219L;
+	
+	public static final UpdateEventListener INSTANCE =
+	        new UpdateEventListener();
+
 	@Override
 	public boolean requiresPostCommitHanding(EntityPersister persister) {
 		return false;
