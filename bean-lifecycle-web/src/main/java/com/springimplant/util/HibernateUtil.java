@@ -21,21 +21,9 @@ public class HibernateUtil {
         try {
         	Configuration cfg = new Configuration();
         	cfg.configure("hibernate.cfg.xml");
-        	ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder().applySettings(cfg.getProperties()).build();	
-        	final EventListenerRegistry eventListenerRegistry =
-                    serviceRegistry.getService(EventListenerRegistry.class);
-        	eventListenerRegistry.appendListeners(
-                    EventType.LOAD,
-                    LoadEventListnerImp.INSTANCE
-                );
-        	 eventListenerRegistry.appendListeners(
-        	            EventType.POST_UPDATE,
-        	            UpdateEventListener.INSTANCE
-        	        );
         	return cfg.addAnnotatedClass(Employee.class)
-            		.buildSessionFactory(serviceRegistry);
+            		.buildSessionFactory();
         } catch (Throwable ex) {
-            // Make sure you log the exception, as it might be swallowed
             System.err.println("Initial SessionFactory creation failed." + ex);
             throw new ExceptionInInitializerError(ex);
         }
