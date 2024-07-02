@@ -5,9 +5,14 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.springimplant.entity.Employee;
 
+@Repository("userDao")
+@Transactional(propagation = Propagation.REQUIRED)
 public class EmployeeDAOImpl implements EmployeeDAO {
 	
 	private SessionFactory sessionFactory;
