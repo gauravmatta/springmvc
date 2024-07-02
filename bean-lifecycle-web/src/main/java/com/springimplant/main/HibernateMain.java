@@ -21,15 +21,15 @@ public class HibernateMain {
 		try {
 			Employee emp = session.get(Employee.class,103);
 			System.out.println("103 id :"+emp.getNames()+":"+emp.getSalary());
-//			emp.setSalary(15000);
-//			session.update(emp);
-//			t.commit();
-//			System.out.println("after 1st Commit 103 id"+emp.getNames()+":"+emp.getSalary());
-//			t.begin();
-//			session.update(emp);
-//			t.commit();
-//			Employee emp1 = session.get(Employee.class,103);
-//			System.out.println("after 2nd commit 103 id :"+emp1.getNames()+":"+emp1.getSalary());
+			emp.setSalary(15000);
+			session.update(emp);
+			t.commit();
+			System.out.println("after 1st Commit 103 id"+emp.getNames()+":"+emp.getSalary());
+			t.begin();
+			session.update(emp);
+			t.commit();
+			Employee emp1 = session.get(Employee.class,103);
+			System.out.println("after 2nd commit 103 id :"+emp1.getNames()+":"+emp1.getSalary());
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
