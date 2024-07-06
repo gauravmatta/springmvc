@@ -9,15 +9,28 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.boot.autoconfigure.jdbc.JdbcTemplateAutoConfiguration;
+import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.core.JdbcTemplate;
 
-@SpringBootApplication(exclude = {
-		JdbcTemplateAutoConfiguration.class,
-		DataSourceAutoConfiguration.class
-})
-public class ConnectionpoolingApplication implements CommandLineRunner{
+import com.treblle.spring.annotation.EnableTreblle;
+
+//@SpringBootApplication(exclude = {
+//		JdbcTemplateAutoConfiguration.class,
+//		DataSourceAutoConfiguration.class
+//})
+@SpringBootApplication
+@ComponentScan({"com.springimplant"})
+@EntityScan("com.springimplant")
+@EnableJpaRepositories("com.springimplant")
+@EnableTreblle
+@Configuration
+public class ConnectionpoolingApplication extends SpringBootServletInitializer implements CommandLineRunner{
 	
 	@Autowired
 	private JdbcTemplate jdbcTemplate;

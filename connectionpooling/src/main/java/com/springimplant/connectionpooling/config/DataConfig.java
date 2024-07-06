@@ -1,4 +1,4 @@
-package com.springimplant.connectionpooling.beans;
+package com.springimplant.connectionpooling.config;
 
 import javax.sql.DataSource;
 
@@ -24,6 +24,7 @@ public class DataConfig {
 	private String password;
 
     @Bean
+    @Primary
     DataSource hikariDataSource() {
 		HikariDataSource dataSource= new HikariDataSource();
 		dataSource.setJdbcUrl(url);
@@ -51,12 +52,12 @@ public class DataConfig {
 	}
 	
 	@Bean
-	@Primary
 	JdbcTemplate jdbcTemplate() {
 		return new JdbcTemplate(dataSource());
 	}
 	
 	@Bean(value = "hikari")
+	@Primary
 	JdbcTemplate hikariJdbcTemplate() {
 		return new JdbcTemplate(hikariDataSource());
 	}
