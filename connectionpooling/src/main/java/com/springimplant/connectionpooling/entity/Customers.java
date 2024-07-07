@@ -26,7 +26,7 @@ import lombok.Data;
 public class Customers {
 
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "id")
     private Long id;
 	
@@ -36,11 +36,11 @@ public class Customers {
 	@Column(name="created_at", nullable=false)
 //	@DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME, pattern = "yyyy-MM-dd H:m:s")
 //	@Convert(converter = DateConverter.class)
-	public String createdAt;
+	public String created_at;
 	
-	@PrePersist
-	protected void onCreate() {
-	    createdAt = LocalDate.now().toString();
-	}
+//	@PrePersist
+//	protected void onCreate() {
+//	    created_at = LocalDate.now().toString();
+//	}
 	
 }

@@ -17,7 +17,6 @@ import org.springframework.batch.item.file.LineMapper;
 import org.springframework.batch.item.file.mapping.BeanWrapperFieldSetMapper;
 import org.springframework.batch.item.file.mapping.DefaultLineMapper;
 import org.springframework.batch.item.file.transform.DelimitedLineTokenizer;
-import org.springframework.batch.support.transaction.ResourcelessTransactionManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
@@ -28,6 +27,7 @@ import org.springframework.core.convert.support.DefaultConversionService;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.task.SimpleAsyncTaskExecutor;
 import org.springframework.core.task.TaskExecutor;
+import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.transaction.PlatformTransactionManager;
 
 import com.springimplant.connectionpooling.component.CustomerProcessor;
@@ -116,7 +116,7 @@ public class BatchConfig {
 					.reader(reader())
 					.processor(processor())
 					.writer(writer())
-					.taskExecutor(taskExecutor())
+//					.taskExecutor(taskExecutor())
 					.build();
 	}
 	
@@ -130,7 +130,7 @@ public class BatchConfig {
 	
 	@Bean(name = "transactionManager")
 	PlatformTransactionManager getTransactionManager() {
-		return new ResourcelessTransactionManager();
+		return new JpaTransactionManager();
 	}
 	
 	
