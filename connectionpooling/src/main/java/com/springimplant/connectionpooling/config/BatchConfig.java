@@ -39,7 +39,7 @@ import com.springimplant.connectionpooling.entity.Customers;
 public class BatchConfig {
 	
 	@Autowired
-	@Qualifier("c3p0DataSource")
+	@Qualifier("hickariDataSource")
 	DataSource dataSource;
 	
 
@@ -139,6 +139,7 @@ public class BatchConfig {
 	JobRepositoryFactoryBean factory = new JobRepositoryFactoryBean();
 	factory.setDataSource(this.dataSource);
 	factory.setTransactionManager(getTransactionManager());
+	factory.setDatabaseType("mysql");
 	try {
 		factory.afterPropertiesSet();
 		return factory.getObject();

@@ -44,7 +44,7 @@ public class DataConfig {
 	}
 
     	
-	@Bean
+	@Bean(name = "hickariDataSource")
     @Primary
     DataSource hikariDataSource() {
 		HikariDataSource dataSource= new HikariDataSource();
