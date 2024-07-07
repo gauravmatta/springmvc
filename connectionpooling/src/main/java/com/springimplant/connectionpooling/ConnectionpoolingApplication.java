@@ -20,11 +20,11 @@ import org.springframework.jdbc.core.JdbcTemplate;
 
 import com.treblle.spring.annotation.EnableTreblle;
 
-//@SpringBootApplication(exclude = {
-//		JdbcTemplateAutoConfiguration.class,
-//		DataSourceAutoConfiguration.class
-//})
-@SpringBootApplication
+@SpringBootApplication(exclude = {
+		JdbcTemplateAutoConfiguration.class,
+		DataSourceAutoConfiguration.class
+})
+//@SpringBootApplication
 @ComponentScan({"com.springimplant"})
 @EntityScan("com.springimplant")
 @EnableJpaRepositories("com.springimplant")

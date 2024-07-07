@@ -1,8 +1,15 @@
 package com.springimplant.connectionpooling.entity;
 
+import java.time.LocalDate;
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.springimplant.connectionpooling.converter.DateConverter;
+
 import jakarta.persistence.Column;
+import jakarta.persistence.Convert;
+import jakarta.persistence.Converter;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -24,12 +31,13 @@ public class Customers {
 	private String customer_name;
 	
 	@Column(name="created_at", nullable=false)
-	@Temporal(TemporalType.TIMESTAMP)
-	public Date createdAt;
+//	@DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME, pattern = "yyyy-MM-dd H:m:s")
+//	@Convert(converter = DateConverter.class)
+	public String createdAt;
 	
 	@PrePersist
 	protected void onCreate() {
-	    createdAt = new Date();
+	    createdAt = LocalDate.now().toString();
 	}
 	
 }

@@ -6,11 +6,13 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
+import org.springframework.core.io.Resource;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.jdbc.datasource.init.DataSourceInitializer;
+import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator;
 
 import com.mchange.v2.c3p0.ComboPooledDataSource;
-import com.mchange.v2.c3p0.mbean.C3P0PooledDataSource;
 import com.zaxxer.hikari.HikariDataSource;
 
 @Configuration
@@ -22,8 +24,27 @@ public class DataConfig {
 	private String username;
 	@Value("${spring.datasource.password}")
 	private String password;
+	
+	@Value("classpath:org/springframework/batch/core/schema-mysql.sql")
+	private Resource dataRepositorySchema;
+	
+	@Value("classpath:org/springframework/batch/core/schema-drop-mysql.sql")
+	private Resource dropRepositorySchema;
+	
+	@Bean
+	DataSourceInitializer dataSourceInitializer(DataSource dataSource) {
+		ResourceDatabasePopulator databasePopulator = new ResourceDatabasePopulator();
+		databasePopulator.addScript(dropRepositorySchema);
+		databasePopulator.addScript(dataRepositorySchema);
+		databasePopulator.setIgnoreFailedDrops(false);
+		DataSourceInitializer initializer = new DataSourceInitializer();
+		initializer.setDataSource(dataSource);
+		initializer.setDatabasePopulator(databasePopulator);
+		return initializer;
+	}
 
-    @Bean
+    	
+	@Bean
     @Primary
     DataSource hikariDataSource() {
 		HikariDataSource dataSource= new HikariDataSource();
@@ -33,12 +54,13 @@ public class DataConfig {
 		return dataSource;
 	}
     
-    @Bean
+    @Bean(name = "c3p0DataSource")
     DataSource dataSourceC3P0() {
     	ComboPooledDataSource dataSource= new ComboPooledDataSource();
 		dataSource.setJdbcUrl(url);
 		dataSource.setUser(username);
 		dataSource.setPassword(password);
+		dataSourceInitializer(dataSource);
 		return dataSource;
 	}
     
