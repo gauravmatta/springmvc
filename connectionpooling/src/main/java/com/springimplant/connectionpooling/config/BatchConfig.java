@@ -8,6 +8,7 @@ import javax.sql.DataSource;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing;
+import org.springframework.batch.core.configuration.annotation.StepScope;
 import org.springframework.batch.core.job.builder.JobBuilder;
 import org.springframework.batch.core.partition.PartitionHandler;
 import org.springframework.batch.core.partition.support.Partitioner;
@@ -15,8 +16,11 @@ import org.springframework.batch.core.partition.support.TaskExecutorPartitionHan
 import org.springframework.batch.core.repository.JobRepository;
 import org.springframework.batch.core.repository.support.JobRepositoryFactoryBean;
 import org.springframework.batch.core.step.builder.StepBuilder;
+import org.springframework.batch.core.step.skip.SkipPolicy;
 import org.springframework.batch.item.file.FlatFileItemReader;
+import org.springframework.batch.item.file.FlatFileParseException;
 import org.springframework.batch.item.file.LineMapper;
+import org.springframework.batch.item.file.NonTransientFlatFileException;
 import org.springframework.batch.item.file.mapping.BeanWrapperFieldSetMapper;
 import org.springframework.batch.item.file.mapping.DefaultLineMapper;
 import org.springframework.batch.item.file.transform.DelimitedLineTokenizer;
@@ -39,6 +43,7 @@ import com.springimplant.connectionpooling.component.CustomerProcessor;
 import com.springimplant.connectionpooling.component.CustomerWriter;
 import com.springimplant.connectionpooling.entity.Customers;
 import com.springimplant.connectionpooling.partition.CustomPartition;
+import com.springimplant.connectionpooling.policy.CustomSkipPolicy;
 
 @Configuration
 @EnableBatchProcessing
@@ -50,6 +55,7 @@ public class BatchConfig {
 	
 
     @Bean
+    @StepScope
     FlatFileItemReader<Customers> reader(){
 		FlatFileItemReader<Customers> itemReader = new FlatFileItemReader<>();
 		itemReader.setResource(new FileSystemResource("src/main/resources/customers.csv"));
@@ -120,9 +126,9 @@ public class BatchConfig {
 	@Bean(name="threadPoolTaskExecutor")
 	TaskExecutor threadPoolTaskExecutor() {
 		ThreadPoolTaskExecutor taskExecutor = new ThreadPoolTaskExecutor();
-		taskExecutor.setMaxPoolSize(4);
-		taskExecutor.setCorePoolSize(4);
-		taskExecutor.setQueueCapacity(4);
+		taskExecutor.setMaxPoolSize(5);
+		taskExecutor.setCorePoolSize(5);
+		taskExecutor.setQueueCapacity(5);
 		return taskExecutor;
 	}
 	
@@ -134,6 +140,11 @@ public class BatchConfig {
 					.reader(reader())
 					.processor(processor())
 					.writer(writer())
+					.faultTolerant()
+					.skip(FlatFileParseException.class)
+					.skipLimit(2)
+					.noSkip(NonTransientFlatFileException.class)
+					.skipPolicy(skipPolicy())
 					.taskExecutor(taskExecutor())
 					.build();
 	}
@@ -154,7 +165,15 @@ public class BatchConfig {
 					.reader(reader())
 					.processor(processor())
 					.writer(writer())
+					.faultTolerant()
+					.skip(NonTransientFlatFileException.class)
+					.skipPolicy(skipPolicy())
 					.build();
+	}
+	
+	@Bean
+	SkipPolicy skipPolicy() {
+		return new CustomSkipPolicy();
 	}
 	
 	@Bean(name = "masterStep")
