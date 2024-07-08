@@ -154,7 +154,6 @@ public class BatchConfig {
 					.reader(reader())
 					.processor(processor())
 					.writer(writer())
-//					.taskExecutor(threadPoolTaskExecutor())
 					.build();
 	}
 	
