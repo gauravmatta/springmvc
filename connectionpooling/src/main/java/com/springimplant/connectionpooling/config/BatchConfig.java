@@ -9,6 +9,9 @@ import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing;
 import org.springframework.batch.core.job.builder.JobBuilder;
+import org.springframework.batch.core.partition.PartitionHandler;
+import org.springframework.batch.core.partition.support.Partitioner;
+import org.springframework.batch.core.partition.support.TaskExecutorPartitionHandler;
 import org.springframework.batch.core.repository.JobRepository;
 import org.springframework.batch.core.repository.support.JobRepositoryFactoryBean;
 import org.springframework.batch.core.step.builder.StepBuilder;
@@ -21,6 +24,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.core.convert.support.DefaultConversionService;
@@ -28,11 +32,13 @@ import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.task.SimpleAsyncTaskExecutor;
 import org.springframework.core.task.TaskExecutor;
 import org.springframework.orm.jpa.JpaTransactionManager;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.transaction.PlatformTransactionManager;
 
 import com.springimplant.connectionpooling.component.CustomerProcessor;
 import com.springimplant.connectionpooling.component.CustomerWriter;
 import com.springimplant.connectionpooling.entity.Customers;
+import com.springimplant.connectionpooling.partition.CustomPartition;
 
 @Configuration
 @EnableBatchProcessing
@@ -111,7 +117,17 @@ public class BatchConfig {
 		return simpleAsyncTaskExecutor;
 	}
 	
+	@Bean(name="threadPoolTaskExecutor")
+	TaskExecutor threadPoolTaskExecutor() {
+		ThreadPoolTaskExecutor taskExecutor = new ThreadPoolTaskExecutor();
+		taskExecutor.setMaxPoolSize(4);
+		taskExecutor.setCorePoolSize(4);
+		taskExecutor.setQueueCapacity(4);
+		return taskExecutor;		
+	}
+	
 	@Bean
+	@Primary
 	Step step1(JobRepository jobRepository, PlatformTransactionManager transactionManager) {
 		return new StepBuilder("sampleStep", jobRepository)
 					.<Customers,Customers>chunk(100000, transactionManager)
@@ -123,10 +139,53 @@ public class BatchConfig {
 	}
 	
 	@Bean(name = "batchjob")
+	@Primary
 	Job job(JobRepository jobRepository,PlatformTransactionManager transactionManager) {
 		return new JobBuilder("importCustomnersCsvToDb",jobRepository)
 				.preventRestart()
 				.start(step1(jobRepository, transactionManager))
+				.build();
+	}
+	
+	@Bean(name = "stepSlave1")
+	Step stepSlave1(JobRepository jobRepository, PlatformTransactionManager transactionManager) {
+		return new StepBuilder("stepSlave1", jobRepository)
+					.<Customers,Customers>chunk(10000, transactionManager)
+					.reader(reader())
+					.processor(processor())
+					.writer(writer())
+					.build();
+	}
+	
+	@Bean(name = "masterStep")
+	Step masterStep(JobRepository jobRepository, PlatformTransactionManager transactionManager) {
+		return new StepBuilder("masterStep", jobRepository)
+				.partitioner(stepSlave1(jobRepository, transactionManager).getName(),partitioner())
+				.partitionHandler(partitionHandler(jobRepository, transactionManager))
+				.build();
+	}
+	
+
+    public PartitionHandler partitionHandler(JobRepository jobRepository, PlatformTransactionManager transactionManager) {
+        TaskExecutorPartitionHandler taskExecutorPartitionHandler = new TaskExecutorPartitionHandler();
+        taskExecutorPartitionHandler.setGridSize(10000);
+        taskExecutorPartitionHandler.setTaskExecutor(threadPoolTaskExecutor());
+        taskExecutorPartitionHandler.setStep(stepSlave1(jobRepository, transactionManager));
+        return taskExecutorPartitionHandler;
+    }
+	
+	
+	@Bean 
+	CustomPartition partitioner() {
+		return new CustomPartition();
+	}
+	
+	
+	@Bean(name = "partitionedjob")
+	Job partitionjob(JobRepository jobRepository,PlatformTransactionManager transactionManager) {
+		return new JobBuilder("partitionCustomnersCsvToDb",jobRepository)
+				.preventRestart()
+				.start(stepSlave1(jobRepository, transactionManager))
 				.build();
 	}
 	

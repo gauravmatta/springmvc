@@ -11,6 +11,7 @@ import org.springframework.batch.core.repository.JobExecutionAlreadyRunningExcep
 import org.springframework.batch.core.repository.JobInstanceAlreadyCompleteException;
 import org.springframework.batch.core.repository.JobRestartException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.batch.core.Job;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -33,6 +34,10 @@ public class CustomerController {
 	@Autowired
 	private Job job;
 	
+	@Autowired
+	@Qualifier("partitionedjob")
+	private Job partitionedJob;
+	
 	@GetMapping("/getcustomers")
 	public ResponseEntity<List<Customers>> getcustomer(){
 		List<Customers> customers =	cService.processCustomers();
@@ -47,6 +52,17 @@ public class CustomerController {
 		JobParameters jobParameters = new JobParametersBuilder().addLong("startAt",System.currentTimeMillis()).toJobParameters();
 		try {
 			jobLauncher.run(job, jobParameters);
+		} catch (JobExecutionAlreadyRunningException | JobRestartException | JobInstanceAlreadyCompleteException
+				| JobParametersInvalidException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@PostMapping("/loadpartition")
+	public void importCsvToDBJobUsingPartition() {
+		JobParameters jobParameters = new JobParametersBuilder().addLong("startAt",System.currentTimeMillis()).toJobParameters();
+		try {
+			jobLauncher.run(partitionedJob, jobParameters);
 		} catch (JobExecutionAlreadyRunningException | JobRestartException | JobInstanceAlreadyCompleteException
 				| JobParametersInvalidException e) {
 			e.printStackTrace();
