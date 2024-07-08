@@ -106,17 +106,19 @@ public class BatchConfig {
 	
 	@Bean
 	TaskExecutor taskExecutor() {
-	    return new SimpleAsyncTaskExecutor("spring_batch");
+		SimpleAsyncTaskExecutor simpleAsyncTaskExecutor = new SimpleAsyncTaskExecutor("spring_batch");
+		simpleAsyncTaskExecutor.setConcurrencyLimit(10);
+		return simpleAsyncTaskExecutor;
 	}
 	
 	@Bean
 	Step step1(JobRepository jobRepository, PlatformTransactionManager transactionManager) {
 		return new StepBuilder("sampleStep", jobRepository)
-					.<Customers,Customers>chunk(10000, transactionManager)
+					.<Customers,Customers>chunk(100000, transactionManager)
 					.reader(reader())
 					.processor(processor())
 					.writer(writer())
-//					.taskExecutor(taskExecutor())
+					.taskExecutor(taskExecutor())
 					.build();
 	}
 	
