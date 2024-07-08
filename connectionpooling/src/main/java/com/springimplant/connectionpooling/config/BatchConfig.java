@@ -123,7 +123,7 @@ public class BatchConfig {
 		taskExecutor.setMaxPoolSize(4);
 		taskExecutor.setCorePoolSize(4);
 		taskExecutor.setQueueCapacity(4);
-		return taskExecutor;		
+		return taskExecutor;
 	}
 	
 	@Bean
@@ -154,6 +154,7 @@ public class BatchConfig {
 					.reader(reader())
 					.processor(processor())
 					.writer(writer())
+//					.taskExecutor(threadPoolTaskExecutor())
 					.build();
 	}
 	
@@ -168,7 +169,7 @@ public class BatchConfig {
 
     public PartitionHandler partitionHandler(JobRepository jobRepository, PlatformTransactionManager transactionManager) {
         TaskExecutorPartitionHandler taskExecutorPartitionHandler = new TaskExecutorPartitionHandler();
-        taskExecutorPartitionHandler.setGridSize(10000);
+        taskExecutorPartitionHandler.setGridSize(1000);
         taskExecutorPartitionHandler.setTaskExecutor(threadPoolTaskExecutor());
         taskExecutorPartitionHandler.setStep(stepSlave1(jobRepository, transactionManager));
         return taskExecutorPartitionHandler;
@@ -185,7 +186,7 @@ public class BatchConfig {
 	Job partitionjob(JobRepository jobRepository,PlatformTransactionManager transactionManager) {
 		return new JobBuilder("partitionCustomnersCsvToDb",jobRepository)
 				.preventRestart()
-				.start(stepSlave1(jobRepository, transactionManager))
+				.start(masterStep(jobRepository, transactionManager))
 				.build();
 	}
 	
