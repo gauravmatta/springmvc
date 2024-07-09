@@ -1,11 +1,13 @@
 package com.springimplant.connectionpooling.config;
 
+import java.sql.SQLNonTransientConnectionException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 import javax.sql.DataSource;
 
 import org.springframework.batch.core.Job;
+import org.springframework.batch.core.SkipListener;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing;
 import org.springframework.batch.core.configuration.annotation.StepScope;
@@ -42,6 +44,7 @@ import org.springframework.transaction.PlatformTransactionManager;
 import com.springimplant.connectionpooling.component.CustomerProcessor;
 import com.springimplant.connectionpooling.component.CustomerWriter;
 import com.springimplant.connectionpooling.entity.Customers;
+import com.springimplant.connectionpooling.listeners.CustomSkipListener;
 import com.springimplant.connectionpooling.partition.CustomPartition;
 import com.springimplant.connectionpooling.policy.CustomSkipPolicy;
 
@@ -55,7 +58,7 @@ public class BatchConfig {
 	
 
     @Bean
-    @StepScope
+//    @StepScope
     FlatFileItemReader<Customers> reader(){
 		FlatFileItemReader<Customers> itemReader = new FlatFileItemReader<>();
 		itemReader.setResource(new FileSystemResource("src/main/resources/customers.csv"));
@@ -142,10 +145,12 @@ public class BatchConfig {
 					.writer(writer())
 					.faultTolerant()
 					.skip(FlatFileParseException.class)
+					.skip(SQLNonTransientConnectionException.class)
 					.skipLimit(2)
 					.noSkip(NonTransientFlatFileException.class)
 					.skipPolicy(skipPolicy())
 					.taskExecutor(taskExecutor())
+					.listener(skipListener())
 					.build();
 	}
 	
@@ -168,7 +173,13 @@ public class BatchConfig {
 					.faultTolerant()
 					.skip(NonTransientFlatFileException.class)
 					.skipPolicy(skipPolicy())
+					.listener(skipListener())
 					.build();
+	}
+	
+	@Bean
+	SkipListener<Customers, Number> skipListener() {
+		return new CustomSkipListener();
 	}
 	
 	@Bean
