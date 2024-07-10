@@ -1,6 +1,7 @@
 package com.springimplant.currencyservice.config;
 
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -17,14 +18,14 @@ public class CustomSecurityConfiguration extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		SimpleUrlAuthenticationFailureHandler handler = new SimpleUrlAuthenticationFailureHandler("/");
         http.authorizeRequests(a -> a
-                        .antMatchers("/", "/error", "/webjars/**").permitAll()
+                        .antMatchers("/", "/error", "/webjars/**","/api/v1/kafka/**").permitAll()
                         .anyRequest().authenticated()
         )
         .exceptionHandling(e -> e
                         .authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED))
         )
-        .csrf(c -> c
-        		.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
+        .csrf(c -> c.disable()
+//        		.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
         		)
         .logout(l -> l
         		.logoutSuccessUrl("/").permitAll()
