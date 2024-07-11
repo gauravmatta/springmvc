@@ -58,7 +58,7 @@ public class BatchConfig {
 	
 
     @Bean
-//    @StepScope
+    @StepScope
     FlatFileItemReader<Customers> reader(){
 		FlatFileItemReader<Customers> itemReader = new FlatFileItemReader<>();
 		itemReader.setResource(new FileSystemResource("src/main/resources/customers.csv"));
@@ -129,9 +129,9 @@ public class BatchConfig {
 	@Bean(name="threadPoolTaskExecutor")
 	TaskExecutor threadPoolTaskExecutor() {
 		ThreadPoolTaskExecutor taskExecutor = new ThreadPoolTaskExecutor();
-		taskExecutor.setMaxPoolSize(5);
-		taskExecutor.setCorePoolSize(5);
-		taskExecutor.setQueueCapacity(5);
+		taskExecutor.setMaxPoolSize(10);
+		taskExecutor.setCorePoolSize(10);
+		taskExecutor.setQueueCapacity(10);
 		return taskExecutor;
 	}
 	

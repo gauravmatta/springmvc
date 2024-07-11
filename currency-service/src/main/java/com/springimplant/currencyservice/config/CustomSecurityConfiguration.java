@@ -18,7 +18,7 @@ public class CustomSecurityConfiguration extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		SimpleUrlAuthenticationFailureHandler handler = new SimpleUrlAuthenticationFailureHandler("/");
         http.authorizeRequests(a -> a
-                        .antMatchers("/", "/error", "/webjars/**","/api/v1/kafka/**").permitAll()
+                        .antMatchers("/", "/error", "/webjars/**","/api/v1/kafka/**","/actuator/**").permitAll()
                         .anyRequest().authenticated()
         )
         .exceptionHandling(e -> e
