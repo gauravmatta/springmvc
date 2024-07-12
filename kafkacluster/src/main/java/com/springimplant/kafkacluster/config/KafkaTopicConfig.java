@@ -19,4 +19,24 @@ public class KafkaTopicConfig {
 		return TopicBuilder.name("springimplantJsonTopic")
 				.build();
 	}
+    
+    @Bean
+    NewTopic customer() {
+		return TopicBuilder.name("customer")
+				.build();
+	}
+    
+    @Bean
+    NewTopic serviceProvider() {
+		return TopicBuilder.name("serviceProvider")
+				.build();
+	}
+    
+    @Bean
+    NewTopic deliveryAnalytics() {
+		return TopicBuilder.name("analytics")
+				.build();
+	}
+    
+    
 }
