@@ -15,6 +15,7 @@ import org.springframework.boot.autoconfigure.jdbc.JdbcTemplateAutoConfiguration
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.elasticsearch.repository.config.EnableElasticsearchRepositories;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.core.JdbcTemplate;
 
@@ -29,6 +30,7 @@ import com.treblle.spring.annotation.EnableTreblle;
 @EntityScan("com.springimplant")
 @EnableJpaRepositories("com.springimplant")
 @EnableTreblle
+//@EnableElasticsearchRepositories
 @Configuration
 public class ConnectionpoolingApplication extends SpringBootServletInitializer implements CommandLineRunner{
 	
