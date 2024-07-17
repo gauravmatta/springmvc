@@ -4,9 +4,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.springimplant.dto.EmployeeDto;
 import com.springimplant.entity.Employee;
 import com.springimplant.service.EmployeeService;
 
@@ -16,9 +18,9 @@ public class EmployeeController {
 	@Autowired
 	EmployeeService service;
 	
-	@GetMapping("/add")
-	public ResponseEntity<?> getEmpById(@RequestBody Employee emp){
+	@PostMapping("/add")
+	public ResponseEntity<?> getEmpById(@RequestBody EmployeeDto emp){
 		service.addEmployee(emp);
-		return new ResponseEntity<Employee>(HttpStatus.ACCEPTED);
+		return new ResponseEntity<>(HttpStatus.ACCEPTED);
 	}
 }
