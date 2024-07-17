@@ -1,4 +1,4 @@
-package com.springimplant.main;
+package com.springimplant;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
