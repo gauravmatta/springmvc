@@ -12,4 +12,6 @@ public interface ContactService {
 	Contact getContact(Integer id);
 
 	Contact updateContact(ContactDto contact);
+
+	void deleteContact(Integer id);
 }

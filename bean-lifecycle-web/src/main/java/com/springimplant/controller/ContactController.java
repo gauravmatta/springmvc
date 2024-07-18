@@ -49,4 +49,10 @@ public class ContactController {
 	return ResponseEntity.ok(contact.toString());
 	}
 	
+	@GetMapping("delete/{id}")
+	public ResponseEntity<?> deleteContactByid(@PathVariable Integer id){
+	contactService.deleteContact(id);
+	return ResponseEntity.ok("Success");
+	}
+	
 }

@@ -35,4 +35,11 @@ public class ContactRepository {
 	public Contact update(Contact contact) {
 		return entityManager.merge(contact);
 	}
+	
+	@Transactional
+	public void delete(Integer id) {
+		Contact contact = entityManager.find(Contact.class,id);
+		entityManager.remove(contact);
+	}
+	
 }

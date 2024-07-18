@@ -61,5 +61,10 @@ public class ContactServiceImpl implements ContactService {
 		}
 		return null;
 	}
+	
+	@Override
+	public void deleteContact(Integer id) {
+		contactRepository.delete(id);
+	}
 
 }
