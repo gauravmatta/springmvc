@@ -27,5 +27,12 @@ public class ContactRepository {
 		return query.getResultList();
 	}
 	
+	public Contact findById(Integer id) {
+		return entityManager.find(Contact.class, id);
+	}
 	
+	@Transactional
+	public Contact update(Contact contact) {
+		return entityManager.merge(contact);
+	}
 }

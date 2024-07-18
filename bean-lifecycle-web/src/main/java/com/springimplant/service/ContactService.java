@@ -9,4 +9,7 @@ public interface ContactService {
 	public void createContact(ContactDto contact);
 
 	List<Contact> listContacts();
+	Contact getContact(Integer id);
+
+	Contact updateContact(ContactDto contact);
 }

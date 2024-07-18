@@ -41,5 +41,25 @@ public class ContactServiceImpl implements ContactService {
 	public List<Contact> listContacts() {
 		return contactRepository.findAll();
 	}
+	
+	@Override
+	public Contact getContact(Integer id) {
+		return contactRepository.findById(id);
+	}
+	
+	@Override
+	public Contact updateContact(ContactDto contact) {
+		mapper.disable(MapperFeature.USE_ANNOTATIONS);
+		StringWriter writer = new StringWriter();
+		try {
+			mapper.writeValue(writer, contact);
+			String jsonString = mapper.writeValueAsString(contact);
+			Contact c  = mapper.readValue(jsonString, Contact.class);
+			return contactRepository.update(c);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 
 }
