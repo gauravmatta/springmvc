@@ -18,7 +18,6 @@ public class Complaint {
 	@Column(name="idcomplaints",updatable = false, nullable = false)
 	@GenericGenerator(name="inc",strategy="increment")
 	@GeneratedValue(generator="inc")
-//	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
 	@Column(name="message")

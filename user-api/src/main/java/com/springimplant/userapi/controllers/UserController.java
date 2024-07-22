@@ -37,13 +37,13 @@ public class UserController {
 	}
 	
 	@GetMapping("/{id}")
-	public List<User> getUsersForACourse(@PathVariable("id") BigInteger id)
+	public List<User> getUsersForACourse(@PathVariable BigInteger id)
 	{
 		return userRepository.findByuserid(id);
 	}
 	
 	@GetMapping("course/{id}")
-	public List<User> getCourseForAUser(@PathVariable("id") BigInteger id)
+	public List<User> getCourseForAUser(@PathVariable BigInteger id)
 	{
 		return userRepository.findBycourseid(id);
 	}

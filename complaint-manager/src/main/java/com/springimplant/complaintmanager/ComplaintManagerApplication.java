@@ -1,11 +1,16 @@
 package com.springimplant.complaintmanager;
 
+import org.slf4j.MDC;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import com.ulisesbocchio.jasyptspringboot.annotation.EnableEncryptableProperties;
+
+import io.micrometer.context.ContextRegistry;
+import reactor.core.publisher.Hooks;
 
 @SpringBootApplication(scanBasePackages = "com.springimplant.complaintmanager")
 @EnableEncryptableProperties
@@ -17,6 +22,11 @@ public class ComplaintManagerApplication extends SpringBootServletInitializer {
     }
 
 	public static void main(String[] args) {
+		Hooks.enableAutomaticContextPropagation();
+		ContextRegistry.getInstance().registerThreadLocalAccessor("cid",
+				() -> MDC.get("cid"),
+				cid->MDC.put("cid",cid),
+				()->MDC.remove("cid"));
 		SpringApplication.run(ComplaintManagerApplication.class, args);
 	}
 

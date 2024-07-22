@@ -18,7 +18,7 @@ ${friends}
 </h1>
 <c:forEach var="friend" items="${friends}">
 <h3>${friend}</h3>
-<h2><c:out value="friend"></c:out></h2>
+<h2><c:out value="${friend}"></c:out></h2>
 </c:forEach>
 </body>
 </html>

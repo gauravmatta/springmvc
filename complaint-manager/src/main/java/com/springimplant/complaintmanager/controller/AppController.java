@@ -1,95 +1,90 @@
 package com.springimplant.complaintmanager.controller;
 
-import java.util.List;
+import java.security.Principal;
+import java.util.Map;
 
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.PropertySource;
-import org.springframework.core.env.Environment;
-import org.springframework.stereotype.Controller;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.reactive.function.client.WebClient;
 
-import com.springimplant.complaintmanager.config.Utils;
-import com.springimplant.complaintmanager.dao.ComplaintDao;
-import com.springimplant.complaintmanager.entities.Complaint;
+import com.springimplant.complaintmanager.service.MathService;
+
+import io.swagger.v3.oas.annotations.Hidden;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import lombok.extern.slf4j.Slf4j;
 
 @RestController
-@PropertySource({"classpath:admin-properties.properties"})
+@Slf4j
+@SecurityRequirement(name="auth")
 public class AppController
 {
 	@Autowired
 	SessionFactory sessionFactory;
+
+	@Autowired
+	private WebClient webClient;
 	
 	@Autowired
-	private Environment env;
-	
-	@Autowired
-	Utils utils;
+	@Qualifier("MathServiceImpl")
+	private MathService mathService;
 	
     @GetMapping("/helloworld")
-    public String helloWorld()
+    @Operation(
+    		tags = "GET Say Hello",
+    		description = "Say Hello",
+    		responses = {
+    				@ApiResponse(
+    						description = "Success",
+    						responseCode = "200"
+    						),
+    				@ApiResponse(
+    						description = "Data Not Found",
+    						responseCode = "404"
+    						)
+    		}
+    		)
+    public Map<String,String> helloWorld(@RequestParam(defaultValue = "World") String name)
     {
-    	return "HelloWorld";
+    	log.trace("Hello {}",name);
+    	return Map.of("greeting","Hello "+name);
     }
     
-    @GetMapping("/fileComplaint")
-    public String fileComplaint()
+    @GetMapping("/")
+    public String home(Principal principal)
     {
-    	Complaint complaint=new Complaint("Hello","Gaurav","gaurav@mail.com");
-    	Complaint complaint1=new Complaint("Test Message","Test","test@test.com");
-    	ComplaintDao complaintDao=new ComplaintDao(sessionFactory);
-    	complaintDao.insertComplaint(complaint);
-    	complaintDao.insertComplaint(complaint1);
-    	return "fileComplaint";
+    	log.info("Root ");
+    	return "Hello, "+ principal.getName();
     }
     
-    @PostMapping("/submitComplaint")
-    public String submitComplaint(
-    		@RequestParam("complaint") String complaint,
-    		@RequestParam("name") String name, 
-    		@RequestParam("email") String email)
-    {
-    	//System.out.println(complaint);
-    	ComplaintDao dao=new ComplaintDao(sessionFactory);
-    	Complaint comp=new Complaint(complaint,name,email);
-    	dao.insertComplaint(comp);
-    	return "submitComplaint";
+    @Hidden
+    @GetMapping("/webclient")
+    public String webClient(@RequestParam String name) {
+    	log.info("Webclient End Point Called");
+    	return webClient.get().uri("google.co.in")
+    			.retrieve().toEntity(String.class)
+    			.doOnNext(entity -> log.info("Response status: {}",entity))
+    			.mapNotNull(HttpEntity::getBody)
+    			.block();
     }
     
-    @RequestMapping(name="/showComplaints",method=RequestMethod.GET)
-    public String showComplaints()
-    {
-    	return "showEnterPassword";
+    @GetMapping("/addnumbers/{fnum}/{snum}")
+    public ResponseEntity<Integer> AddNumbers(
+    		@PathVariable("fnum") Integer firstNumber,
+    		@PathVariable("snum") Integer secondNumber
+    		){
+    	log.info("Adding Numbers");
+    	Integer sum = mathService.addNumbers(firstNumber, secondNumber);
+    	return new ResponseEntity<>(sum,HttpStatus.OK);
     }
     
-    @RequestMapping(name="/showComplaints",method=RequestMethod.POST)
-    public ModelAndView showComplaintsPost(@RequestParam("pass") String pass,ModelAndView modelAndView)
-    {
-    	String syspass=env.getProperty("admin.password");
-    	String encodedPass=utils.md5Java(pass);
-    	if(encodedPass.equals(syspass))
-    	{
-         	ComplaintDao complaintDao=new ComplaintDao(sessionFactory);
-         	List<Complaint> complaints=complaintDao.getAllComplaints();
-         	modelAndView.addObject("complaints", complaints);
-         	modelAndView.setViewName("showComplaints");
-        	for(Complaint c:complaintDao.getAllComplaints())
-        	{
-        		System.out.println(c);
-        	}
-    	}
-    	else
-    	{
-    		modelAndView.setViewName("showEnterPassword");
-    	}
-    	
-    	return modelAndView;
-    	
-    }
 }

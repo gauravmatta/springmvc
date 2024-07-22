@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
 @EnableJpaRepositories
-@ImportResource("classpath:app-config.xml")
+//@ImportResource("classpath:app-config.xml")
 public class VotingSystemApplication {
 
 	public static void main(String[] args) {
