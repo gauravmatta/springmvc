@@ -9,6 +9,7 @@ import org.springframework.data.domain.Slice;
 import org.springframework.stereotype.Service;
 
 import com.springimplant.connectionpooling.entity.Customers;
+import com.springimplant.connectionpooling.projection.ICustomers;
 import com.springimplant.connectionpooling.repository.CustomerRepository;
 import com.springimplant.connectionpooling.service.CustomerService;
 
