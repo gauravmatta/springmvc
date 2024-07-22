@@ -1,6 +1,5 @@
 package com.springimplant.currencyservice.consumer;
 
-import org.springframework.kafka.annotation.KafkaHandler;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
 
