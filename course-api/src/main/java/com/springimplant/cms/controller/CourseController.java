@@ -52,7 +52,7 @@ public class CourseController {
 	}
 	
 	@GetMapping("/staticcourses")
-	public List<Course> getCourses(@PathVariable("id") BigInteger id)
+	public List<Course> getStaticCourses()
 	{
 		return Stream.of(new Course(1,"Java","Gaurav"),
 				new Course(2,"Spring","Rohit"),
