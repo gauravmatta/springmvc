@@ -1,0 +1,22 @@
+[
+{
+"id":10000,
+"name":"Pencil",
+"quantity": 5
+},
+{
+"id":10001,
+"name":"Pen",
+"quantity": 3
+},
+{
+"id":10002,
+"name":"Eraser",
+"quantity": 15
+},
+{
+"id":10003,
+"name":"Sharpner",
+"quantity": 13
+}
+]

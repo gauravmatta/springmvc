@@ -1,0 +1,1 @@
+Alter table REGISTRATION_USERS ADD column phone varchar(15);

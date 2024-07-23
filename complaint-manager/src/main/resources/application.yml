@@ -1,0 +1,48 @@
+server:
+  port: 8081
+spring:
+  h2:
+    console:
+      enabled: true
+  jpa:
+    show-sql: true
+    generate-ddl: true
+    hibernate:
+      ddl-auto: update
+    database: POSTGRESQL
+    properties:
+      hibernate:
+       dialect: org.hibernate.dialect.PostgreSQLDialect
+       format_sql: true
+    open-in-view: false
+  profiles:
+    active: local
+  datasource:
+      tomcat:
+       connection-properties: stringtype=unspecified
+  mvc:
+    view:
+      prefix: /WEB-INF/jsp/
+      suffix: .jsp
+  docker:
+    compose:
+      enabled: true
+      file: docker-compose.yml
+logging:
+  pattern:
+    console: '%d{yyyy-MM-dd HH:mm:ss} %-5p [%-5level] [%thread] [%X{correlationId}] - %msg%n'
+  level:
+    root: INFO
+    '[org.hibernate]': info
+    '[org.springframework.web]': info
+    '[org.hibernate.sql]': debug
+    '[org.hibernate.type]': trace
+    '[org.hibernate.type.descriptor.sql]': trace
+    '[com.springimplant]' : TRACE
+    '[org.springframework.security]': TRACE
+jasypt:
+  encryptor:
+    password: springimplant
+flyway:
+  baselineOnMigrate: true
+  locations: classpath:db/migration

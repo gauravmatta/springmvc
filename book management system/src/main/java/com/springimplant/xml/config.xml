@@ -1,0 +1,384 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href=""?>
+<beans 
+xmlns="http://www.springframework.org/schema/beans"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xmlns:context="http://www.springframework.org/schema/context"
+xmlns:p="http://www.springframework.org/schema/p"
+xmlns:c="http://www.springframework.org/schema/c"
+xmlns:util="http://www.springframework.org/schema/util"
+xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd
+http://www.springframework.org/schema/context
+http://www.springframework.org/schema/context/spring-context.xsd
+http://www.springframework.org/schema/util
+http://www.springframework.org/schema/util/spring-util.xsd">
+
+<!-- Enables all Annotations of Java EE-->
+<context:annotation-config />
+<!-- Enables all Annotations of Java EE-->
+
+<!-- To Enable Particular Annotaion create it's bean -->
+<bean class="org.springframework.context.annotation.CommonAnnotationBeanPostProcessor"/>
+<!-- To Enable Particular Annotaion create it's bean -->
+
+<!-- Standalone Collections -->
+<!-- Bean of type Java util Properties-->
+<bean id="attendkey" class="java.util.Properties" name="attendenceKeys"/>
+<bean id="attendkey.load" class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+   <property name="targetObject"><ref bean="attendkey"/></property>
+   <property name="targetMethod"><value>putAll</value></property>
+   <property name="arguments">
+	   <props>
+		   <prop key="Present">1</prop>
+		   <prop key="Absent">-1</prop>
+	 </props>
+  </property>
+</bean>
+<util:properties id="dbconfig">
+	<prop key="driver">com.mysql.jdbc.Driver</prop>
+	<prop key="username">gaurav</prop>
+	<prop key="password">abc</prop>
+	<prop key="url">mysql:jdbc://localhost:3306/database</prop>
+</util:properties>
+<!-- Bean of type Java util Properties-->
+<!-- Bean of type Java util List-->
+<util:list list-class="java.util.LinkedList" id="presentAttendence">
+	<value>1</value>
+	<value>1</value>
+	<value>1</value>
+	<value>1</value>
+	<value>1</value>
+</util:list>
+<util:list list-class="java.util.Vector" id="absentAttendence">
+	<value>0</value>
+	<value>0</value>
+	<value>0</value>
+	<value>0</value>
+	<value>0</value>
+</util:list>
+<!-- Bean of type Java util List-->
+<!-- Bean of type Standalone Collection Map-->
+<util:map map-class="java.util.HashMap" id="alldistinction">
+	<entry key="Maths" value="75"></entry>
+	<entry key="English" value="75"></entry>
+	<entry key="Hindi" value="75"></entry>
+	<entry key="Knowledge" value="75"></entry>
+</util:map>
+<!-- Bean of type Standalone Collection Map-->
+<!-- Bean of type Java util Set-->
+<util:set set-class="java.util.LinkedHashSet" id="subjects">
+	<value>Maths</value>
+	<value>English</value>
+	<value>Hindi</value>
+	<value>Knowledge</value>
+</util:set>
+<!-- Bean of type Java util Set-->
+<!-- Standalone Collections -->
+
+<!-- Property Injection -->
+<bean class="com.springimplant.model.Student" name="Student1" scope="prototype">
+	<property name="studentId">
+		<value>1</value>
+	</property>
+	<property name="studentName">
+		<value>Gaurav</value>
+	</property>
+	<property name="streetAddress">
+		<value>D334</value>
+	</property>
+	<property name="weekAttendence" ref="presentAttendence"/>
+	<property name="favorites" ref="Subject1"/>
+	<property name="marks" ref="alldistinction"/>
+	<property name="subjects">
+		<set>
+		</set>
+	</property>
+	<property name="address">
+		<ref bean="delhi"/>
+	</property>
+</bean>
+
+<bean class="com.springimplant.model.Address" name="delhi">
+	<property name="state" value="Delhi"/>
+	<property name="city" value="New Delhi"/>
+</bean>
+
+<bean class="com.springimplant.model.Address" name="punjab">
+	<property name="state" value="Punjab"/>
+	<property name="city" value="Amritser"/>
+</bean>
+
+<bean class="com.springimplant.model.Address" name="mumbai">
+	<property name="state" value="Mumbai"/>
+	<property name="city" value="Bandra"/>
+</bean>
+
+<bean class="com.springimplant.model.Student" name="Student2">
+	<property name="studentId" value="234"/>
+	<property name="studentName" value="Manu"/>
+	<property name="streetAddress" value="B144" />
+	<property name="subjects">
+		<set>
+			<value>Maths</value>
+			<value>English</value>
+			<value>Hindi</value>
+			<value>Knowledge</value>
+		</set>
+	</property>
+	<property name="weekAttendence" ref="absentAttendence"/>
+	<property name="marks">
+		<map>
+			<entry key="Maths" value="50"></entry>
+			<entry key="English" value="60"></entry>
+			<entry key="Hindi" value="80"></entry>
+			<entry key="Knowledge" value="90"></entry>
+		</map>
+	</property>
+	<property name="attendenceKeys">
+		<props>
+			<prop key="Present">1</prop>
+			<prop key="Absent" >0</prop>
+		</props>
+	</property>
+	<property name="favorites">
+		<ref bean="Subject1" />
+	</property>
+	<property name="address">
+		<ref bean="mumbai"/>
+	</property>
+</bean>
+
+<bean class="com.springimplant.model.Student" name="Studentp" p:studentId="345" p:studentName="Nikhil" p:streetAddress="H190" p:favorites-ref="Subject1" p:address-ref="delhi"/>
+
+<bean class="com.springimplant.model.Book" name="Book1">
+	<property name="id" value="1"/>
+	<property name="title" value="Alphabets Writing"/>
+	<property name="author" value="Raj Comics"/>
+	<property name="price" value="30"/>
+</bean>
+
+<bean class="com.springimplant.model.Book" name="Book2">
+	<property name="id" value="2"/>
+	<property name="title" value="Phonics"/>
+	<property name="author" value="EduServe"/>
+	<property name="price" value="100"/>
+</bean>
+
+<bean class="com.springimplant.model.Subject" name="Subject1">
+	<property name="subjectId" value="1"></property>
+	<property name="subjectName" value="English"/>
+	<property name="books">
+		<list>
+			<ref bean="Book1"/>
+			<ref bean="Book2"/>
+			<ref bean="Bookc"/>
+			<ref bean="Book4"/>
+			<ref bean="Book8"/>
+		</list>
+	</property>
+</bean>
+<!-- Property Injection -->
+
+<!-- Constructor Injection -->
+<bean class="com.springimplant.model.Student" name="Student3">
+	<!-- Type is used to remove ambigutity among constructors-->
+	<constructor-arg value="1" type="int"/>
+	<constructor-arg value="Mukesh"/>
+	<constructor-arg value="M445"/>
+	<constructor-arg>
+		<list>
+			<value>1</value>
+			<value>1</value>
+			<value>1</value>
+			<value>1</value>
+			<value>1</value>
+			<null/>
+		</list>
+	</constructor-arg>
+	<constructor-arg>
+		<set>
+			<value>Maths</value>
+			<value>English</value>
+			<value>Hindi</value>
+			<value>Knowledge</value>
+		</set>
+	</constructor-arg>
+	<constructor-arg>
+		<map>
+			<entry key="Maths" value="10"></entry>
+			<entry key="English" value="20"></entry>
+			<entry key="Hindi" value="30"></entry>
+			<entry key="Knowledge" value="40"></entry>
+		</map>
+	</constructor-arg>
+	<constructor-arg>
+		<props>
+			<prop key="Present">1</prop>
+			<prop key="Absent" >0</prop>
+		</props>
+	</constructor-arg>
+	<constructor-arg ref="Subject1"/>
+	<constructor-arg ref="mumbai"/>
+</bean>
+<bean class="com.springimplant.model.Book" name="Bookc" c:id="3" c:title="Poems" c:author="Eduserve" c:price="70.00"/>
+<!-- Constructor Injection -->
+
+
+<!-- Constructor Ambiguity Problem Solution-->
+<bean class="com.springimplant.util.Calc" name="Cal1" >
+	<constructor-arg value="12"/>
+	<constructor-arg value="34"/>
+</bean>
+
+<bean class="com.springimplant.util.Calc" name="Cali" >
+	<constructor-arg value="10" type="int"/>
+	<constructor-arg value="30" type="int"/>
+</bean>
+<!-- Way to define index/order of constructor values-->
+<bean class="com.springimplant.util.Calc" name="Call" >
+	<constructor-arg value="50" type="double" index="1"/>
+	<constructor-arg value="100" type="double" index="0"/>
+</bean>
+<!-- Constructor Ambiguity Problem Solution-->
+
+<!-- Lifecycle Implementation init and destroy methods -->
+<bean class="com.springimplant.model.Book" name="Book4" init-method="init" destroy-method="destroy">
+	<property name="id" value="4"/>
+	<property name="title" value="Cursive Writing"/>
+	<property name="author" value="Pearsons"/>
+	<property name="price" value="150"/>
+</bean>
+<bean class="com.springimplant.model.Book" name="Book8" init-method="init" destroy-method="destroy">
+	<property name="id" value="8"/>
+	<property name="title" value="Essay"/>
+	<property name="author" value="Pearsons"/>
+	<property name="price" value="150"/>
+</bean>
+<bean class="com.springimplant.model.Book" name="Book5" init-method="init" destroy-method="destroy">
+	<property name="id" value="5"/>
+	<property name="title" value="Varanmala"/>
+	<property name="author" value="Raj Comics"/>
+	<property name="price" value="150"/>
+</bean>
+<bean class="com.springimplant.model.Book" name="Book6" init-method="init" destroy-method="destroy">
+	<property name="id" value="6"/>
+	<property name="title" value="Kavi Sandesh"/>
+	<property name="author" value="Raj Comics"/>
+	<property name="price" value="150"/>
+</bean>
+<bean class="com.springimplant.model.Book" name="Book7" init-method="init" destroy-method="destroy">
+	<property name="id" value="7"/>
+	<property name="title" value="Akshar Rachna"/>
+	<property name="author" value="Sahitya Katha"/>
+	<property name="price" value="150"/>
+</bean>
+<!-- Lifecycle Implementation init and destroy methods -->
+
+<!-- Implementing Bean Lifecycle using Interfaces-->
+<bean class="com.springimplant.model.Subject" name="Subject2">
+	<property name="subjectId" value="2"></property>
+	<property name="subjectName" value="Hindi"/>
+	<property name="books">
+		<list>
+			<ref bean="Book5"/>
+			<ref bean="Book6"/>
+			<ref bean="Book7"/>
+		</list>
+	</property>
+</bean>
+<!-- Implementing Bean Lifecycle using Interfaces-->
+
+<!-- Autowiring Beans -->
+<bean class="com.springimplant.model.Book" name="Book9" init-method="init" destroy-method="destroy">
+	<property name="id" value="9"/>
+	<property name="title" value="Baby Animals"/>
+	<property name="author" value="Wonder House Books"/>
+	<property name="price" value="200"/>
+</bean>
+
+<!-- Autowiring by Type -->
+<bean class="com.springimplant.model.Subject" name="favorites" autowire="byType">
+	<property name="subjectId" value="3"></property>
+	<property name="subjectName" value="Knowledge"/>
+</bean>
+<!-- Autowiring by Type -->
+
+<!-- Autowiring by constructor -->
+<bean class="com.springimplant.model.Subject" name="Subject4" autowire="constructor">
+	<property name="subjectId" value="4"></property>
+	<property name="subjectName" value="Activiti"/>
+</bean>
+<bean class="com.springimplant.model.Address" name="address">
+	<property name="state" value="Hyderabad"/>
+	<property name="city" value="Telangana"/>
+</bean>
+<bean class="com.springimplant.model.Student" name="Student5" autowire="constructor">
+	<constructor-arg value="5" type="int"/>
+	<constructor-arg value="Prateek"/>
+	<constructor-arg value="P14" />
+	<constructor-arg>
+		<set>
+			<value>Maths</value>
+			<value>English</value>
+			<value>Hindi</value>
+			<value>Knowledge</value>
+		</set>
+	</constructor-arg>
+	<constructor-arg>
+		<list>
+			<value>1</value>
+			<value>1</value>
+			<value>1</value>
+			<value>1</value>
+			<value>0</value>
+			<null/>
+		</list>
+	</constructor-arg>
+	<constructor-arg>
+		<map>
+			<entry key="Maths" value="20"></entry>
+			<entry key="English" value="30"></entry>
+			<entry key="Hindi" value="60"></entry>
+			<entry key="Knowledge" value="70"></entry>
+		</map>
+	</constructor-arg>
+</bean>
+<!-- Autowiring by constructor -->
+
+<!-- Autowiring by Name -->
+<bean class="com.springimplant.model.Student" name="Student4" autowire="byName">
+	<property name="studentId" value="4"/>
+	<property name="studentName" value="Amrik"/>
+	<property name="streetAddress" value="P14" />
+	<property name="subjects">
+		<set>
+			<value>Maths</value>
+			<value>English</value>
+			<value>Hindi</value>
+			<value>Knowledge</value>
+		</set>
+	</property>
+	<property name="weekAttendence">
+		<list>
+			<value>1</value>
+			<value>1</value>
+			<value>1</value>
+			<value>1</value>
+			<value>0</value>
+			<null/>
+		</list>
+	</property>
+	<property name="marks">
+		<map>
+			<entry key="Maths" value="20"></entry>
+			<entry key="English" value="30"></entry>
+			<entry key="Hindi" value="60"></entry>
+			<entry key="Knowledge" value="70"></entry>
+		</map>
+	</property>
+</bean>
+<!-- Autowiring by Name -->
+<bean class="com.springimplant.model.Teacher" name="Teach1"/>
+<!-- Autowiring Beans -->
+</beans>

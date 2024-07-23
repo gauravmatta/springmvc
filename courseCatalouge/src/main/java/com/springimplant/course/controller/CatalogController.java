@@ -35,7 +35,7 @@ public class CatalogController {
 	@HystrixCommand(fallbackMethod = "displayDefaultHome")
 	public String getCatalogHomeService() {
 		String courseAppMsg="";
-		InstanceInfo instanceInfo=eurekaClient.getNextServerFromEureka("springimplant-course-api",false);
+		InstanceInfo instanceInfo=eurekaClient.getNextServerFromEureka("SPRINGIMPLANT-COURSE-API",false);
 		String courseUrl=instanceInfo.getHomePageUrl();
 		RestTemplate restTemplate=new RestTemplate();
 		courseAppMsg=restTemplate.getForObject(courseUrl,String.class);
