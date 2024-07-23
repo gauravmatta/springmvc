@@ -30,7 +30,7 @@ public class SpringSessionController {
 	public String persistMessage(@RequestParam("msg") String msg,HttpServletRequest request) {
 		List<String> messages = (List<String>) request.getSession().getAttribute("MY_SESSION_MESSAGES");
 		if(messages==null) {
-			messages.add(msg);
+			messages = new ArrayList<>();
 			request.getSession().setAttribute("MY_SESSION_MESSAGES",messages);
 		}
 		messages.add(msg);
