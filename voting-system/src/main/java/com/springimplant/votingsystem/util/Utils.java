@@ -7,10 +7,11 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Component;
 
 import com.springimplant.votingsystem.repositories.UserRepo;
 
-
+@Component
 public class Utils {
 	
 	public static String md5Java(String message)

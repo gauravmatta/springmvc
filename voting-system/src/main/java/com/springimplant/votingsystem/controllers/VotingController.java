@@ -64,9 +64,6 @@ public class VotingController {
 			c.setNumberOfVotes(c.getNumberOfVotes()+1);
 			candidateRepo.save(c);
 			ctzn.setHasVoted(true);
-			Citizen citizen=citizenRepo.findById(ctid);
-			citizen.setHasVoted(true);
-			citizenRepo.save(citizen);
 			citizenRepo.save(ctzn);
 			return "voted.html";
 		}

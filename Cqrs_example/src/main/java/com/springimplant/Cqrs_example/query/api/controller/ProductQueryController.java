@@ -2,7 +2,6 @@ package com.springimplant.Cqrs_example.query.api.controller;
 
 import java.util.List;
 
-import org.axonframework.messaging.responsetypes.ResponseType;
 import org.axonframework.messaging.responsetypes.ResponseTypes;
 import org.axonframework.queryhandling.QueryGateway;
 import org.springframework.web.bind.annotation.GetMapping;

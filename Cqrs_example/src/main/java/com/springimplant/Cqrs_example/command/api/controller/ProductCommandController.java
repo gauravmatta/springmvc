@@ -13,9 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.springimplant.Cqrs_example.command.api.commands.CreateProductCommand;
 import com.springimplant.Cqrs_example.command.api.model.ProductRestModel;
 
-import lombok.extern.log4j.Log4j;
-import lombok.extern.log4j.Log4j2;
-
 @RestController
 @RequestMapping("/products")
 public class ProductCommandController {

@@ -36,6 +36,8 @@ public class index {
 	{
 		Citizen c1=new Citizen(1L,"Gaurav");
 		citizenRepo.save(c1);
+		Citizen c2=new Citizen(2L,"Manu");
+		citizenRepo.save(c2);
 		Candidate cd1=new Candidate(1L,"AAP");
 		Candidate cd2=new Candidate(2L,"BJP");
 		Candidate cd3=new Candidate(3L,"Congress");

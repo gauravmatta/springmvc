@@ -3,18 +3,30 @@ package com.springimplant.mvc.model;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+
+
+@Entity
+@Table(name="account_details")
 public class Account implements Serializable {
 	
 public static final long serialVersionUID = 1L;
-	
+	@Id
+	@Column(name = "student_id")
 	private String id;
-	private String name;
+	@Column(name = "account_nymber")
+	private String number;
+	@Column(name = "balance")
 	private BigDecimal balance;
 	
-	public Account(String id, String name, BigDecimal balance) {
+	public Account(String id, String number, BigDecimal balance) {
 		super();
 		this.id = id;
-		this.name = name;
+		this.number = number;
 		this.balance = balance;
 	}
 	
@@ -24,7 +36,7 @@ public static final long serialVersionUID = 1L;
 	
 	@Override
 	public String toString() {
-		return "Account [id=" + id + ", name=" + name + ", balance=" + balance + "]";
+		return "Account [id=" + id + ", name=" + number + ", balance=" + balance + "]";
 	}
 
 	public String getId() {
@@ -33,11 +45,11 @@ public static final long serialVersionUID = 1L;
 	public void setId(String id) {
 		this.id = id;
 	}
-	public String getName() {
-		return name;
+	public String getNumber() {
+		return number;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setNumber(String number) {
+		this.number = number;
 	}
 	public BigDecimal getBalance() {
 		return balance;
