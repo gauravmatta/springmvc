@@ -1,5 +1,10 @@
 {"properties": [
   {
+    "name": "spring.kafka.topic.name",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.kafka.topic.name'"
+  },
+  {
     "name": "organization.name",
     "type": "java.lang.String",
     "description": "A description for 'organization.name'"
@@ -8,10 +13,5 @@
     "name": "service.welcome.message",
     "type": "java.lang.String",
     "description": "A description for 'service.welcome.message'"
-  },
-  {
-    "name": "spring.kafka.topic.name",
-    "type": "java.lang.String",
-    "description": "A description for 'spring.kafka.topic.name'"
   }
 ]}
