@@ -8,7 +8,7 @@ import org.jboss.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.springimplant.votingsystem.entity.Candidate;
@@ -27,14 +27,14 @@ public class VotingController {
 	@Autowired
 	CandidateRepo candidateRepo;
 	
-	@RequestMapping("/")
+	@GetMapping("/")
 	public String goToVote()
 	{
 		logger.info("Voting Started");
 		return "vote.html";
 	}
 	
-	@RequestMapping("/casteVote")
+	@GetMapping("/casteVote")
 	public String casteVote(@RequestParam String name,Model model,HttpSession session)
 	{
 		Citizen citizen=citizenRepo.findByName(name);
@@ -53,18 +53,20 @@ public class VotingController {
 		}
 	}
 	
-	@RequestMapping("/voteFor")
+	@GetMapping("/voteFor")
 	public String voteFor(@RequestParam Long id,@RequestParam Long ctid,HttpSession session)
 	{
 		Citizen ctzn=(Citizen)session.getAttribute("citizen");
 		
 		if(!ctzn.isHasVoted())
 		{
-			Candidate c= candidateRepo.findById(id).get();
+			Candidate c= candidateRepo.findById(id).orElse(null);
+			if(c!=null) {
 			c.setNumberOfVotes(c.getNumberOfVotes()+1);
 			candidateRepo.save(c);
 			ctzn.setHasVoted(true);
 			citizenRepo.save(ctzn);
+			}
 			return "voted.html";
 		}
 		return "hasVoted.html";
