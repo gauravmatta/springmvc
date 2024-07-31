@@ -26,7 +26,7 @@ public class User extends Utils {
 	private String password;
 	
 	@ManyToMany(targetEntity=Roles.class)
-	private Set roleSet;
+	private Set<Roles> roleSet;
 
 	public Long getId() {
 		return id;
@@ -36,7 +36,7 @@ public class User extends Utils {
 		super();
 	}
 
-	public User(Long id, String username, String password, Set roleSet) {
+	public User(Long id, String username, String password, Set<Roles> roleSet) {
 		super();
 		this.id = id;
 		this.username = username;
@@ -64,11 +64,11 @@ public class User extends Utils {
 		this.password = password;
 	}
 
-	public Set getRoleSet() {
+	public Set<Roles> getRoleSet() {
 		return roleSet;
 	}
 
-	public void setRoleSet(Set roleSet) {
+	public void setRoleSet(Set<Roles> roleSet) {
 		this.roleSet = roleSet;
 	}
 }
