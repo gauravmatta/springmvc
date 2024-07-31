@@ -8,6 +8,7 @@ import org.jboss.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -33,7 +34,7 @@ public class LoginController {
 	@Autowired
 	Utils utils;
 	
-	@RequestMapping("/")
+	@GetMapping("/")
 	public String login()
 	{
 		logger.info("Admin Login");
@@ -46,7 +47,7 @@ public class LoginController {
 		User u= userRepo.findByUsername(login);
 		if(u!=null)
 		{
-			String encodedPassword=utils.md5Java(password);
+			String encodedPassword=Utils.md5Java(password);
 			String givenPassword=u.getPassword();
 			logger.info(encodedPassword+"==>"+givenPassword);
 			if(encodedPassword.equals(givenPassword))

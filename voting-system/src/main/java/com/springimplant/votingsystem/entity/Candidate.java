@@ -12,8 +12,6 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.ColumnTransformer;
-import org.hibernate.annotations.Type;
-import org.springframework.core.LocalVariableTableParameterNameDiscoverer;
 
 import com.springimplant.votingsystem.entity.converter.CandidateDetailConverter;
 import com.springimplant.votingsystem.entity.json.object.CandidateDetail;
@@ -45,7 +43,7 @@ public class Candidate {
 	@ColumnTransformer(write = "?::jsonb")
 	private List<CandidateDetail> details;
 	
-	public Candidate(Long id, String name) {
+	public Candidate(String name) {
 		super();
 		this.name = name;
 		List<CandidateDetail> cdl = new ArrayList<>();

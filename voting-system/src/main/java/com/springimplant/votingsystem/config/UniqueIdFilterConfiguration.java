@@ -22,7 +22,7 @@ public class UniqueIdFilterConfiguration {
 	private String authorizationToken = AUTHRIZATION_STRING_TOKEN;
 	
 	@Bean
-	public FilterRegistrationBean<UniqueIdFilter> servletRegistrationBean() {
+	FilterRegistrationBean<UniqueIdFilter> servletRegistrationBean() {
 		final FilterRegistrationBean<UniqueIdFilter> registerationBean = new FilterRegistrationBean<>();
 		final UniqueIdFilter log4jMDCFilterFilter  = new UniqueIdFilter(authorizationToken,responseHeader,mdcKey,requestHeader);
 		registerationBean.setFilter(log4jMDCFilterFilter);

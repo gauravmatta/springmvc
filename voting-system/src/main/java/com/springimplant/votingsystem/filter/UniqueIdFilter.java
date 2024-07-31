@@ -9,13 +9,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.jboss.logging.MDC;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import com.springimplant.votingsystem.config.UniqueIdFilterConfiguration;
-
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -40,6 +40,7 @@ public class UniqueIdFilter extends OncePerRequestFilter {
 		this.requestHeader = requestHeader;
 	}
 	
+	@Autowired
 	public UniqueIdFilter() {
 		super();
 		authHeader=UniqueIdFilterConfiguration.AUTHRIZATION_STRING_TOKEN;
@@ -62,7 +63,7 @@ public class UniqueIdFilter extends OncePerRequestFilter {
 		if(hasAuthorizationHeader(request)) {
 			authToken=getAccessToken(request);
 			response.addHeader(authHeader, authToken);
-//			setAuthenticationContext(authToken,request);	
+			setAuthenticationContext(authToken,request);	
 		}
 		
 		
