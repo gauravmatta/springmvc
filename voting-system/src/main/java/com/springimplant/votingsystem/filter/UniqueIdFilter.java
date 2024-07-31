@@ -1,7 +1,6 @@
 package com.springimplant.votingsystem.filter;
 
 import java.io.IOException;
-import java.util.Enumeration;
 import java.util.UUID;
 
 import javax.servlet.FilterChain;
@@ -17,7 +16,6 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import com.springimplant.votingsystem.config.UniqueIdFilterConfiguration;
-
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;

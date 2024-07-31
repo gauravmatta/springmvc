@@ -6,7 +6,6 @@ import java.security.NoSuchAlgorithmException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
 import com.springimplant.votingsystem.repositories.UserRepo;

@@ -10,7 +10,6 @@ import org.jboss.logging.Logger;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.springimplant.votingsystem.controllers.LoginController;
 import com.springimplant.votingsystem.entity.json.object.CandidateDetail;
 
 @Converter(autoApply = true)
