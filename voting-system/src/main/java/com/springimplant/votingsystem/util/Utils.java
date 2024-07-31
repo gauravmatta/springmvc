@@ -28,14 +28,11 @@ public class Utils {
 			} 
 			digest = sb.toString(); 
 		} 
-		catch (UnsupportedEncodingException ex) 
+		catch (UnsupportedEncodingException | NoSuchAlgorithmException ex) 
 		{ 
 			Logger.getLogger(UserRepo.class.getName()).log(Level.SEVERE, null, ex); 
 		} 
-		catch (NoSuchAlgorithmException ex) 
-		{ 
-			Logger.getLogger(UserRepo.class.getName()).log(Level.SEVERE, null, ex); 
-		} 
+		 
 		return digest; 
 	}
 }

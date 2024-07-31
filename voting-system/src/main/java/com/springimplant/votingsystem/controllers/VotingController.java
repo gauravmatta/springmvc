@@ -28,6 +28,8 @@ public class VotingController {
 	@Autowired
 	CandidateRepo candidateRepo;
 	
+	private static final String CITIZEN = "citizen";  
+	
 	@GetMapping("/")
 	public String goToVote()
 	{
@@ -39,13 +41,13 @@ public class VotingController {
 	public String casteVote(@RequestParam String name,Model model,HttpSession session)
 	{
 		Citizen citizen=citizenRepo.findByName(name);
-		session.setAttribute("citizen",citizen);
+		session.setAttribute(CITIZEN,citizen);
 		logger.info(citizen.getName()+" is about to caste vote");
 		if(!citizen.isHasVoted())
 		{
 			List<Candidate> candidates=candidateRepo.findAll();
 			model.addAttribute("candidates",candidates);
-			model.addAttribute("citizen",citizen);
+			model.addAttribute(CITIZEN,citizen);
 			return "performVote.html";
 		}
 		else
@@ -57,7 +59,7 @@ public class VotingController {
 	@GetMapping("/voteFor")
 	public String voteFor(@RequestParam Long id,@RequestParam Long ctid,HttpSession session)
 	{
-		Citizen ctzn=(Citizen)session.getAttribute("citizen");
+		Citizen ctzn=(Citizen)session.getAttribute(CITIZEN);
 		
 		if(!ctzn.isHasVoted())
 		{
@@ -73,6 +75,5 @@ public class VotingController {
 		}
 		return "hasVoted.html";
 	}
-	
 }
 

@@ -47,7 +47,7 @@ public class LoginController {
 		User u= userRepo.findByUsername(login);
 		if(u!=null)
 		{
-			String encodedPassword=utils.md5Java(password);
+			String encodedPassword=Utils.md5Java(password);
 			String givenPassword=u.getPassword();
 			logger.info(encodedPassword+"==>"+givenPassword);
 			if(encodedPassword.equals(givenPassword))
