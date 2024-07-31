@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.springimplant.votingsystem.entity.Candidate;
@@ -34,7 +35,7 @@ public class VotingController {
 		return "vote.html";
 	}
 	
-	@GetMapping("/casteVote")
+	@PostMapping("/casteVote")
 	public String casteVote(@RequestParam String name,Model model,HttpSession session)
 	{
 		Citizen citizen=citizenRepo.findByName(name);
@@ -63,6 +64,7 @@ public class VotingController {
 			Candidate c= candidateRepo.findById(id).orElse(null);
 			if(c!=null) {
 			c.setNumberOfVotes(c.getNumberOfVotes()+1);
+			c.setDetails(c.getDetails());
 			candidateRepo.save(c);
 			ctzn.setHasVoted(true);
 			citizenRepo.save(ctzn);

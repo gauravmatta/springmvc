@@ -16,5 +16,6 @@ public class CandidateDetail implements Serializable {
 	protected String year;
 	protected String assets;
 	protected String liabilities;
+	protected String hasManifesto;
 
 }

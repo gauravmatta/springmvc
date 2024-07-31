@@ -1,6 +1,7 @@
 package com.springimplant.votingsystem.filter;
 
 import java.io.IOException;
+import java.util.Enumeration;
 import java.util.UUID;
 
 import javax.servlet.FilterChain;
@@ -9,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.jboss.logging.MDC;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
@@ -40,6 +42,7 @@ public class UniqueIdFilter extends OncePerRequestFilter {
 		this.requestHeader = requestHeader;
 	}
 	
+	@Autowired
 	public UniqueIdFilter() {
 		super();
 		authHeader=UniqueIdFilterConfiguration.AUTHRIZATION_STRING_TOKEN;
@@ -62,7 +65,7 @@ public class UniqueIdFilter extends OncePerRequestFilter {
 		if(hasAuthorizationHeader(request)) {
 			authToken=getAccessToken(request);
 			response.addHeader(authHeader, authToken);
-//			setAuthenticationContext(authToken,request);	
+			setAuthenticationContext(authToken,request);	
 		}
 		
 		
