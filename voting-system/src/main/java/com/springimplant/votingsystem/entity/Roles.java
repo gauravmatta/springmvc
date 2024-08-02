@@ -6,6 +6,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import com.springimplant.votingsystem.validators.ValidateRoleType;
+
 @Entity(name="roles")
 public class Roles {
 
@@ -15,6 +17,7 @@ public class Roles {
 	private Long id;
 	
 	@Column(name="roleName")
+	@ValidateRoleType
 	private String roleName;
 
 	public Long getId() {
