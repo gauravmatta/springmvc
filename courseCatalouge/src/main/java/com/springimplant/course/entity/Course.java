@@ -1,4 +1,4 @@
-package com.springimplant.course.core;
+package com.springimplant.course.entity;
 
 import java.math.BigInteger;
 

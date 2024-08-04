@@ -5,22 +5,30 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 import com.netflix.appinfo.InstanceInfo;
 import com.netflix.discovery.EurekaClient;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
-import com.springimplant.course.core.Course;
-import com.springimplant.course.core.User;
+import com.springimplant.course.entity.Course;
+import com.springimplant.course.entity.Order;
+import com.springimplant.course.entity.User;
+import com.springimplant.course.service.OrderService;
 
 @RestController
 public class CatalogController {
 	
 	@Autowired
 	private EurekaClient eurekaClient;
+	
+	@Autowired
+	private OrderService orderService;
 
 	@GetMapping("/")
 	public String getCatalogHome() {
@@ -45,6 +53,12 @@ public class CatalogController {
 	public String displayDefaultHome()
 	{
 		return("Welcome to SpringImplant"+" Please try after sometime");
+	}
+	
+	@GetMapping("/getorders")
+	public ResponseEntity<List<Order>> getOrderList(){
+		List<Order> orders = orderService.getOrders();
+		return ResponseEntity.ok().body(orders);
 	}
 	
 	@GetMapping("/catalog")
