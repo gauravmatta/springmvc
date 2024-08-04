@@ -20,7 +20,7 @@ public class UserApiApplication {
 class config {
 	
 	@Bean
-	@LoadBalanced
+//	@LoadBalanced
 	public RestTemplate restTemplate() {
 		return new RestTemplate();
 	}

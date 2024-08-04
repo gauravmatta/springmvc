@@ -5,6 +5,7 @@ import java.math.BigInteger;
 
 public class UserId implements Serializable
 {
+	private static final long serialVersionUID = -432332417926431247L;
 	private BigInteger userid;
 	private BigInteger courseid;
 	
