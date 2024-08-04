@@ -28,7 +28,6 @@ public class OrderServiceImpl implements OrderService {
 	public List<OrderDao> getOrders() {
 		InstanceInfo instanceInfo=eurekaClient.getNextServerFromEureka("springimplant-coursecatalog",false);
 		String catalougeUrl=instanceInfo.getHomePageUrl();
-//		String catalougeUrl="http://localhost:8002/";
 		System.out.println(catalougeUrl);
 //		ResponseEntity<List<OrderDao>> dao=restTemplate.getForObject(catalougeUrl+"getorders",ResponseEntity.class);
 		ResponseEntity<List<OrderDao>> dao=restTemplate.exchange(catalougeUrl+"getorders",HttpMethod.GET,null,new ParameterizedTypeReference<List<OrderDao>>() {});
