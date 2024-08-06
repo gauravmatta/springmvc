@@ -14,8 +14,8 @@
     <property name="current_session_context_class">thread</property>
     <property name="show_sql">true</property>
     <property name="format_sql">true</property>
-    <property name="cache.use_second_level_cache">true</property>
-    <property name="cache.region.factory_class">org.hibernate.cache.ehcache.internal.EhcacheRegionFactory</property>
+    <property name="hibernate.cache.use_second_level_cache">true</property>
+    <property name="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.internal.EhcacheRegionFactory</property>
     <property name="hbm2ddl.auto">update</property>
     <mapping class="com.springimplant.entity.Employee"/>
     <mapping class="com.springimplant.entity.Student"/>
