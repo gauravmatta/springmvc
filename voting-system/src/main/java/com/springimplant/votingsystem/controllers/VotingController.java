@@ -21,8 +21,6 @@ import com.springimplant.votingsystem.entity.Citizen;
 import com.springimplant.votingsystem.repositories.CandidateRepo;
 import com.springimplant.votingsystem.repositories.CitizenRepo;
 
-import lombok.extern.slf4j.Slf4j;
-
 @Controller
 @CacheConfig(cacheNames= "candidates")
 public class VotingController {
