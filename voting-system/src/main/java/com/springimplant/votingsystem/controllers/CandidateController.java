@@ -31,9 +31,15 @@ public class CandidateController {
 	CandidateRepo candidateRepo;
 
 	@GetMapping("/candidate/{id}")
-	@Cacheable(key = "#id")
+	@Cacheable(value="candidate",key = "#id")
 	public Candidate getCandidate(@PathVariable Long id) {
 		logger.info("Fetching Candidate from DB with id "+id);
+		try {
+			Thread.sleep(9000);
+		} catch (InterruptedException e) {
+			Thread.currentThread().interrupt();
+			e.printStackTrace();
+		}
 		return candidateRepo.findById(id).orElse(null);
 	}
 	
