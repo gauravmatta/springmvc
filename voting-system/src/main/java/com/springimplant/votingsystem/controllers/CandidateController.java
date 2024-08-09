@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -32,8 +33,8 @@ public class CandidateController {
 
 	@GetMapping("/candidate/{id}")
 	@Cacheable(value="candidate",key = "#id")
-	public Candidate getCandidate(@PathVariable Long id) {
-		logger.info("Fetching Candidate from DB with id "+id);
+	public Candidate getCandidate(@PathVariable Long id,@RequestHeader("correlationid") String hid) {
+		logger.info("Fetching Candidate from DB with id "+id+" with id "+hid);
 		try {
 			Thread.sleep(9000);
 		} catch (InterruptedException e) {
