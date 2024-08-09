@@ -1,5 +1,0 @@
-hazlecast:
-  network:
-     join:
-       multicast:
-         enabled: true
