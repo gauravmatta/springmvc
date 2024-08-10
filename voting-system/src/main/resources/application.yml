@@ -26,11 +26,16 @@ spring:
   security:
     user:
       name: foo
-      password: bar 
+      password: bar
 server:
   port: 8081
-
-logging:
+  ssl:
+    key-alias: server
+    key-password: changeit
+    key-store: classpath:server
+    key-store-provider: SUN
+    key-store-type: JKS
+    client-auth: want
   pattern:
     console: '%d{yyyy-MM-dd HH:mm:ss} [%X{correlationId}] - %msg%n'
   level:
