@@ -1,4 +1,4 @@
-package com.springimplant.complaintsystem;
+package com.springimplnt.complaintsystem;
 
 /**
  * Hello world!
