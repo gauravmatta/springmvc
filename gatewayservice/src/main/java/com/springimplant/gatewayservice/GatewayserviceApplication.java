@@ -5,21 +5,22 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.gateway.route.RouteLocator;
 import org.springframework.cloud.gateway.route.builder.RouteLocatorBuilder;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
+import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 import org.springframework.context.annotation.Bean;
 
 import com.springimplant.gatewayservice.constants.AppConstants;
 
 @SpringBootApplication
 @EnableEurekaClient
-//@EnableZuulProxy
+@EnableZuulProxy
 public class GatewayserviceApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(GatewayserviceApplication.class, args);
 	}
 
-	@Bean
-	public RouteLocator customRouteLocator(RouteLocatorBuilder builder) {
+    @Bean
+    RouteLocator customRouteLocator(RouteLocatorBuilder builder) {
 		return builder.routes()
 				.route(AppConstants.STUDENT_SERVICE_KEY,r->r.path("/api/student/**")
 				.filters(f->f.stripPrefix(2)).uri("http://localhost:8003"))
