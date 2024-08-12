@@ -1,45 +1,61 @@
 package com.springimplant.complaintsystem.controllers;
 
+import java.util.List;
+
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.springimplant.complaintsystem.dao.ComplaintDao;
 import com.springimplant.complaintsystem.entities.Complaint;
 
 @Controller
+@PropertySource({"classpath:admin-properties.properties"})
 public class AppController {
 	
 	@Autowired
 	SessionFactory sessionFactory;
 	
+	@Autowired
+	private Environment env;
+	
 	@RequestMapping("/fileComplaint")
 	public String fileComplaint() {
-		Complaint p = new Complaint(4,"Hello","Gaurav","gaurav@gaurav.com");
-		ComplaintDao dao= new ComplaintDao(sessionFactory);
-		dao.insertComplaint(p);
-		for(Complaint i : dao.getAllComplaints()) {
-			System.out.println(i.getMessage());
-		}
 		return "fileComplaint";
 	}
 	
 	@RequestMapping("/submitComplaint")
-	public String submitComplaint() {
+	public String submitComplaint(@RequestParam("complaint") String complaint,@RequestParam("name") String name,@RequestParam("email") String email) {
+		ComplaintDao dao= new ComplaintDao(sessionFactory);
+		Complaint p = new Complaint(complaint,name,email);
+		dao.insertComplaint(p);
+		System.out.println("Inserted Complaint");
 		return "submitComplaint";
 	}
 	
-	@GetMapping(name="/showComplaints")
+	@GetMapping("/showComplaints")
 	public String showComplaints() {
 		return "showEnterPassword";
 	}
 	
-	@PostMapping(name="/showComplaints")
-	public String showComplaintsPost() {
-		return "showComplaints";
+	@PostMapping("/showComplaints")
+	public ModelAndView showComplaintsPost(@RequestParam("pass") String pass,ModelAndView modelAndView) {
+		if(pass.equals(env.getProperty("admin.password"))) {
+			ComplaintDao dao= new ComplaintDao(sessionFactory);
+			List<Complaint> complaints = dao.getAllComplaints();
+			modelAndView.addObject("complaints", complaints);
+			modelAndView.setViewName("showComplaints");
+		} else {
+			modelAndView.setViewName("showEnterPassword");
+		}
+		return modelAndView;
 	}
 
 }

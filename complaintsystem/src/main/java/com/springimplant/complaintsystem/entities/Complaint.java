@@ -1,7 +1,14 @@
 package com.springimplant.complaintsystem.entities;
 
+
+
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.IdGeneratorType;
+import org.hibernate.annotations.UuidGenerator;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
@@ -11,6 +18,8 @@ public class Complaint {
 
 	@Id
 	@Column(name = "id")
+	@GenericGenerator(name = "inc",strategy = "increment")
+	@GeneratedValue(generator = "inc")
 	private Integer id;
 	
 	@Column(name = "message")
@@ -26,9 +35,8 @@ public class Complaint {
 		super();
 	}
 
-	public Complaint(Integer id, String message, String senderName, String senderEmail) {
+	public Complaint(String message, String senderName, String senderEmail) {
 		super();
-		this.id = id;
 		this.message = message;
 		this.senderName = senderName;
 		this.senderEmail = senderEmail;
