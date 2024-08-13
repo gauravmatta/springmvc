@@ -19,7 +19,7 @@ public class SpringCloudFunctionExampleApplication {
 
     @Bean
     Function<String, String> reverse(){
-		return (input) -> new StringBuilder(input).reverse().toString();
+		return input -> new StringBuilder(input).reverse().toString();
 	}
 
     @Bean
@@ -29,7 +29,7 @@ public class SpringCloudFunctionExampleApplication {
 
     @Bean
     Consumer<String> printMsg(){
-		return (input)->System.out.println(input);
+		return input->System.out.println(input);
 	}
 
 }
