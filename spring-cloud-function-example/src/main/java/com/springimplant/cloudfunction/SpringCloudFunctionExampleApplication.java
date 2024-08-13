@@ -15,7 +15,10 @@ import com.springimplant.cloudfunction.api.Book;
 import com.springimplant.cloudfunction.api.Order;
 import com.springimplant.cloudfunction.repository.OrderDao;
 
+import lombok.extern.slf4j.Slf4j;
+
 @SpringBootApplication
+@Slf4j
 public class SpringCloudFunctionExampleApplication {
 
 	@Autowired
@@ -37,7 +40,7 @@ public class SpringCloudFunctionExampleApplication {
 
 	@Bean
 	Consumer<String> printMsg() {
-		return input -> System.out.println(input);
+		return input -> log.info(input);
 	}
 
 	@Bean
