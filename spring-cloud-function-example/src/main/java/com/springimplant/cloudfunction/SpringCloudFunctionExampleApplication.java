@@ -48,7 +48,7 @@ public class SpringCloudFunctionExampleApplication {
 	@Bean
 	Function<String, List<Order>> findOrderByName() {
 		return input -> orderDao.buildOrders().stream().filter(order -> order.getName().equals(input))
-				.toList();
+				.collect(Collectors.toList());
 	}
 
 }
