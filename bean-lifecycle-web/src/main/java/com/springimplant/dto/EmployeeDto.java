@@ -6,12 +6,11 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
 @ToString
 public class EmployeeDto {
 
-	private int EID;
-	private String Names;
-	private long Salary;
+	public int EID;
+	public String Names;
+	public long Salary;
 }
