@@ -2,18 +2,19 @@ package com.springimplant.userapi.controllers;
 
 import java.math.BigInteger;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
-import com.springimplant.userapi.entity.User;
-import com.springimplant.userapi.repository.UserRepository;
+import com.springimplant.userapi.sqllite.entity.User;
+import com.springimplant.userapi.sqllite.repository.UserRepository;
 
 @RestController
 public class UserController {
@@ -23,6 +24,7 @@ public class UserController {
 	
 	@Autowired
 	private RestTemplate restTemplate;
+	
 	
 	@GetMapping("/auth")
 	public String getmsg() {

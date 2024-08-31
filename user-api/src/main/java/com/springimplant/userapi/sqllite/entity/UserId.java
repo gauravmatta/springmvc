@@ -1,4 +1,4 @@
-package com.springimplant.userapi.entity;
+package com.springimplant.userapi.sqllite.entity;
 
 import java.io.Serializable;
 import java.math.BigInteger;
