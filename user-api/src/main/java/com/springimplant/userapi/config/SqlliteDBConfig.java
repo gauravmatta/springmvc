@@ -44,7 +44,7 @@ public class SqlliteDBConfig {
 	  		Map<String, String> props = new HashMap<>();
 	  		props.put("hibernate.dialect", "org.sqlite.hibernate.dialect.SQLiteDialect");
 	  		props.put("hibernate.show_sql","true");
-	  		props.put("hibernate.hbm2ddl.auto","update");
+	  		props.put("hibernate.hbm2ddl.auto","none");
 	  		bean.setJpaPropertyMap(props);
 	  		return bean;
 	  	}
