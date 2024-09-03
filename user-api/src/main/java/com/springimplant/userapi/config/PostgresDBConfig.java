@@ -21,9 +21,9 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories(
-		entityManagerFactoryRef = "entityManagerFactoryBean",
+		entityManagerFactoryRef = "postgresEntityManagerFactoryBean",
 		basePackages = {"com.springimplant.userapi.postgres.repository"},
-		transactionManagerRef = "transactionManager"
+		transactionManagerRef = "postgresTransactionManager"
 		)
 public class PostgresDBConfig {
 	

@@ -34,7 +34,6 @@ public class SqlliteDBConfig {
 	    }
 	  	
 	  	@Bean(name = "sqlliteEntityManagerFactoryBean")
-	  	@Primary
 	  	LocalContainerEntityManagerFactoryBean entityManagerFactoryBean() {
 	  		LocalContainerEntityManagerFactoryBean bean=new LocalContainerEntityManagerFactoryBean();
 	  		bean.setDataSource(sqlliteDataSource());
@@ -49,7 +48,6 @@ public class SqlliteDBConfig {
 	  		return bean;
 	  	}
 	  	
-	  	@Primary
 	  	@Bean(name = "sqlliteTransactionManager")
 	  	PlatformTransactionManager transactionManager() {
 	  		JpaTransactionManager manager=new JpaTransactionManager();
