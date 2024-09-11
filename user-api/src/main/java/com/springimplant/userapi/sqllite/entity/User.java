@@ -2,9 +2,9 @@ package com.springimplant.userapi.sqllite.entity;
 
 import java.math.BigInteger;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.IdClass;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.IdClass;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 

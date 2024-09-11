@@ -28,5 +28,15 @@
     "name": "emailapi.ribbon.eureka.enabled",
     "type": "java.lang.String",
     "description": "A description for 'emailapi.ribbon.eureka.enabled'"
+  },
+  {
+    "name": "emailapi.ribbon.ServerListRefreshInterval",
+    "type": "java.lang.String",
+    "description": "A description for 'emailapi.ribbon.ServerListRefreshInterval'"
+  },
+  {
+    "name": "emailapi.ribbon.ServerListRefreshInterval",
+    "type": "java.lang.String",
+    "description": "A description for 'emailapi.ribbon.ServerListRefreshInterval'"
   }
 ]}
