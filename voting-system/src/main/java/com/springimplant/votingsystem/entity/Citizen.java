@@ -1,5 +1,7 @@
 package com.springimplant.votingsystem.entity;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,7 +18,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Entity
 @Table(name="citizens")
-public class Citizen {
+public class Citizen implements Serializable {
+
+	private static final long serialVersionUID = 1308803178417398811L;
 
 	@Id
 	@Column(name="id")

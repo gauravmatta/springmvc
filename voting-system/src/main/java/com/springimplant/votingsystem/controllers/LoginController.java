@@ -8,8 +8,9 @@ import org.jboss.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.springimplant.votingsystem.entity.Candidate;
@@ -33,20 +34,20 @@ public class LoginController {
 	@Autowired
 	Utils utils;
 	
-	@RequestMapping("/")
+	@GetMapping("/")
 	public String login()
 	{
 		logger.info("Admin Login");
 		return "login.html";
 	}
 	
-	@RequestMapping(value="/",method=RequestMethod.POST)
+	@PostMapping("/")
 	public String login(@RequestParam String login,@RequestParam String password,Model model,HttpSession session)
 	{
 		User u= userRepo.findByUsername(login);
 		if(u!=null)
 		{
-			String encodedPassword=utils.md5Java(password);
+			String encodedPassword=Utils.md5Java(password);
 			String givenPassword=u.getPassword();
 			logger.info(encodedPassword+"==>"+givenPassword);
 			if(encodedPassword.equals(givenPassword))

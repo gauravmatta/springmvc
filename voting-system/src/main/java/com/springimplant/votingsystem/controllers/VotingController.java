@@ -8,7 +8,8 @@ import org.jboss.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.springimplant.votingsystem.entity.Candidate;
@@ -27,24 +28,26 @@ public class VotingController {
 	@Autowired
 	CandidateRepo candidateRepo;
 	
-	@RequestMapping("/")
+	private static final String CITIZEN = "citizen";  
+	
+	@GetMapping("/")
 	public String goToVote()
 	{
 		logger.info("Voting Started");
 		return "vote.html";
 	}
 	
-	@RequestMapping("/casteVote")
+	@PostMapping("/casteVote")
 	public String casteVote(@RequestParam String name,Model model,HttpSession session)
 	{
 		Citizen citizen=citizenRepo.findByName(name);
-		session.setAttribute("citizen",citizen);
+		session.setAttribute(CITIZEN,citizen);
 		logger.info(citizen.getName()+" is about to caste vote");
 		if(!citizen.isHasVoted())
 		{
 			List<Candidate> candidates=candidateRepo.findAll();
 			model.addAttribute("candidates",candidates);
-			model.addAttribute("citizen",citizen);
+			model.addAttribute(CITIZEN,citizen);
 			return "performVote.html";
 		}
 		else
@@ -53,24 +56,24 @@ public class VotingController {
 		}
 	}
 	
-	@RequestMapping("/voteFor")
+	@GetMapping("/voteFor")
 	public String voteFor(@RequestParam Long id,@RequestParam Long ctid,HttpSession session)
 	{
-		Citizen ctzn=(Citizen)session.getAttribute("citizen");
+		Citizen ctzn=(Citizen)session.getAttribute(CITIZEN);
 		
 		if(!ctzn.isHasVoted())
 		{
-			Candidate c= candidateRepo.findById(id).get();
+			Candidate c= candidateRepo.findById(id).orElse(null);
+			if(c!=null) {
 			c.setNumberOfVotes(c.getNumberOfVotes()+1);
+			c.setDetails(c.getDetails());
 			candidateRepo.save(c);
 			ctzn.setHasVoted(true);
-			Citizen citizen=citizenRepo.findById(ctid);
-			citizen.setHasVoted(true);
-			citizenRepo.save(citizen);
 			citizenRepo.save(ctzn);
+			}
 			return "voted.html";
 		}
 		return "hasVoted.html";
 	}
-	
 }
+

@@ -20,7 +20,8 @@ public class EmployeeController {
 	private EmployeeService service;
 	
 	@GetMapping("/employees")
-	public List<Employee> getAllEmployee(@RequestHeader("correlationId") String correlationId){
+	public List<Employee> getAllEmployee(@RequestHeader String correlationId){
+//	public List<Employee> getAllEmployee(){
 		LOGGER.info("Inside getAllEmployee method of Employee Controller");
 		return service.getAllEmployee();
 	}

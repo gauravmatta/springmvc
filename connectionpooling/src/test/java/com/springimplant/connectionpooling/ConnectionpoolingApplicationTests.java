@@ -1,0 +1,13 @@
+package com.springimplant.connectionpooling;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+
+@SpringBootTest
+class ConnectionpoolingApplicationTests {
+
+	@Test
+	void contextLoads() {
+	}
+
+}

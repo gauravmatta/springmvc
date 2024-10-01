@@ -18,7 +18,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	@Override
 	public List<Employee> getAllEmployee() {
 		LOGGER.info("Indise getAllEmployee method of Employee Service");
-		List<Employee> employees = new ArrayList<Employee>();
+		List<Employee> employees = new ArrayList<>();
 		Employee employee1 = new Employee(1,"Gaurav",5000);
 		Employee employee2 = new Employee(1,"Koti",7000);
 		Employee employee3 = new Employee(1,"Laksh",9000);

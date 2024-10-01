@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: RatingService
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/
+      database: springimplant
+server:
+  port: 8001

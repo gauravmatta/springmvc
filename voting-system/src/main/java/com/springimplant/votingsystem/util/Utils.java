@@ -1,16 +1,17 @@
 package com.springimplant.votingsystem.util;
 
 import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Component;
 
 import com.springimplant.votingsystem.repositories.UserRepo;
 
-
+@Component
 public class Utils {
 	
 	public static String md5Java(String message)
@@ -19,7 +20,7 @@ public class Utils {
 		try 
 		{ 
 			MessageDigest md = MessageDigest.getInstance("MD5"); 
-			byte[] hash = md.digest(message.getBytes("UTF-8")); 
+			byte[] hash = md.digest(message.getBytes(StandardCharsets.UTF_8)); 
 			StringBuilder sb = new StringBuilder(2*hash.length); 
 			for(byte b : hash)
 			{ 
@@ -27,14 +28,10 @@ public class Utils {
 			} 
 			digest = sb.toString(); 
 		} 
-		catch (UnsupportedEncodingException ex) 
-		{ 
-			Logger.getLogger(UserRepo.class.getName()).log(Level.SEVERE, null, ex); 
-		} 
 		catch (NoSuchAlgorithmException ex) 
 		{ 
 			Logger.getLogger(UserRepo.class.getName()).log(Level.SEVERE, null, ex); 
-		} 
+		} 		 
 		return digest; 
 	}
 }

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href=""?>
+<beans 
+xmlns="http://www.springframework.org/schema/beans"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xmlns:context="http://www.springframework.org/schema/context"
+xmlns:p="http://www.springframework.org/schema/p"
+xmlns:c="http://www.springframework.org/schema/c"
+xmlns:util="http://www.springframework.org/schema/util"
+xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd
+http://www.springframework.org/schema/context
+http://www.springframework.org/schema/context/spring-context.xsd
+http://www.springframework.org/schema/util
+http://www.springframework.org/schema/util/spring-util.xsd">
+
+<context:component-scan base-package="com.springimplant.model"/>
+<util:properties id="attendencestatus">
+	<prop key="Present">1</prop>
+   	<prop key="Absent">-1</prop>
+</util:properties>
+<util:list list-class="java.util.Vector" id="absentAttendence">
+	<value>0</value>
+	<value>0</value>
+	<value>0</value>
+	<value>0</value>
+	<value>0</value>
+</util:list>
+<util:set set-class="java.util.LinkedHashSet" id="subjects">
+	<value>Maths</value>
+	<value>English</value>
+	<value>Hindi</value>
+	<value>Knowledge</value>
+</util:set>
+<util:map map-class="java.util.HashMap" id="alldistinction">
+	<entry key="Maths" value="75"></entry>
+	<entry key="English" value="75"></entry>
+	<entry key="Hindi" value="75"></entry>
+	<entry key="Knowledge" value="75"></entry>
+</util:map>
+
+<bean class="com.springimplant.model.StereoType" name="stereo1" scope="prototype" />
+</beans>
