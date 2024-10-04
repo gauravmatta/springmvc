@@ -53,10 +53,12 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf(csrf -> {
 			try {
 				csrf.disable()
-				    .authorizeRequests(requests -> requests.antMatchers("/login").permitAll()
+				    .authorizeRequests(requests -> requests
+				    		.antMatchers("/admin").hasRole("ADMIN")
+				    		.antMatchers("/login","/","static/css","static/js").permitAll()
+				    		.antMatchers("/**").hasRole("USER")
 				    		.anyRequest().authenticated());
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		})
