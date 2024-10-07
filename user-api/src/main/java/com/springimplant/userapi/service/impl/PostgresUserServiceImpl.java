@@ -20,8 +20,6 @@ public class PostgresUserServiceImpl implements PostgresUserService {
 
 	@Override
 	public User saveUser(User user) {
-		long randomUserId= new Random().nextLong();
-		user.setId(randomUserId);
 		return usersRepository.save(user);
 	}
 
