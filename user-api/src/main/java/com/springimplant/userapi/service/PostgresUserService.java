@@ -8,6 +8,6 @@ public interface PostgresUserService {
 
 	User saveUser(User user);
 	List<User> getAllUser();
-	User getUser(Long userId);
+	User getUser(String userName);
 	
 }
