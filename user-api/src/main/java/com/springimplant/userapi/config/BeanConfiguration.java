@@ -2,6 +2,7 @@ package com.springimplant.userapi.config;
 
 import javax.sql.DataSource;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,9 +15,14 @@ import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.client.RestTemplate;
 
+import com.springimplant.userapi.service.impl.MyUserDetailsService;
+
 @Configuration
 @EnableWebSecurity
 public class BeanConfiguration {
+	
+	@Autowired
+	MyUserDetailsService userdetailsService;
     
 	@Bean
     RestTemplate restTemplate() {
@@ -30,8 +36,6 @@ public class BeanConfiguration {
         users.setAuthoritiesByUsernameQuery("select username,authority from authorities where username = ?");
         return users;
     }
-	
-	
 	
 	@Bean
 	PasswordEncoder passwordEncoder() {
@@ -51,6 +55,5 @@ public class BeanConfiguration {
 			 .anyRequest().authenticated())
 		 .formLogin(form->form.permitAll());
      return http.build();
-		
 	}
 }

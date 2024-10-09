@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
@@ -19,6 +20,7 @@ import com.springimplant.userapi.sqllite.entity.User;
 import com.springimplant.userapi.sqllite.repository.UserRepository;
 
 @RestController
+@RequestMapping("/user")
 public class UserController {
 	
 	@Autowired
@@ -30,6 +32,10 @@ public class UserController {
 	@Autowired
 	private PostgresUserService userService;
 	
+	@GetMapping("/")
+	public String user() {
+		return ("<h1>Welcome User</h1>");
+	}
 	
 	@GetMapping("/auth")
 	public String getmsg() {
@@ -37,7 +43,7 @@ public class UserController {
 		return restTemplate.getForObject(url,String.class);
 	}
 	
-	@GetMapping("/")
+	@GetMapping("/all")
 	public List<User> getUser()
 	{
 		return userRepository.findAll();
