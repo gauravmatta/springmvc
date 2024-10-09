@@ -69,7 +69,7 @@ public class UserController {
 	}
 	
 	@GetMapping("/users/{userId}")
-	public ResponseEntity<com.springimplant.userapi.postgres.entity.User> getSingleUser(@PathVariable Long userId){
+	public ResponseEntity<com.springimplant.userapi.postgres.entity.User> getSingleUser(@PathVariable String userId){
 		com.springimplant.userapi.postgres.entity.User user = userService.getUser(userId);
 		return ResponseEntity.ok(user);
 	}
