@@ -27,9 +27,9 @@ public class PostgresUserServiceImpl implements PostgresUserService {
 	}
 
 	@Override
-	public User getUser(Long userId) {
-		return usersRepository.findById(userId).orElseThrow(
-				() -> new ResourseNotFoundException("User with given Id is not found on server !! : " + userId));
+	public User getUser(String userName) {
+		return usersRepository.findById(userName).orElseThrow(
+				() -> new ResourseNotFoundException("User with given Id is not found on server !! : " + userName));
 	}
 
 }
