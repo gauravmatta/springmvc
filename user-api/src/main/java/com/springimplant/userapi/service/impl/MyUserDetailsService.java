@@ -1,5 +1,7 @@
 package com.springimplant.userapi.service.impl;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -18,7 +20,7 @@ public class MyUserDetailsService implements UserDetailsService{
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		User user = repository.findByUsername(username).orElse(null);
-		return new UserPrincipal(user);
+		Optional<User> user = repository.findByUsername(username);
+		return user.map(UserPrincipal::new).orElseThrow(()-> new UsernameNotFoundException("Not Found : "+ username));
 	}
 }
