@@ -14,11 +14,10 @@ public class MyUserDetailsService implements UserDetailsService{
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		User user = User.builder()
-				.username("Sam")
+				.username(username)
 				.password("password")
-				.firstName("Sam")
+				.firstName(username)
 				.build();
 		return new UserPrincipal(user);
 	}
-
 }
