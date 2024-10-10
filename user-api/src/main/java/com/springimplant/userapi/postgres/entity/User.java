@@ -47,6 +47,12 @@ public class User {
 	@Column(name = "enabled")
 	private String enabled;
 	
+	@Column(name="active")
+	private boolean active;
+	
+	@Column(name="roles")
+	private String roles;
+		
 	@Transient
 	@Builder.Default
 	private List<Rating> ratings = new ArrayList<>();
