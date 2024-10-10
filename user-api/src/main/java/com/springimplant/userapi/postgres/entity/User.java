@@ -1,5 +1,6 @@
 package com.springimplant.userapi.postgres.entity;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,7 +24,9 @@ import lombok.Setter;
 @Getter
 @Setter
 @Builder
-public class User {
+public class User implements Serializable {
+
+	private static final long serialVersionUID = 2948734177737259472L;
 
 	@Column(name = "firstName")
 	private String firstName;
