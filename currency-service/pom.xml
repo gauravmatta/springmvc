@@ -82,24 +82,6 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-webflux</artifactId>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/com.unboundid/unboundid-ldapsdk -->
-<!--		<dependency>
-			<groupId>com.unboundid</groupId>
-			<artifactId>unboundid-ldapsdk</artifactId>
-			<scope>test</scope>
-		</dependency> -->
-		<!--
-		https://mvnrepository.com/artifact/org.springframework.ldap/spring-ldap-core -->
-<!--		<dependency>
-			<groupId>org.springframework.ldap</groupId>
-			<artifactId>spring-ldap-core</artifactId>
-		</dependency> -->
-		<!--
-		https://mvnrepository.com/artifact/org.springframework.security/spring-security-ldap -->
-<!--		<dependency>
-			<groupId>org.springframework.security</groupId>
-			<artifactId>spring-security-ldap</artifactId>
-		</dependency> -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
@@ -134,12 +116,12 @@
 			<artifactId>js-cookie</artifactId>
 			<version>2.0.2</version>
 		</dependency>
-		<!-- <dependency>
+		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
 			<scope>runtime</scope>
 			<optional>true</optional>
-		</dependency> -->
+		</dependency>
 		<dependency>
     <groupId>org.springframework.cloud</groupId>
     <artifactId>spring-cloud-starter-bootstrap</artifactId>

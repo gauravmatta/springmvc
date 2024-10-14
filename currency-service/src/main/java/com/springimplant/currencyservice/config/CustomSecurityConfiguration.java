@@ -13,21 +13,6 @@ import org.springframework.security.web.authentication.SimpleUrlAuthenticationFa
 @Configuration
 public class CustomSecurityConfiguration {
 	
-//	  @Autowired
-//	  public void configure(AuthenticationManagerBuilder auth) throws Exception {
-//	    auth
-//	      .ldapAuthentication()
-//	        .userDnPatterns("uid={0},ou=people")
-//	        .groupSearchBase("ou=groups")
-//	        .contextSource()
-//	          .url("ldap://localhost:8389/dc=springframework,dc=org")
-//	          .and()
-//	        .passwordCompare()
-//	          .passwordEncoder(new BCryptPasswordEncoder())
-//	          .passwordAttribute("userPassword");
-//	  }
-	
-
     @Bean
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 		SimpleUrlAuthenticationFailureHandler handler = new SimpleUrlAuthenticationFailureHandler("/");
