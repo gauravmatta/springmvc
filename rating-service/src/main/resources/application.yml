@@ -5,5 +5,11 @@ spring:
     mongodb:
       uri: mongodb://localhost:27017/
       database: springimplant
+#  ldap:
+#    embedded:
+#      ldif: classpath:ldap-data.ldif
+#      base-dn: dc=springframework,dc=org
+#      port: 8389
+#      url: ldap://localhost:8389/
 server:
   port: 8001
