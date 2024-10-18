@@ -15,10 +15,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.springimplant.jwt.api.dto.UserDto;
-import com.springimplant.jwt.api.entity.Authority;
 import com.springimplant.jwt.api.entity.User;
 import com.springimplant.jwt.api.projections.UserProjection;
-import com.springimplant.jwt.api.repository.AuthorityRepository;
 import com.springimplant.jwt.api.repository.UserRepository;
 import com.springimplant.jwt.api.service.CustomUserDetailService;
 
@@ -32,9 +30,6 @@ public class CustomUserDetailServiceImpl implements UserDetailsService,CustomUse
 	private UserRepository repository;
 	
 	@Autowired
-	private AuthorityRepository authorityRepository;
-	
-	@Autowired
 	private ModelMapper modelMapper;
 	
 	@Override
@@ -42,9 +37,8 @@ public class CustomUserDetailServiceImpl implements UserDetailsService,CustomUse
 	Optional<User> userObj = repository.findByUserId(username);
 	User user = new User();
 	if(userObj.isPresent()) {
-		user = userObj.get();	
+		user = userObj.get();
 	}
-//	List<Authority> allAuthorities = authorityRepository.findAll().stream().collect(Collectors.toList());
 	Collection<? extends GrantedAuthority> allAuthorities = user.getAuthorities();
 	return new org.springframework.security.core.userdetails.User(user.getUserId(),new BCryptPasswordEncoder().encode(user.getUserId()),allAuthorities);
 	}

@@ -43,14 +43,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	public AuthenticationManager authenticationManagerBean() throws Exception {
 		return super.authenticationManagerBean();
 	}
-	
-	
-	/**
-	 * The default prefix used with role based authorization. Default is "ROLE_".
-	 * change the default role prefix
-	 */
-	@Bean
-	public static GrantedAuthorityDefaults grantedAuthorityDefaults() {
+
+
+    /**
+     * The default prefix used with role based authorization. Default is "ROLE_".
+     * change the default role prefix
+     */
+    @Bean
+    static GrantedAuthorityDefaults grantedAuthorityDefaults() {
 		return new GrantedAuthorityDefaults("");
 	}
 	

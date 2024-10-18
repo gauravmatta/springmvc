@@ -91,9 +91,7 @@ public class User implements UserDetails {
 					return authorities;
 				}).orElse(Collections.EMPTY_SET);
 	}
-	
-	
-	
+
 	@Override
 	public String getPassword() {
 		return this.password;
