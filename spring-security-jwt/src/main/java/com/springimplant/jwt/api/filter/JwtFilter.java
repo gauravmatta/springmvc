@@ -1,7 +1,7 @@
 package com.springimplant.jwt.api.filter;
 
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.servlet.FilterChain;
@@ -11,10 +11,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.stereotype.Component;
 import org.springframework.util.ObjectUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
@@ -45,6 +45,17 @@ public class JwtFilter extends OncePerRequestFilter {
 		filterChain.doFilter(request, response);
 	}
 	
+	
+	
+	@Override
+	protected boolean shouldNotFilter(HttpServletRequest request) throws ServletException {
+	    List<AntPathRequestMatcher> excludedMatchers = Arrays.asList(new AntPathRequestMatcher("/login"));
+	    return excludedMatchers.stream()
+                .anyMatch(matcher -> matcher.matches(request));
+	}
+
+
+
 	private void setAuthenticationContext(String token,HttpServletRequest request) {
 		String username=jwtUtil.extractUsername(token);
 		if(username!=null && SecurityContextHolder.getContext().getAuthentication() == null) {

@@ -3,7 +3,6 @@ package com.springimplant.jwt.api;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -28,22 +27,21 @@ import com.springimplant.jwt.api.repository.UserRepository;
 @SpringBootApplication
 @EnableEurekaClient
 public class SpringSecurityJwtApplication {
-	
+
 	@Autowired
 	private UserRepository userRepository;
-	
+
 	@Autowired
 	private AuthorityRepository authorityRepository;
-	
+
 	@Autowired
 	private RoleRepository roleRepository;
 
-	
 	@Bean
 	public ModelMapper modelMapper() {
 		return new ModelMapper();
 	}
-	
+
 	@PostConstruct
 	public void initAuthorties() {
 //		List<Authority> authorities = Stream.of(
@@ -56,7 +54,7 @@ public class SpringSecurityJwtApplication {
 //				).collect(Collectors.toList());
 //		authorityRepository.saveAll(authorities);
 	}
-	
+
 	@PostConstruct
 	public void initRoles() {
 //		Set<Authority> setAuthorities = authorityRepository.findAll().stream().collect(Collectors.toSet());
@@ -67,8 +65,7 @@ public class SpringSecurityJwtApplication {
 //				).collect(Collectors.toList());
 //		roleRepository.saveAll(roles);
 	}
-	
-	
+
 	@PostConstruct
 	public void initUsers() {
 //		Set<Role> setRoles = new HashSet<Role>();
@@ -80,8 +77,6 @@ public class SpringSecurityJwtApplication {
 //				).collect(Collectors.toList());
 //		userRepository.saveAll(users);
 	}
-	
-
 
 	public static void main(String[] args) {
 		SpringApplication.run(SpringSecurityJwtApplication.class, args);
