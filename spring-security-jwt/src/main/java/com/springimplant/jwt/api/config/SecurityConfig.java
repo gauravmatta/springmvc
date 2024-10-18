@@ -1,12 +1,9 @@
 package com.springimplant.jwt.api.config;
 
-import javax.servlet.http.HttpServletResponse;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.config.BeanIds;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -41,7 +38,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		 return new BCryptPasswordEncoder();
 	}
 	
-	@Bean(name= BeanIds.AUTHENTICATION_MANAGER)
+	@Bean
 	@Override
 	public AuthenticationManager authenticationManagerBean() throws Exception {
 		return super.authenticationManagerBean();
@@ -64,14 +61,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.csrf().disable();
-		http.authorizeRequests().antMatchers("/authenticate").permitAll()
-			.anyRequest().authenticated().and()
-			.exceptionHandling().authenticationEntryPoint(((request, response, authException) -> {
-				response.sendError(HttpServletResponse.SC_UNAUTHORIZED);
-				authException.getMessage();
-			} )).and()
-			.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-		http.addFilterBefore(filter,UsernamePasswordAuthenticationFilter.class);
+        http.csrf(csrf -> csrf.disable())
+                .authorizeHttpRequests(requests -> requests.antMatchers("/authenticate").permitAll()
+                        .anyRequest().authenticated())
+                .sessionManagement(management -> management
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS));
+        http.addFilterBefore(filter,UsernamePasswordAuthenticationFilter.class);
 	}
 }
