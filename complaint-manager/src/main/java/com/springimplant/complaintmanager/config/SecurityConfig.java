@@ -15,11 +15,11 @@ public class SecurityConfig {
 						auth.requestMatchers("/").permitAll();
 						auth.anyRequest().authenticated();
 					})
+					.logout(logout->logout.logoutSuccessUrl("/").permitAll())
 					.oauth2Login(withDefaults())
 					.formLogin(withDefaults())
 					.build();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return null;
