@@ -21,9 +21,9 @@ public class HeadersLoggingFilter implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
 		final HttpServletRequest httpServletRequest = (HttpServletRequest) request;
-		Collections.list(httpServletRequest.getHeaderNames()).forEach(header ->{
-			log.info("Header: "+header+httpServletRequest.getHeader(header));
-		});
+		Collections.list(httpServletRequest.getHeaderNames()).forEach(header -> 
+			log.info("Header: "+header+httpServletRequest.getHeader(header))
+		);
 		chain.doFilter(request, response);
 	}
 
