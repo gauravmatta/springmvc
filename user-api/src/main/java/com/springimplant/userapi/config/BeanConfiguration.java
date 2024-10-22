@@ -1,9 +1,12 @@
 package com.springimplant.userapi.config;
 
+import java.util.Collections;
+
 import javax.sql.DataSource;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;
@@ -18,14 +21,19 @@ import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.client.RestTemplate;
 
+import com.springimplant.userapi.filter.BeanRegisteredFilter;
 import com.springimplant.userapi.service.impl.MyUserDetailsService;
 
+import lombok.AllArgsConstructor;
+
 @Configuration
+@AllArgsConstructor
 @EnableWebSecurity
 public class BeanConfiguration {
 	
-	@Autowired
 	MyUserDetailsService userdetailsService;
+	
+	ApplicationContext applicationContext;
     
 	@Bean
     RestTemplate restTemplate() {
@@ -66,5 +74,18 @@ public class BeanConfiguration {
 			 .anyRequest().authenticated())
 		 .formLogin(form->form.permitAll());
      return http.build();
+	}
+	
+	@Bean
+	FilterRegistrationBean<BeanRegisteredFilter> myCustomBeanFilterRegistration(BeanRegisteredFilter filter){
+	final FilterRegistrationBean<BeanRegisteredFilter> registrationBean = new FilterRegistrationBean<BeanRegisteredFilter>(filter);
+	if(applicationContext.containsBean("beanRegisteredFilter")) {
+	registrationBean.setOrder(3);
+	registrationBean.setName("beanFilter");
+	registrationBean.setUrlPatterns(Collections.singletonList("/user/*"));
+	}else {
+		registrationBean.setOrder(Integer.MAX_VALUE);
+	}
+	return registrationBean;
 	}
 }

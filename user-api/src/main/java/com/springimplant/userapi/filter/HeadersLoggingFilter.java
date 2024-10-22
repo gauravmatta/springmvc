@@ -1,8 +1,9 @@
-package com.springimplant.orderapi.filter;
+package com.springimplant.userapi.filter;
 
 import java.io.IOException;
 import java.util.Collections;
 
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import jakarta.servlet.Filter;
@@ -15,6 +16,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Component
 @Slf4j
+@Order(1)
 public class HeadersLoggingFilter implements Filter {
 
 	@Override
@@ -22,9 +24,8 @@ public class HeadersLoggingFilter implements Filter {
 			throws IOException, ServletException {
 		final HttpServletRequest httpServletRequest = (HttpServletRequest) request;
 		Collections.list(httpServletRequest.getHeaderNames()).forEach(header -> 
-			log.info("Header: "+header+httpServletRequest.getHeader(header))
+			log.info("Header from Headers Filter: "+header+httpServletRequest.getHeader(header))
 		);
 		chain.doFilter(request, response);
 	}
-
 }
