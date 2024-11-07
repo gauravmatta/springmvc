@@ -23,6 +23,4 @@ public class HazleCacheInterceptor implements HandlerInterceptor{
 		log.info(hazelcastInstance.toString());
 		return HandlerInterceptor.super.preHandle(request, response, handler);
 	}
-	
-
 }

@@ -3,8 +3,8 @@ package com.springimplant.votingsystem.controllers;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.springimplant.votingsystem.entity.Candidate;
@@ -16,20 +16,20 @@ import com.springimplant.votingsystem.repositories.CitizenRepo;
 import com.springimplant.votingsystem.repositories.RoleRepo;
 import com.springimplant.votingsystem.repositories.UserRepo;
 
+import lombok.AllArgsConstructor;
+
 @RestController
+@AllArgsConstructor
+@RequestMapping("/index")
 public class IndexController {
 	
-	@Autowired
-	CitizenRepo citizenRepo;
+	private CitizenRepo citizenRepo;
 	
-	@Autowired
-	CandidateRepo candidateRepo;
+	private CandidateRepo candidateRepo;
 	
-	@Autowired
-	RoleRepo rolerepo;
+	private RoleRepo rolerepo;
 	
-	@Autowired
-	UserRepo userRepo;
+	private UserRepo userRepo;
 
 	@GetMapping("/doAction")
 	public String doAction()

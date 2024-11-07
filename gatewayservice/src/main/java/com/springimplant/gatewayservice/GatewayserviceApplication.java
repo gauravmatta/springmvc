@@ -19,17 +19,17 @@ public class GatewayserviceApplication {
 		SpringApplication.run(GatewayserviceApplication.class, args);
 	}
 
-    @Bean
-    RouteLocator customRouteLocator(RouteLocatorBuilder builder) {
-		return builder.routes()
-				.route(AppConstants.STUDENT_SERVICE_KEY,r->r.path("/api/student/**")
-				.filters(f->f.stripPrefix(2)).uri("http://localhost:8003"))
-				.route(AppConstants.COURSE_SERVICE_KEY,r->r.path("/api/course/**")
-				.filters(f->f.stripPrefix(2)).uri("http://localhost:8002"))
-				.route(AppConstants.COURSE_SERVICE_KEY,r->r.path("/api/users/**")
-						.filters(f->f.stripPrefix(2)).uri("http://localhost:8003"))
-				.route(AppConstants.AUTH_SERVICE_KEY,r->r.path("/api/semauth/**")
-						.filters(f->f.stripPrefix(2)).uri("http://localhost:8081"))
-				.build();
-	}
+//    @Bean
+//    RouteLocator customRouteLocator(RouteLocatorBuilder builder) {
+//		return builder.routes()
+//				.route(AppConstants.STUDENT_SERVICE_KEY,r->r.path("/api/student/**")
+//				.filters(f->f.stripPrefix(2)).uri("http://localhost:8003"))
+//				.route(AppConstants.COURSE_SERVICE_KEY,r->r.path("/api/course/**")
+//				.filters(f->f.stripPrefix(2)).uri("http://localhost:8002"))
+//				.route(AppConstants.COURSE_SERVICE_KEY,r->r.path("/api/users/**")
+//						.filters(f->f.stripPrefix(2)).uri("http://localhost:8003"))
+//				.route(AppConstants.AUTH_SERVICE_KEY,r->r.path("/api/semauth/**")
+//						.filters(f->f.stripPrefix(2)).uri("http://localhost:8081"))
+//				.build();
+//	}
 }

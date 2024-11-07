@@ -23,9 +23,9 @@ public class InterceptorConfig implements WebMvcConfigurer {
 	
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
-		registry.addInterceptor(generalInterceptor).addPathPatterns("/");
-		registry.addInterceptor(votingInterceptor).addPathPatterns("/employees");
-		registry.addInterceptor(cacheInterceptor).addPathPatterns("/candidate/*");
-		WebMvcConfigurer.super.addInterceptors(registry);
+//		registry.addInterceptor(generalInterceptor).addPathPatterns("/");
+//		registry.addInterceptor(votingInterceptor).addPathPatterns("/employees");
+//		registry.addInterceptor(cacheInterceptor).addPathPatterns("/candidate/*");
+//		WebMvcConfigurer.super.addInterceptors(registry);
 	}
 }

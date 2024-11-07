@@ -20,7 +20,8 @@ public class ErrorFilter extends ZuulFilter {
 	public Object run() throws ZuulException {
 		RequestContext ctx = RequestContext.getCurrentContext();
 		HttpServletRequest request = ctx.getRequest();
-		log.info("Error Filter: "+String.format("%s request to %s",request.getMethod(),request.getRequestURL().toString()));
+		log.info("Error Filter: "
+				+ String.format("%s request to %s", request.getMethod(), request.getRequestURL().toString()));
 		return null;
 	}
 
