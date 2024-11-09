@@ -9,7 +9,9 @@ import org.slf4j.LoggerFactory;
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
 import com.netflix.zuul.exception.ZuulException;
+import org.springframework.context.annotation.Configuration;
 
+@Configuration
 public class PreFilter extends ZuulFilter {
 	
 	private static Logger log = LoggerFactory.getLogger(PreFilter.class);
