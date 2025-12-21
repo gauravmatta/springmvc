@@ -1,0 +1,1 @@
+{"errorMessage":"Error loading class com.springimplant.aws.lambda.Handler: com/springimplant/aws/lambda/Handler has been compiled by a more recent version of the Java Runtime (class file version 61.0), this version of the Java Runtime only recognizes class file versions up to 55.0","errorType":"java.lang.UnsupportedClassVersionError"}

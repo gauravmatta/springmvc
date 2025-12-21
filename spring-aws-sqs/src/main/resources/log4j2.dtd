@@ -1,0 +1,16 @@
+<!ELEMENT Configuration (Appenders,Loggers)>
+<!ATTLIST Configuration status NMTOKEN #REQUIRED>
+<!ATTLIST Configuration packages NMTOKEN #REQUIRED>
+<!ELEMENT Appenders (Lambda)>
+<!ELEMENT Lambda (PatternLayout)>
+<!ATTLIST Lambda name NMTOKEN #REQUIRED>
+<!ELEMENT PatternLayout (pattern)>
+<!ELEMENT pattern (#PCDATA)>
+<!ELEMENT Loggers (Root,Logger+)>
+<!ELEMENT Root (AppenderRef)>
+<!ATTLIST Root level NMTOKEN #REQUIRED>
+<!ELEMENT AppenderRef EMPTY>
+<!ATTLIST AppenderRef ref NMTOKEN #REQUIRED>
+<!ELEMENT Logger EMPTY>
+<!ATTLIST Logger name NMTOKEN #REQUIRED>
+<!ATTLIST Logger level NMTOKEN #REQUIRED>
