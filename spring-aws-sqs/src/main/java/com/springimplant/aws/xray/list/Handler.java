@@ -1,7 +1,4 @@
 package com.springimplant.aws.xray.list;
-
-import list.Note;
-
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
 import com.amazonaws.services.lambda.runtime.events.APIGatewayProxyRequestEvent;
