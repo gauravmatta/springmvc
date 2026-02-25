@@ -11,12 +11,12 @@
 	<dependency>
 	    <groupId>org.springframework</groupId>
 	    <artifactId>spring-context</artifactId>
-	    <version>6.0.12</version>
+	    <version>6.1.20</version>
 	</dependency>
 	<dependency>
 	    <groupId>org.springframework</groupId>
 	    <artifactId>spring-core</artifactId>
-	    <version>6.0.16</version>
+	    <version>6.2.11</version>
 	</dependency>
     <dependency>
       <groupId>junit</groupId>
@@ -47,7 +47,7 @@
   	<dependency>
   		<groupId>com.mchange</groupId>
   		<artifactId>c3p0</artifactId>
-  		<version>0.9.5.4</version>
+  		<version>0.12.0</version>
   	</dependency>
   	<dependency>
   		<groupId>com.fasterxml.jackson.core</groupId>
@@ -57,7 +57,7 @@
   	<dependency>
   		<groupId>org.hibernate</groupId>
   		<artifactId>hibernate-validator</artifactId>
-  		<version>6.0.23.Final</version>
+  		<version>6.2.0.Final</version>
   	</dependency>
   	<dependency>
   		<groupId>javax.servlet.jsp.jstl</groupId>
@@ -87,7 +87,7 @@
   	<dependency>
   		<groupId>org.springframework</groupId>
   		<artifactId>spring-webmvc</artifactId>
-  		<version>6.1.13</version>
+  		<version>6.2.10</version>
   	</dependency>
   	<dependency>
 		<groupId>org.projectlombok</groupId>
